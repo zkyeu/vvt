@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "esnext", // 指定ECMAScript目标版本 
+    "module": "esnext", // 指定生成哪个模块系统代码
+    "moduleResolution": "node", // 决定如何处理模块。
+    "strict": true, // 启用所有严格类型检查选项。
+    "jsx": "preserve",
+    "sourceMap": true, // 生成相应的 .map文件。
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "lib": ["esnext", "dom"], // 编译过程中需要引入的库文件的列表。
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue"],
+  "exclude": [
+    "node_modules"
+  ]
+}
