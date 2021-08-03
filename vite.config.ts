@@ -1,8 +1,8 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 15:51:41
- * @LastEditTime: 2021-07-28 19:04:04
- * @LastEditors: your name
+ * @LastEditTime: 2021-08-03 10:31:52
+ * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/vite.config.ts
  */
@@ -25,6 +25,7 @@ export default defineConfig({
   },
   server: {
     // hostname: '0.0.0.0',
+    // hmr: { overlay: false },
     host: "localhost",
     port: 3001,
     // // 是否自动在浏览器打开

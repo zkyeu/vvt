@@ -1,19 +1,19 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2021-08-02 20:34:57
+ * @LastEditTime: 2021-08-03 14:33:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 // import Home from '@/views/Home.vue';
-import UserSettings from '../views/layer.vue'
+// import Home from '../views/home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
   path: '/',
-  component: UserSettings,
+  component: () => import('@/views/home.vue'),
   children: [
     {
       path: '/',
@@ -21,10 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
       path: 'profile',
-      components: {
-        default:  () => import('@/views/b.vue'),
-        helper:  () => import('@/views/c.vue'),
-      },
+      component: () => import('@/views/b.vue'),
+    },
+    {
+      path: 'set',
+      component: () => import('@/views/c.vue'),
     },
   ]
 }];

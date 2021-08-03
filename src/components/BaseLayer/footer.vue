@@ -1,29 +1,23 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2021-08-03 08:50:06
+ * @LastEditTime: 2021-08-03 10:42:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
 -->
 <template>
-  <header class="layer-header">
+  <header class="layer-footer">
     <div>logo</div>
-    <div>user center</div>
   </header>
 </template>
 
 <style lang="less" scoped>
-  .layer-header {
+  .layer-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px;
     height: 50px;
     background-color: #fff;
-    box-shadow: 0 1px 5px #ccc;
-    position: sticky;
-    top: 0;
-    z-index: 999;
   }
 </style>
