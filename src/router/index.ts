@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2021-08-03 14:33:37
+ * @LastEditTime: 2021-08-03 17:35:56
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
@@ -17,16 +17,29 @@ const routes: Array<RouteRecordRaw> = [
   children: [
     {
       path: '/',
+      component:  () => import('@/views/default.vue'),
+    },
+    {
+      path: 'a',
       component:  () => import('@/views/a.vue'),
     },
     {
-      path: 'profile',
+      path: 'b',
       component: () => import('@/views/b.vue'),
     },
     {
-      path: 'set',
+      path: 'c',
       component: () => import('@/views/c.vue'),
     },
+    {
+      path: 'd',
+      component: () => import('@/views/d.vue'),
+    },
+    {
+      path: 'e',
+      component: () => import('@/views/e.vue'),
+    },
+    
   ]
 }];
 

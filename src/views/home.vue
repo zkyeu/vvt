@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:10:05
- * @LastEditTime: 2021-08-03 10:45:16
+ * @LastEditTime: 2021-08-03 17:16:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/UserSettings.vue
@@ -34,12 +34,12 @@
     .content-layer {
       display: flex;
       flex-direction: row;
-
       .content-right {
         background: #fff;
         margin: 16px 16px 0;
         width: 100%;
         min-width: 600px;
+        box-shadow: 0 0 5px #dedede;
       }
     }
   }

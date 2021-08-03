@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2021-08-03 14:34:48
+ * @LastEditTime: 2021-08-03 17:35:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/index.ts
@@ -29,7 +29,7 @@ const defaultState = {
         {
           id: 2,
           title: '111111',
-          router: 'set',
+          router: 'a',
         },
         {
           id: 3,
@@ -46,13 +46,13 @@ const defaultState = {
     {
       id: 5,
       title: '菜单2',
-      router: 'profile',
+      router: 'd',
       icon: 'el-icon-menu',
     },
     {
       id: 6,
       title: '菜单3',
-      router: '/',
+      router: 'e',
       icon: 'el-icon-setting',
     }
   ]

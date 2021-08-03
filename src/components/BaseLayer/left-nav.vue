@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:10:38
- * @LastEditTime: 2021-08-03 14:57:41
+ * @LastEditTime: 2021-08-03 17:37:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/baseLayer/left-nav.vue
@@ -52,7 +52,7 @@
       const leftNavData = computed(() => store.state.leftNav);
 
       onMounted(() => {
-        console.log(leftNavData.value);
+        // console.log(leftNavData.value);
         // const { proxy }: any = getCurrentInstance();
         // console.log(proxy.$router.currentRoute.value);
         // console.log(router.currentRoute.value);
@@ -70,7 +70,7 @@
   .left-navs {
     display: flex;
     width: 200px;
-    min-height: 500px;
+    min-height: calc(100vh - 50px);
 
     :deep(.left-nav-menu) {
       width: 200px;
