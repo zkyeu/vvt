@@ -1,13 +1,23 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-04 10:35:49
+ * @LastEditTime: 2021-08-11 17:04:12
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
 -->
 <template>
-  <h1>{{ msg }}</h1>
+  <section class="content">
+    <h1>{{ msg }}123</h1>
+    <p>{{ userData }}</p>
+    <div>===============</div>
+    <p>{{ articleData }}</p>
+    <div>
+      id：<el-input v-model="aid"></el-input> 内容：<el-input v-model="content"></el-input>
+      <el-button @click="delitem">删除</el-button>
+      <el-button @click="updateData">更新</el-button>
+    </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -24,35 +34,93 @@
       const store = useStore(key);
       const msg = computed(() => store.state.count);
       const { $http, $confirm, $message } = useGlobalConfig();
+      const userData = ref([]);
+      const articleData = ref([]);
+      const aid = ref('3');
+      const content = ref('');
 
+      const delitem = () => {
+        console.log(aid.value);
+        $http
+          .deletearticle({
+            id: aid.value,
+          })
+          .then((res: any) => {
+            console.log(res);
+          })
+          .catch((err: any) => {
+            console.log(err);
+          });
+      };
+
+      const updateData = () => {
+        console.log(aid.value, content.value);
+        $http
+          .updatearticle({
+            id: aid.value,
+            content: content.value,
+          })
+          .then((res: any) => {
+            console.log(res);
+          })
+          .catch((err: any) => {
+            console.log(err);
+          });
+      };
       onMounted(() => {
-        $confirm('执行删除操作可能会导致数据丢失，确定要继续执行该操作吗?', '', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          showClose: false,
-          type: 'warning',
-        }).then(() => {
-          console.log($http);
-          $http
-            .deletetask({ aa: 1 })
-            .then(() => {
-              $message({
-                type: 'success',
-                message: '删除成功!',
-              });
-            })
-            .catch((err: { errMsg: any }) => {
-              console.log('errrrrrr');
-            });
-        });
+        $http
+          .getUser()
+          .then((res: any) => {
+            userData.value = res;
+            // console.log(res);
+          })
+          .catch((err: any) => {
+            console.log('errrrrrr', err);
+          });
+        //获取文章
+        $http
+          .getArticle()
+          .then((res: any) => {
+            articleData.value = res;
+            // console.log(res);
+          })
+          .catch((err: any) => {
+            console.log(err);
+          });
+        // 创建文章
+        // $http
+        //   .createarticle({
+        //     title: '我是标题信息',
+        //     content: '我内容信息',
+        //     author: 'zhu',
+        //     type: 2,
+        //     typename: '221231322',
+        //   })
+        //   .then((res: any) => {
+        //     articleData.value = res;
+        //     console.log(res);
+        //   })
+        //   .catch((err: any) => {
+        //     console.log(err);
+        //   });
       });
 
       // 返回当前页面所有使用的数据跟逻辑========
       return {
         msg,
+        userData,
+        articleData,
+        delitem,
+        updateData,
+        aid,
+        content,
       };
     },
   });
 </script>
 
-<style scoped></style>
+<style scoped>
+  .content {
+    display: block;
+  }
+</style>

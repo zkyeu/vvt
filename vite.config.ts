@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 15:51:41
- * @LastEditTime: 2021-08-03 10:31:52
+ * @LastEditTime: 2021-08-10 17:39:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/vite.config.ts
@@ -10,6 +10,9 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 const path = require('path');
 
+const proxy = {
+  target: 'http://localhost:3000/'
+}
 export default defineConfig({
   plugins: [vue()],
   alias: {
@@ -29,18 +32,18 @@ export default defineConfig({
     host: "localhost",
     port: 3001,
     // // 是否自动在浏览器打开
-    // open: true,
+    open: true,
     // // 是否开启 https
     // https: false,
     // // 服务端渲染
     // ssr: false,
+    cors: true,
     proxy: {
-      '/api': {
-        target: 'http://localhost:3333/',
+      '/get': {
+        target: proxy.target,
         changeOrigin: true,
-        ws: true,
-        rewrite: (pathStr) => pathStr.replace('/api', '')
-      },
+        followRedirects: true
+      }
     },
   },
 })
