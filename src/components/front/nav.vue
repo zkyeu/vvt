@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:10:38
- * @LastEditTime: 2021-08-13 15:51:29
+ * @LastEditTime: 2021-08-13 16:02:44
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/baseLayer/left-nav.vue
@@ -43,12 +43,12 @@
         // console.log(proxy.$router.currentRoute.value);
         // console.log(router.currentRoute.value);
         // console.log(Proxy);
-        console.log(router.currentRoute.value.path);
+        // console.log(router.currentRoute.value.path);
       });
-      watch(activeRouter, (n, o) => {
-        console.log('new==>', n);
-        console.log('old-->', o);
-      });
+      // watch(activeRouter, (n, o) => {
+      //   console.log('new==>', n);
+      //   console.log('old-->', o);
+      // });
 
       return {
         navData,
