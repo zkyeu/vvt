@@ -43,7 +43,7 @@
         // console.log(proxy.$router.currentRoute.value);
         // console.log(router.currentRoute.value);
         // console.log(Proxy);
-        // console.log(router.currentRoute.value.path);
+        // console.log(router.currentRoute.value.path);     1
       });
       // watch(activeRouter, (n, o) => {
       //   console.log('new==>', n);
