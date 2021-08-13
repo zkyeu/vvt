@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2021-08-03 17:35:33
+ * @LastEditTime: 2021-08-13 15:38:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/index.ts
@@ -13,7 +13,8 @@ export interface State {
   count: number,
   userName: string,
   noChangeValue: string,
-  leftNav: Array<any>
+  leftNav: Array<any>,
+  nav: Array<any>
 }
 
 const defaultState = {
@@ -55,6 +56,33 @@ const defaultState = {
       router: 'e',
       icon: 'el-icon-setting',
     }
+  ],
+  nav: [
+    {
+      id: 1,
+      title: '首页',
+      router: '/',
+    },
+    {
+      id:2,
+      title: '文章',
+      router: 'b',
+    },
+    {
+      id: 3,
+      title: '学习积累',
+      router: 'c',
+    },
+    {
+      id: 4,
+      title: '胡思乱想',
+      router: 'd',
+    },
+    {
+      id: 5,
+      title: 'tool',
+      router: 'e',
+    },
   ]
 };
 

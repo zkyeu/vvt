@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-28 15:51:41
- * @LastEditTime: 2021-08-03 07:34:29
+ * @LastEditTime: 2021-08-12 09:58:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/README.md
@@ -16,3 +16,6 @@
 > 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L
 
 今天竟然可以提交github了，可是我什么也没有做啊，新鲜～
+
+20210812
+node服务端有了雏形，开始搞前端页面了，主要包含 各种组建模块的搭建跟详情页面的设计。

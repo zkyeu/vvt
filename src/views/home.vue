@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:10:05
- * @LastEditTime: 2021-08-03 17:16:58
+ * @LastEditTime: 2021-08-12 20:34:13
  * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
- * @FilePath: /vvt/src/views/UserSettings.vue
+ * @Description: 后台首页
+ * @FilePath: /vvt/src/views/home.vue
 -->
 <template>
   <section class="main-content">
