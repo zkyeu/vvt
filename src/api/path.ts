@@ -11,7 +11,8 @@ const apiList = {
     getuserinfo: '/commander/user/getuserinfo', // 用户信息
     gettasklist: '/commander/util/gettasklist', // 任务列表
     getUser: '/get/user',
-    getArticle: '/get/article',
+    getarticle: '/get/article',
+    getarticlelist: '/get/articlelist',
   },
   post: {
     submitmarkdata: '/commander/util/submitmarkdata', // 标注提交

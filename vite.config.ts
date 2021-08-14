@@ -11,20 +11,21 @@ import vue from '@vitejs/plugin-vue'
 const path = require('path');
 
 const proxy = {
-  target: 'http://localhost:3000/'
+  // target: 'http://localhost:3000/'
+  target: 'http://192.168.0.101:3000/'
 }
 export default defineConfig({
   plugins: [vue()],
   alias: {
     '@': path.resolve(__dirname, './src'),
     views: path.resolve(__dirname, './src/views'),
-    components: path.resolve(__dirname, './src/components'),
+    '@com': path.resolve(__dirname, "./src/components"),
     utils: path.resolve(__dirname, './src/utils'),
     less: path.resolve(__dirname, "./src/less"),
     assets: path.resolve(__dirname, "./src/assets"),
-    com: path.resolve(__dirname, "./src/components"),
     store: path.resolve(__dirname, "./src/store"),
-    mixins: path.resolve(__dirname, "./src/mixins")
+    mixins: path.resolve(__dirname, "./src/mixins"),
+    router: path.resolve(__dirname, './src/router')
   },
   server: {
     // hostname: '0.0.0.0',

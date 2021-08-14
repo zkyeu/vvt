@@ -1,11 +1,11 @@
 <template>
   <section class="item-list">
     <ul>
-      <li v-for="item in list" :key="item" @click="changeRoute(item.id)">
+      <li v-for="item in articleData" :key="item" @click="changeRoute(item.id)">
         <div class="title">{{item.title}}</div>
         <div class="author">
           <span>{{item.author}}</span>
-          <span>{{item.date}}</span>
+          <span>{{item.createtime}}</span>
         </div>
       </li>
     </ul>
@@ -29,47 +29,47 @@
           id: 1,
           title: '这里是标题信息内容，一个伟大的开始',
           author: '李亮',
-          date: '2021年08月26日'
+          createtime: '2021年08月26日'
         },
         {
           id: 2,
           title: '新闻标题内容信息',
           author: '李亮',
-          date: '2021年08月25日'
+          createtime: '2021年08月25日'
         },
         {
           id: 3,
           title: '信息标题4',
           author: '李亮',
-          date: '2021年08月20日'
+          createtime: '2021年08月20日'
         },
         {
           id: 4,
           title: '暖融融信息',
           author: '李亮',
-          date: '2021年08月19日'
+          createtime: '2021年08月19日'
         },
       ];
       const changeRoute = (v: string) => {
         router.push(`articledetail?id=${v}`);
       };
 
-      // const getArticleList = () => {
-      //   $http
-      //     .getArticle()
-      //     .then((res: any) => {
-      //       articleData.value = res;
-      //     })
-      //     .catch((err: any) => {
-      //       console.log(err);
-      //     });
-      // };
+      const getArticleList = () => {
+        $http
+          .getarticlelist()
+          .then((res: any) => {
+            articleData.value = res;
+          })
+          .catch((err: any) => {
+            console.log(err);
+          });
+      };
       // const toArticle = () => {
         
       // };
 
       onMounted(() => {
-        // getArticleList();
+        getArticleList();
       });
 
       // 返回当前页面所有使用的数据跟逻辑========

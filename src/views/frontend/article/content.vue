@@ -1,12 +1,11 @@
-
 <template>
-  <section class="content">
-    <div class="content-left">
-      <Content />
-    </div>
-    <div class="content-right">
-      <Types />
-    </div>
+  <section class="item-detail">
+    <div class="title">{{ articleData.title }}</div>
+      <div class="author-info">
+        <span class="name">{{ articleData.author }}</span>
+        <span>发表于<i class="date">{{ articleData.createtime }}</i></span>
+      </div>
+      <div>{{ articleData.content }}</div>
   </section>
 </template>
 
@@ -14,12 +13,9 @@
   import { ref, defineComponent, computed, onMounted } from 'vue';
   import { useGlobalConfig } from '../../../utils/util';
   import router from '../../../router';
-  import Content from './content.vue';
-  import Types from '@com/front/types.vue';
 
   export default defineComponent({
-    name: 'Article-detail',
-    components: { Content, Types },
+    name: 'Content',
     setup: () => {
       const { $http, $confirm, $message } = useGlobalConfig();
       const articleData = ref([]);

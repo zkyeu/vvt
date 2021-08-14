@@ -53,10 +53,9 @@
 
       const getArticle = () => {
         $http
-          .getArticle()
+          .getarticlelist()
           .then((res: any) => {
             articleData.value = res;
-            // console.log(res);
           })
           .catch((err: any) => {
             console.log(err);

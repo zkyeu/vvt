@@ -12,9 +12,9 @@
     <!-- <p>{{ userData }}</p>
     <p>{{ articleData }}</p> -->
     <div>
-      <!-- id：<el-input v-model="aid"></el-input> 内容：<el-input v-model="content"></el-input>
+      id：<el-input v-model="aid"></el-input> 内容：<el-input v-model="content"></el-input>
       <el-button @click="delitem">删除</el-button>
-      <el-button @click="updateData">更新</el-button> -->
+      <el-button @click="updateData">更新</el-button>
     </div>
   </section>
 </template>
