@@ -34,14 +34,13 @@
 
     .content-layer {
       display: flex;
+      justify-content: center;
       flex-direction: row;
       .content-body {
-        background: #ddd;
         margin: 16px 16px 0;
         width: 100%;
         min-width: 1000px;
-        // max-width: 1200px;
-        // box-shadow: 0 0 5px #dedede;
+        max-width: 1200px;
       }
     }
   }

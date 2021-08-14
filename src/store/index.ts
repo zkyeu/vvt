@@ -14,7 +14,8 @@ export interface State {
   userName: string,
   noChangeValue: string,
   leftNav: Array<any>,
-  nav: Array<any>
+  nav: Array<any>,
+  type: Array<any>
 }
 
 const defaultState = {
@@ -83,6 +84,23 @@ const defaultState = {
       title: 'tool',
       router: 'e',
     },
+  ],
+  type: [
+    {
+      id: 1,
+      title: 'HTML',
+      router: 'html',
+    },
+    {
+      id:2,
+      title: 'CSS',
+      router: 'css',
+    },
+    {
+      id: 3,
+      title: 'JS',
+      router: 'js',
+    }
   ]
 };
 

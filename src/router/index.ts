@@ -40,6 +40,10 @@ const routes: Array<RouteRecordRaw> = [
       path: 'e',
       component: () => import('@/views/frontend/e.vue'),
     },
+    {
+      path: 'articledetail',
+      component: () => import('@/views/frontend/article/article-detail.vue'),
+    },
     
   ]
 },

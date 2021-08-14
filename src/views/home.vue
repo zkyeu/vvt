@@ -11,7 +11,7 @@
     <Header />
     <div class="content-layer">
       <LeftNav />
-      <router-view class="content-right" />
+      <router-view class="content" />
     </div>
     <!-- <Footer />
     <router-view name="helper" /> -->
@@ -34,7 +34,7 @@
     .content-layer {
       display: flex;
       flex-direction: row;
-      .content-right {
+      .content {
         background: #fff;
         margin: 16px 16px 0;
         width: 100%;

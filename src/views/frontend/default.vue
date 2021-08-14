@@ -8,7 +8,12 @@
 -->
 <template>
   <section class="content">
-    <h1>{{ msg }}1234444234234234</h1>
+    <div class="content-left">
+      <ArticleList />
+    </div>
+    <div class="content-right">
+      <Types />
+    </div>
   </section>
 </template>
 
@@ -18,10 +23,13 @@
   import { useStore } from 'vuex';
   import { key } from '../../store';
   import { useGlobalConfig } from '../../utils/util';
+  import ArticleList from './article/article-list.vue';
+  import Types from '../../components/front/types.vue';
 
   // 代码逻辑开始========
   export default defineComponent({
     name: 'Default',
+    components: { ArticleList, Types },
     setup: () => {
       const store = useStore(key);
       const msg = computed(() => store.state.count);
@@ -123,8 +131,24 @@
   });
 </script>
 
-<style scoped>
+<style lang="less" scoped>
   .content {
-    display: block;
+    display: flex;
+    // justify-content: space-between;
+    
+    .content-left {
+      min-width: 330px;
+      margin-right: 30px;
+      // background: #f5f5f5;
+      // word-break: break-all;
+      flex: 1;
+      font-size: 14px;
+      line-height: 26px;
+    }
+
+    .content-right {
+      width: 300px;
+      background: #f00;
+    }
   }
 </style>
