@@ -16,6 +16,7 @@
       <el-button @click="delitem">删除</el-button>
       <el-button @click="updateData">更新</el-button>
     </div>
+    <router-view />
   </section>
 </template>
 

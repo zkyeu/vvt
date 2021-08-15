@@ -30,8 +30,8 @@ const defaultState = {
       child: [
         {
           id: 2,
-          title: '111111',
-          router: 'a',
+          title: 'create',
+          router: 'create',
         },
         {
           id: 3,
@@ -48,13 +48,13 @@ const defaultState = {
     {
       id: 5,
       title: '菜单2',
-      router: 'd',
+      router: 'bc/d',
       icon: 'el-icon-menu',
     },
     {
       id: 6,
       title: '菜单3',
-      router: 'e',
+      router: 'bc/e',
       icon: 'el-icon-setting',
     }
   ],

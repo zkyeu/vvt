@@ -11,12 +11,13 @@
     <el-menu
       :uniqueOpened="true"
       default-active="/"
-      router
       class="left-nav-menu"
       background-color="#3e4660"
       text-color="rgb(202, 207, 222)"
       active-text-color="#00a8f3"
-    >
+      @select="sele"
+      @open="handleOpen"
+      @close="handleClose">
       <template v-for="item in leftNavData">
         <el-menu-item :index="item.router" :key="item.router" v-if="!item.child">
           <i class="el-icon-setting"></i>
@@ -39,6 +40,7 @@
   </section>
 </template>
 
+
 <script lang="ts">
   import { ref, defineComponent, computed, onMounted, getCurrentInstance } from 'vue';
   import { useStore } from 'vuex';
@@ -50,17 +52,36 @@
     setup: () => {
       const store = useStore(key);
       const leftNavData = computed(() => store.state.leftNav);
+      const therouter = (v: string) => {
+        // activeRouter.value = v;
+        router.push(v);
+        // console.log(router.currentRoute.value.path);
+      };
+      const handleOpen = (key: any, keyPath: any)=> {
+        console.log(key, keyPath);
+      };
 
+      const handleClose = (key: any, keyPath: any)=> {
+        console.log(key, keyPath);
+      };
+
+      const sele = (key: any, keyPath: any)=> {
+        console.log(key, keyPath);
+        router.push(key);
+      }
       onMounted(() => {
         // console.log(leftNavData.value);
-        // const { proxy }: any = getCurrentInstance();
-        // console.log(proxy.$router.currentRoute.value);
+        const { proxy }: any = getCurrentInstance();
+        router.push(proxy.$router.currentRoute.value.path);
         // console.log(router.currentRoute.value);
         // console.log(Proxy);
       });
 
       return {
         leftNavData,
+        handleOpen,
+        handleClose,
+        sele
       };
     },
   });

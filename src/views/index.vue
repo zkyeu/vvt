@@ -22,7 +22,7 @@
   import Footer from '@/components/front/footer.vue';
   import { ref, defineComponent, computed, onMounted, getCurrentInstance } from 'vue';
   export default defineComponent({
-    components: { Header, Footer },
+    components: { Header, Footer }
   });
 </script>
 

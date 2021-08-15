@@ -13,17 +13,14 @@
       <LeftNav />
       <router-view class="content" />
     </div>
-    <!-- <Footer />
-    <router-view name="helper" /> -->
   </section>
 </template>
 
 <script lang="ts">
   import LeftNav from '@/components/BaseLayer/left-nav.vue';
   import Header from '@/components/BaseLayer/header.vue';
-  import Footer from '@/components/BaseLayer/footer.vue';
   export default {
-    components: { Header, LeftNav, Footer },
+    components: { Header, LeftNav }
   };
 </script>
 

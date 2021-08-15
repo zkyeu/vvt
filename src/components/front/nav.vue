@@ -26,7 +26,7 @@
   import { key } from '../../store';
 
   export default defineComponent({
-    name: 'LeftNav',
+    name: 'Nav',
     setup: () => {
       const store = useStore(key);
       const navData = computed(() => store.state.nav);

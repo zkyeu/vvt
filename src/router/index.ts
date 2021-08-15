@@ -48,15 +48,15 @@ const routes: Array<RouteRecordRaw> = [
   ]
 },
 {
-  path: '/bc',
+  path: '/admin',
   component: Home,
   children: [
     {
-      path: '/bc',
-      component:  () => import('@/views/backplat/index.vue'),
+      path: '/admin',
+      component:  () => import('@/views/backplat/index.vue')
     },
     {
-      path: 'a',
+      path: 'create',
       component:  () => import('@/views/frontend/a.vue'),
     },
     {
