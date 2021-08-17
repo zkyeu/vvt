@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-12 11:37:21
+ * @LastEditTime: 2021-08-17 15:11:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -80,8 +80,7 @@
             console.log(err);
           });
       };
-      const delitem = () => {
-        console.log(aid.value);
+      const delitem = (v: any) => {
         $http
           .deletearticle({
             id: aid.value,

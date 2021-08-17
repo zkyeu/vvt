@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2021-08-12 20:47:45
+ * @LastEditTime: 2021-08-16 19:08:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
@@ -53,29 +53,34 @@ const routes: Array<RouteRecordRaw> = [
   children: [
     {
       path: '/admin',
-      component:  () => import('@/views/backplat/index.vue')
+      component:  () => import('@/views/admin/index.vue')
     },
     {
-      path: 'create',
-      component:  () => import('@/views/frontend/a.vue'),
+      path: 'article',
+      component:  () => import('@/views/admin/article.vue'),
+      children: [
+        {
+          path: '/admin/article',
+          component:  () => import('@/views/admin/article/list.vue')
+        },
+        {
+          path: '/admin/article/add',
+          component:  () => import('@/views/admin/article/add.vue')
+        },
+        {
+          path: '/admin/article/edit',
+          component:  () => import('@/views/admin/b.vue')
+        }
+      ]
     },
     {
-      path: 'b',
-      component: () => import('@/views/frontend/b.vue'),
+      path: 'config',
+      component: () => import('@/views/admin/b.vue')
     },
     {
-      path: 'c',
-      component: () => import('@/views/frontend/c.vue'),
-    },
-    {
-      path: 'd',
-      component: () => import('@/views/frontend/d.vue'),
-    },
-    {
-      path: 'e',
-      component: () => import('@/views/frontend/e.vue'),
-    },
-    
+      path: 'power',
+      component: () => import('@/views/admin/c.vue')
+    }
   ]
 }];
 

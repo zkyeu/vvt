@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-08-04 10:18:00
+ * @LastEditTime: 2021-08-17 09:44:05
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+; * @FilePath: /vvt/src/utils/util.ts
+ */
 /* eslint-disable import/prefer-default-export */
 import { getCurrentInstance, ComponentInternalInstance } from 'vue';
 

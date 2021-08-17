@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2021-08-13 15:38:48
+ * @LastEditTime: 2021-08-16 13:06:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/index.ts
@@ -23,38 +23,44 @@ const defaultState = {
   userName: '123',
   noChangeValue: '我不变化',
   leftNav: [
-    { 
-      id: 1,
-      icon: 'el-icon-location',
-      title: '菜单一',
-      child: [
-        {
-          id: 2,
-          title: 'create',
-          router: 'create',
-        },
-        {
-          id: 3,
-          title: '22222',
-          router: 'b',
-        },
-        {
-          id: 4,
-          title: '33333',
-          router: 'c',
-        }
-      ]
-    },
+    // { 
+    //   id: 1,
+    //   icon: 'el-icon-location',
+    //   title: '菜单一',
+    //   child: [
+    //     {
+    //       id: 2,
+    //       title: '/admin/a',
+    //       router: '/admin/a',
+    //     },
+    //     {
+    //       id: 3,
+    //       title: '22222',
+    //       router: '/admin/b',
+    //     },
+    //     {
+    //       id: 4,
+    //       title: '33333',
+    //       router: '/admin/c',
+    //     }
+    //   ]
+    // },
     {
       id: 5,
-      title: '菜单2',
-      router: 'bc/d',
+      title: '文章管理',
+      router: '/admin/article',
       icon: 'el-icon-menu',
     },
     {
       id: 6,
-      title: '菜单3',
-      router: 'bc/e',
+      title: '基础配置',
+      router: '/admin/config',
+      icon: 'el-icon-setting',
+    },
+    {
+      id: 7,
+      title: '权限管理',
+      router: '/admin/power',
       icon: 'el-icon-setting',
     }
   ],

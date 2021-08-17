@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:10:38
- * @LastEditTime: 2021-08-03 17:37:10
+ * @LastEditTime: 2021-08-16 16:21:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/baseLayer/left-nav.vue
@@ -15,9 +15,11 @@
       background-color="#3e4660"
       text-color="rgb(202, 207, 222)"
       active-text-color="#00a8f3"
+      router
       @select="sele"
       @open="handleOpen"
-      @close="handleClose">
+      @close="handleClose"
+    >
       <template v-for="item in leftNavData">
         <el-menu-item :index="item.router" :key="item.router" v-if="!item.child">
           <i class="el-icon-setting"></i>
@@ -40,51 +42,50 @@
   </section>
 </template>
 
-
 <script lang="ts">
-  import { ref, defineComponent, computed, onMounted, getCurrentInstance } from 'vue';
-  import { useStore } from 'vuex';
-  import router from '../../router';
-  import { key } from '../../store';
+  import { ref, defineComponent, computed, onMounted, getCurrentInstance } from 'vue'
+  import { useStore } from 'vuex'
+  import router from '../../router'
+  import { key } from '../../store'
 
   export default defineComponent({
     name: 'LeftNav',
     setup: () => {
-      const store = useStore(key);
-      const leftNavData = computed(() => store.state.leftNav);
+      const store = useStore(key)
+      const leftNavData = computed(() => store.state.leftNav)
       const therouter = (v: string) => {
         // activeRouter.value = v;
-        router.push(v);
+        router.push(v)
         // console.log(router.currentRoute.value.path);
-      };
-      const handleOpen = (key: any, keyPath: any)=> {
-        console.log(key, keyPath);
-      };
+      }
+      const handleOpen = (key: any, keyPath: any) => {
+        console.log(key, keyPath)
+      }
 
-      const handleClose = (key: any, keyPath: any)=> {
-        console.log(key, keyPath);
-      };
+      const handleClose = (key: any, keyPath: any) => {
+        console.log(key, keyPath)
+      }
 
-      const sele = (key: any, keyPath: any)=> {
-        console.log(key, keyPath);
-        router.push(key);
+      const sele = (key: any, keyPath: any) => {
+        // console.log(key, keyPath);
+        // router.push(key);
       }
       onMounted(() => {
         // console.log(leftNavData.value);
-        const { proxy }: any = getCurrentInstance();
-        router.push(proxy.$router.currentRoute.value.path);
+        const { proxy }: any = getCurrentInstance()
+        router.push(proxy.$router.currentRoute.value.path)
         // console.log(router.currentRoute.value);
         // console.log(Proxy);
-      });
+      })
 
       return {
         leftNavData,
         handleOpen,
         handleClose,
-        sele
-      };
+        sele,
+      }
     },
-  });
+  })
 </script>
 
 <style lang="less" scoped>

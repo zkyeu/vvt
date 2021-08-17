@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 17:51:25
- * @LastEditTime: 2021-08-10 17:56:18
+ * @LastEditTime: 2021-08-17 14:50:33
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/api/interceptor.ts
@@ -34,7 +34,7 @@ axios.interceptors.response.use(
     const resData: any = res.data;
     const errCode: number | undefined = Number(resData.errNo);
     if (errCode === 0) {
-      return Promise.resolve(resData.data);
+      return Promise.resolve(resData);
     } else {
       return Promise.reject(resData);
     }
