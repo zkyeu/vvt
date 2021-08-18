@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2021-08-16 13:06:31
+ * @LastEditTime: 2021-08-18 16:22:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/index.ts
@@ -15,7 +15,9 @@ export interface State {
   noChangeValue: string,
   leftNav: Array<any>,
   nav: Array<any>,
-  type: Array<any>
+  type: Array<any>,
+  articleConfig: Array<any>,
+  adminConfig: Array<any>
 }
 
 const defaultState = {
@@ -23,28 +25,6 @@ const defaultState = {
   userName: '123',
   noChangeValue: '我不变化',
   leftNav: [
-    // { 
-    //   id: 1,
-    //   icon: 'el-icon-location',
-    //   title: '菜单一',
-    //   child: [
-    //     {
-    //       id: 2,
-    //       title: '/admin/a',
-    //       router: '/admin/a',
-    //     },
-    //     {
-    //       id: 3,
-    //       title: '22222',
-    //       router: '/admin/b',
-    //     },
-    //     {
-    //       id: 4,
-    //       title: '33333',
-    //       router: '/admin/c',
-    //     }
-    //   ]
-    // },
     {
       id: 5,
       title: '文章管理',
@@ -54,7 +34,7 @@ const defaultState = {
     {
       id: 6,
       title: '基础配置',
-      router: '/admin/config',
+      router: '/admin/diy',
       icon: 'el-icon-setting',
     },
     {
@@ -106,6 +86,64 @@ const defaultState = {
       id: 3,
       title: 'JS',
       router: 'js',
+    }
+  ],
+  articleConfig: [
+    {
+      id: 1,
+      value: 'add',
+      label: '添加文章',
+      router: 'add',
+    },
+    {
+      id: 2,
+      value: 'delete',
+      label: '删除文章',
+      router: 'add',
+    },
+    {
+      id: 3,
+      value: 'move',
+      label: '移动文章',
+      router: 'move',
+    }
+  ],
+  adminConfig: [
+    {
+      id: 1,
+      value: 'basic',
+      label: '网站基础设置',
+      router: 'basic',
+    },
+    {
+      id: 1,
+      value: 'type',
+      label: '分类处理',
+      router: 'type',
+    },
+    {
+      id: 2,
+      value: 'tag',
+      label: '标签管理',
+      router: 'tag',
+    },
+    {
+      id: 3,
+      value: 'roles',
+      label: '角色管理',
+      router: 'roles',
+    },
+    {
+      id: 3,
+      value: 'powers',
+      label: '权限管理',
+      router: 'powers',
+    },
+    {
+      id: 3,
+      value: 'persons',
+      label: '人员管理',
+      router: 'persons',
     }
   ]
 };

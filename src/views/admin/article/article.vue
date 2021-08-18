@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-17 20:55:47
+ * @LastEditTime: 2021-08-18 16:30:07
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -11,9 +11,12 @@
     <div class="hanlde">
       <div>文章列表</div>
       <div>
-        <router-link to="/admin/article/add">添加文章</router-link>
-        <router-link to="/admin/article/edit">删除文章</router-link>
-        <router-link to="/admin/article/list">移动文章</router-link>
+        <router-link
+          :to="'/admin/article/' + item.router"
+          v-for="item in itemButton"
+          :key="item.router"
+          >{{ item.label }}</router-link
+        >
       </div>
     </div>
     <div>
@@ -24,17 +27,17 @@
 
 <script lang="ts">
   // 组件引用部分========
-  import { ref, defineComponent, computed, onMounted } from 'vue';
+  import { ref, defineComponent, computed, reactive, onMounted } from 'vue';
   import { useStore } from 'vuex';
-  import { key } from '../../store';
-  import { useGlobalConfig, formatDateTime } from '../../utils/util';
+  import { key } from '../../../store';
+  import { useGlobalConfig, formatDateTime } from '../../../utils/util';
 
   // 代码逻辑开始========
   export default defineComponent({
     name: 'Article',
     setup: () => {
       const store = useStore(key);
-      const msg = computed(() => store.state.count);
+      const itemButton = computed(() => store.state.articleConfig);
       const { $http, $confirm, $message } = useGlobalConfig();
       const articleData = ref([]);
 
@@ -73,7 +76,6 @@
           .getarticlelist()
           .then((res: any) => {
             articleList.value = res;
-            // console.log(res)
           })
           .catch((err: any) => {
             console.log(err);
@@ -113,9 +115,7 @@
 
       // 返回当前页面所有使用的数据跟逻辑========
       return {
-        articleList,
-        content,
-        listTitle,
+        itemButton,
       };
     },
   });
@@ -160,6 +160,10 @@
     }
     .operate {
       padding-right: 15px;
+    }
+    .router-link-active {
+      background: #3587f3;
+      color: #fff !important;
     }
   }
 </style>

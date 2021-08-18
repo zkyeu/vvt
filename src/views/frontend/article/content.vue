@@ -1,11 +1,21 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-16 11:59:19
+ * @LastEditTime: 2021-08-18 08:22:19
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /vvt/src/views/frontend/article/content.vue
+-->
 <template>
   <section class="item-detail">
     <div class="title">{{ articleData.title }}</div>
-      <div class="author-info">
-        <span class="name">{{ articleData.author }}</span>
-        <span>发表于<i class="date">{{ articleData.createtime }}</i></span>
-      </div>
-      <div>{{ articleData.content }}</div>
+    <div class="author-info">
+      <span class="name">{{ articleData.author }}</span>
+      <span
+        >发表于<i class="date">{{ articleData.createtime }}</i></span
+      >
+    </div>
+    <div v-html="articleData.content"></div>
   </section>
 </template>
 
@@ -18,13 +28,15 @@
     name: 'Content',
     setup: () => {
       const { $http, $confirm, $message } = useGlobalConfig();
-      const articleData = ref([]);
+      const articleData: any = ref([]);
 
       const getArticle = (id: any) => {
         $http
-          .getarticle({id: id})
+          .getarticle({ id: id })
           .then((res: any) => {
-            articleData.value = res;
+            if (res.errNo === 0) {
+              articleData.value = res.data;
+            }
             // console.log(res);
           })
           .catch((err: any) => {
@@ -37,12 +49,11 @@
         if (id) {
           getArticle(id);
         }
-       
       });
 
       // 返回当前页面所有使用的数据跟逻辑========
       return {
-        articleData
+        articleData,
       };
     },
   });
@@ -52,7 +63,7 @@
   .content {
     display: flex;
     // justify-content: space-between;
-    
+
     .content-left {
       min-width: 330px;
       margin-right: 30px;

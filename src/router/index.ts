@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2021-08-16 19:08:22
+ * @LastEditTime: 2021-08-18 16:30:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
@@ -9,7 +9,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import Home from '@/views/Home.vue';
 import index from '@/views/index.vue';
-// import Home from '../views/home.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -52,12 +51,12 @@ const routes: Array<RouteRecordRaw> = [
   component: Home,
   children: [
     {
-      path: '/admin',
-      component:  () => import('@/views/admin/index.vue')
+      path: '/admin', // 后台首页
+      component:  () => import('@/views/admin/article/index.vue')
     },
-    {
+    { // 文章管理
       path: 'article',
-      component:  () => import('@/views/admin/article.vue'),
+      component:  () => import('@/views/admin/article/article.vue'),
       children: [
         {
           path: '/admin/article',
@@ -73,15 +72,50 @@ const routes: Array<RouteRecordRaw> = [
         }
       ]
     },
-    {
-      path: 'config',
-      component: () => import('@/views/admin/b.vue')
-    },
-    {
-      path: 'power',
-      component: () => import('@/views/admin/c.vue')
+    { // 基础配置
+      path: 'diy',
+      component:  () => import('@/views/admin/diy/index.vue'),
+      children: [
+        {
+          path: '/admin/diy',
+          component:  () => import('@/views/admin/diy/views.vue')
+        },
+        {
+          path: '/admin/diy/basic',
+          component:  () => import('@/views/admin/diy/basic.vue')
+        },
+        {
+          path: '/admin/diy/type',
+          component:  () => import('@/views/admin/diy/type.vue')
+        },
+        {
+          path: '/admin/diy/tag',
+          component:  () => import('@/views/admin/diy/tag.vue')
+        },
+        {
+          path: '/admin/diy/roles',
+          component:  () => import('@/views/admin/diy/roles.vue')
+        },
+        {
+          path: '/admin/diy/powers',
+          component:  () => import('@/views/admin/diy/powers.vue')
+        },
+        {
+          path: '/admin/diy/persons',
+          component:  () => import('@/views/admin/diy/persons.vue')
+        }
+        
+      ]
     }
   ]
+},
+// {
+//   path: '/admin/diy',
+//   component:  () => import('@/views/admin/diy.vue')
+// },
+{
+  path: '/admin/power',
+  component: () => import('@/views/admin/c.vue')
 }];
 
 const router = createRouter({

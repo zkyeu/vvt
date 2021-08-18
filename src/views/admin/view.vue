@@ -1,14 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-17 15:11:37
+ * @LastEditTime: 2021-08-18 11:28:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
 -->
 <template>
   <section class="content">
-    <h1>{{ msg }}123</h1>
+    <h1>{{ msg }}admin/index</h1>
     <!-- <p>{{ userData }}</p>
     <p>{{ articleData }}</p> -->
     <div>
