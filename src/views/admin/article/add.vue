@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-17 21:01:04
+ * @LastEditTime: 2021-08-19 20:25:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: /vvt/src/views/default.vue
+ * @FilePath: /vvt/src/views/admin/article/add.vue
 -->
 <template>
   <section class="content">
@@ -16,7 +16,7 @@
         <el-input v-model="forms.author" disabled></el-input>
       </el-form-item>
       <el-form-item label="文章类型：">
-        <el-select v-model="forms.type" placeholder="请选择">
+        <el-select v-model="forms.typeid" placeholder="请选择">
           <el-option
             v-for="item in types"
             :key="item.value"
@@ -67,11 +67,11 @@
           label: 'JS',
         },
       ];
-      const forms = reactive({
+      const forms: any = ref({
         title: '',
         content: '',
-        author: '李亮',
-        type: '',
+        author: '',
+        typeid: '',
       });
       const route = useRoute();
       const routeObj = reactive(route.query);
@@ -80,19 +80,18 @@
       const handleSave = (v: string) => {
         if (v === 'no') return Router.push('/admin/article');
         let obj = document.querySelector('.ql-editor');
-        forms.content = (obj as any).innerHTML;
+        forms.value.content = (obj as any).innerHTML;
 
         let params: any = {
-          ...forms,
-          typename: 'HTML',
+          ...forms.value,
         };
 
-        if (!isEdit.value) {
-          params['updatetime'] = formatDateTime(new Date());
-          createArticle(params);
+        if (isEdit.value) {
+          // params['updatetime'] = formatDateTime(new Date());
+          updateArticle(params);
         } else {
           params['createtime'] = formatDateTime(new Date());
-          updateArticle(params);
+          createArticle(params);
         }
       };
 
@@ -147,11 +146,13 @@
         $http
           .getarticle({ id: id })
           .then((res: any) => {
-            const { title, content, author, type } = res.data;
-            forms.title = title;
-            forms.content = content;
-            forms.author = author;
-            forms.type = type;
+            const { title, content, author, typeid, typename } = res.data;
+            forms.value = {
+              title,
+              author,
+              typeid,
+              typename,
+            };
             let obj = document.querySelector('.ql-editor');
             if (obj) {
               obj.innerHTML = content;

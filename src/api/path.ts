@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 17:45:46
- * @LastEditTime: 2021-08-11 16:55:08
+ * @LastEditTime: 2021-08-19 19:26:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/api/path.ts
@@ -13,6 +13,8 @@ const apiList = {
     getUser: '/get/user',
     getarticle: '/get/article',
     getarticlelist: '/get/articlelist',
+    gettypes: '/get/gettypes',
+    getinfo: '/get/getinfo',
   },
   post: {
     submitmarkdata: '/commander/util/submitmarkdata', // 标注提交
@@ -20,6 +22,10 @@ const apiList = {
     createarticle: '/get/createarticle',
     deletearticle: '/get/deletearticle',
     updatearticle: '/get/updatearticle',
+    addtypes: '/get/addtypes',
+    deletetype: '/get/deletetype',
+    updatetype: '/get/updatetype',
+    updateinfo: '/get/updateinfo'
   },
   file: {
     uploadfile: '/commander/api/uploadfile'

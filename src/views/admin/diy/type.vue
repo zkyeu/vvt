@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-18 08:54:25
- * @LastEditTime: 2021-08-18 18:12:36
+ * @LastEditTime: 2021-08-19 19:46:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/diy/type.vue
@@ -9,32 +9,56 @@
 <template>
   <section class="content">
     <ul>
-      <li v-for="item in 10" :key="item">
-        <div>分类1</div>
+      <li v-for="item in types" :key="item.id">
+        <div class="type">{{ item.typename }}</div>
+        <div>{{ item.show === '1' ? '显示' : '隐藏' }}</div>
         <div>
-          <div>
-            <span>12312</span>
-            <span>12312</span>
-            <span>12312</span>
-            <span>12312</span>
-            <span>12312</span>
+          <div class="operate-item">
+            <span v-for="o in item.operate" :key="o.type" @click="handleOperate(o.type, item)">{{
+              o.name
+            }}</span>
           </div>
-          <el-input v-model="sort" size="mini"></el-input>
+
+          <el-input v-model="item.typesort" size="mini"></el-input>
         </div>
       </li>
     </ul>
     <div class="operate">
-      <span>添加分类</span>
-      <span>更新排序</span>
+      <span @click="handleOperate('add', {})">添加分类</span>
+      <span @click="handleOperate('sort', {})">更新排序</span>
     </div>
-    <el-dialog :title="previewData" v-model="layerShow" width="400px">
-      <div> </div>
+    <el-dialog :title="previewData.title" v-model="layerShow" width="400px">
+      <div>
+        <template v-if="curType === 'add' || curType === 'edit'">
+          <el-form ref="form" :model="curItem.value" label-width="100px">
+            <el-form-item label="分类名称：">
+              <el-input
+                v-model="curItem['typename']"
+                placeholder="请输入分类名称"
+                size="small"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="是否显示：">
+              <el-radio v-model="curItem['show']" label="1">是</el-radio>
+              <el-radio v-model="curItem['show']" label="2">否</el-radio>
+            </el-form-item>
+            <el-form-item label="分类顺序：">
+              <el-input
+                v-model="curItem['typesort']"
+                placeholder="请输入分类序号"
+                size="small"
+              ></el-input>
+            </el-form-item>
+          </el-form>
+        </template>
+        <template v-if="curType === 'delete'">
+          确定要删除分类：【{{ curItem['typename'] }} 】吗？</template
+        >
+      </div>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="handleOperate('edit', previewData.id)">编辑</el-button>
-          <el-button type="primary" @click="handleOperate('confirm', previewData.id)"
-            >确 定</el-button
-          >
+          <el-button @click="handleOperate('concel', 0)">取消</el-button>
+          <el-button type="primary" @click="handleOperate('confirm', 0)">确 定</el-button>
         </span>
       </template>
     </el-dialog>
@@ -43,6 +67,7 @@
 
 <script lang="ts">
   // 组件引用部分========
+  import { log } from 'console';
   import { ref, defineComponent, computed, reactive, onMounted } from 'vue';
   import { useStore } from 'vuex';
   import { key } from '../../../store';
@@ -50,26 +75,171 @@
 
   // 代码逻辑开始========
   export default defineComponent({
-    name: 'Config',
+    name: 'Type',
     setup: () => {
-      const store = useStore(key);
-      const itemButton = computed(() => store.state.adminConfig);
       const { $http, $confirm, $message } = useGlobalConfig();
       const sort = ref(1);
       const layerShow = ref(false);
-      const previewData = ref({});
+      const previewData: any = ref({});
+      const types: any = ref([]);
+      const curType = ref('');
+      const curItem: any = ref({});
 
-      const handleOperate = (v: string, id: any) => {
-        console.log(v, id);
+      const handleOperate = (v: string, item: any) => {
+        if (v !== 'confirm') {
+          curType.value = v;
+          curItem.value = JSON.parse(JSON.stringify(item));
+        }
+        condition(v);
       };
-      onMounted(() => {});
+      // operate condition
+      const condition = (v: any) => {
+        switch (v) {
+          case 'view':
+            break;
+          case 'edit':
+            layerShow.value = true;
+            previewData.value = {
+              title: '编辑分类',
+            };
+            break;
+          case 'delete':
+            layerShow.value = true;
+            previewData.value = {
+              title: '删除确认',
+            };
+            break;
+          case 'add':
+            layerShow.value = true;
+            previewData.value = {
+              title: '添加分类',
+            };
+            break;
+          case 'sort':
+            $message.warning('暂不支持该功能');
+            break;
+          case 'concel':
+            consel();
+            break;
+          case 'confirm':
+            let type = curType.value;
+            if (type === 'add') {
+              const { typename, show } = curItem.value;
+              if (typename && show) {
+                addType();
+              }
+            } else if (type === 'delete') {
+              deleteType(curItem.value.id);
+            } else if (type === 'edit') {
+              editType();
+            }
+
+            break;
+          default:
+        }
+      };
+
+      // concel
+      const consel = () => {
+        layerShow.value = false;
+        previewData.value = {};
+        curType.value = '';
+      };
+
+      // view
+      const viewType = (id: any) => {
+        console.log(id);
+      };
+
+      // view
+      const editType = () => {
+        $http
+          .updatetype({
+            id: curItem.value.id,
+            typename: curItem.value.typename,
+            show: curItem.value.show,
+            typesort: curItem.value.typesort,
+          })
+          .then((res: any) => {
+            if (res.errNo === 0) {
+              $message.success(res.message);
+              consel();
+              getTypes();
+            }
+          })
+          .catch((err: any) => {
+            $message.error(err);
+          });
+      };
+
+      // view
+      const deleteType = (id: any) => {
+        $http
+          .deletetype({ id: id })
+          .then((res: any) => {
+            if (res.errNo === 0) {
+              $message.success(res.message);
+              consel();
+              getTypes();
+            }
+          })
+          .catch((err: any) => {
+            $message.error(err);
+          });
+      };
+
+      // view
+      const addType = () => {
+        $http
+          .addtypes({
+            typename: curItem.value.typename,
+            typesort: types.value.length + 1,
+            show: curItem.value.show,
+          })
+          .then((res: any) => {
+            if (res.errNo === 0) {
+              $message.success(res.message);
+              consel();
+              getTypes();
+            }
+          })
+          .catch((err: any) => {
+            $message.error(err);
+          });
+      };
+
+      // view
+      const sortType = (id: any) => {
+        console.log(id);
+      };
+
+      // 获取分类
+      const getTypes = () => {
+        $http
+          .gettypes()
+          .then((res: any) => {
+            if (res.errNo === 0) {
+              types.value = res.data;
+            }
+          })
+          .catch((err: any) => {
+            $message.error(err);
+          });
+      };
+
+      onMounted(() => {
+        getTypes();
+      });
 
       // 返回当前页面所有使用的数据跟逻辑========
       return {
-        itemButton,
         sort,
         previewData,
         layerShow,
+        handleOperate,
+        types,
+        curType,
+        curItem,
       };
     },
   });
@@ -84,23 +254,33 @@
       color: #fff !important;
     }
 
+    .type {
+      width: 150px;
+      // background: #ddd;
+    }
+
     li {
       display: flex;
       justify-content: space-between;
       margin: 8px 0;
       padding: 0 10px;
-      background: #f5f5f5;
+      background: #f8f8f8;
       height: 30px;
+      & > div {
+        display: flex;
+        align-items: center;
+      }
+    }
+    .operate-item {
+      min-width: 150px;
+      display: flex;
       span {
+        display: block;
         margin-right: 10px;
         cursor: pointer;
         &:hover {
           color: rgb(46, 2, 244);
         }
-      }
-      & > div {
-        display: flex;
-        align-items: center;
       }
     }
     .operate {
@@ -121,6 +301,13 @@
           background: #3587f3;
           color: #fff;
         }
+      }
+    }
+    :deep(.el-input--mini) {
+      width: 55px;
+      .el-input__inner {
+        height: 20px;
+        line-height: 20px;
       }
     }
   }
