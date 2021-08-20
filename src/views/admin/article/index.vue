@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-18 11:28:46
+ * @LastEditTime: 2021-08-20 12:02:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -24,8 +24,8 @@
   // 组件引用部分========
   import { ref, defineComponent, computed, onMounted } from 'vue';
   import { useStore } from 'vuex';
-  import { key } from '../../store';
-  import { useGlobalConfig } from '../../utils/util';
+  import { key } from '../../../store';
+  import { useGlobalConfig } from '../../../utils/util';
 
   // 代码逻辑开始========
   export default defineComponent({

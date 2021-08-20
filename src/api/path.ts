@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 17:45:46
- * @LastEditTime: 2021-08-19 19:26:41
+ * @LastEditTime: 2021-08-20 17:01:39
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/api/path.ts
@@ -14,6 +14,7 @@ const apiList = {
     getarticle: '/get/article',
     getarticlelist: '/get/articlelist',
     gettypes: '/get/gettypes',
+    getdiytypes: '/get/getdiytypes',
     getinfo: '/get/getinfo',
   },
   post: {

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-17 21:07:20
+ * @LastEditTime: 2021-08-20 16:53:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -152,6 +152,7 @@
           .getarticle({ id: id })
           .then((res: any) => {
             previewData.value = res.data;
+            // previewData.value.tags = JSON.parse(previewData.value.tags);
             layerShow.value = true;
           })
           .catch((err: any) => {

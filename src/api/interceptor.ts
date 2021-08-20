@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 17:51:25
- * @LastEditTime: 2021-08-17 14:50:33
+ * @LastEditTime: 2021-08-20 16:32:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/api/interceptor.ts
@@ -18,6 +18,7 @@ axios.interceptors.request.use(
     if (
       config.method === 'post' &&
       config.headers['content-type'] !== 'multipart/form-data'
+      // config.headers['content-type'] === 'multipart/form-data'
     ) {
       config.data = qs.stringify(config.data);
     }
