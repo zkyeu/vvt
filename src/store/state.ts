@@ -1,31 +1,13 @@
 /*
  * @Author: your name
- * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2021-08-21 16:58:08
+ * @Date: 2021-08-21 11:04:41
+ * @LastEditTime: 2021-08-21 11:10:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: /vvt/src/store/index.ts
+ * @FilePath: /vvt/src/store/state.ts
  */
-import { InjectionKey } from 'vue';
-import { createStore, Store } from 'vuex';
-import $http from '../api';
-// import mutations from './mutations';
-// import actions from './actions';
-// import getters from './getters';
-
-export interface State {
-  count: number,
-  userName: string,
-  noChangeValue: string,
-  leftNav: Array<any>,
-  nav: Array<any>,
-  type: Array<any>,
-  types: Array<any>,
-  articleConfig: Array<any>,
-  adminConfig: Array<any>
-}
-
-const defaultState = {
+import { State } from './types';
+const state: State = {
   count: 9,
   userName: '123',
   noChangeValue: '我不变化',
@@ -150,35 +132,6 @@ const defaultState = {
       label: '人员管理',
       router: 'persons',
     }
-  ],
-  types: []
+  ]
 };
-
-export const key: InjectionKey<Store<State>> = Symbol();
-
-export const store = createStore<State>({
-  state() {
-    return defaultState;
-  },
-  mutations: {
-    addcount(state) {
-      state.count++;
-    },
-    changename(state) {
-      state.userName = 'liliang';
-    },
-    setTypes(state, data: any) {
-      state.types = data;
-    }
-  },
-  actions: {
-    getTypes({ commit }) {
-      $http.getdiytypes().then((res: any) => {
-        commit('setTypes', res.data);
-      });
-    }
-  },
-  getters: {
-    
-  }
-})
+export default state;

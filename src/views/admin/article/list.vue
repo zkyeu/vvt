@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-20 16:53:30
+ * @LastEditTime: 2021-08-21 02:20:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -43,28 +43,12 @@
             </span>
           </template>
         </el-table-column>
-        <!-- <el-table-column v-else :label="item.label">
-          <template #default="scope">
-            <span
-              v-for="o in scope.row.operate"
-              :key="o.type"
-              @click="handleOperate(o.type, scope.row.name)"
-              class="operate"
-            >
-              {{ o.name }}
-            </span>
-          </template>
-        </el-table-column> -->
       </template>
-
-      <!-- <el-table-column label="日期" width="120">
-        <template #default="scope">{{ scope.row.date }}</template>
-      </el-table-column>
-      <el-table-column prop="name" label="姓名" width="120"> </el-table-column>
-      <el-table-column prop="address" label="地址" show-overflow-tooltip> </el-table-column> -->
     </el-table>
+
+    <!-- 文章详情 -->
     <el-dialog :title="previewData.title" v-model="layerShow" width="800px">
-      <span v-html="previewData.content"></span>
+      <span v-html="previewData.body"></span>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="handleOperate('edit', previewData.id)">编辑</el-button>

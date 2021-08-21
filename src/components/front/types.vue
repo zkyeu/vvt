@@ -1,6 +1,16 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-16 11:59:19
+ * @LastEditTime: 2021-08-21 17:15:01
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /vvt/src/components/front/types.vue
+-->
 <template>
   <section class="item">
-      <div v-for="item in type" :key="item.id" @click="changeRoute(item.router)">{{item.title}}</div>
+    <div v-for="item in types" :key="item.id" @click="changeRoute(item.aliasname)">{{
+      item.typename
+    }}</div>
   </section>
 </template>
 
@@ -14,22 +24,18 @@
     name: 'LeftNav',
     setup: () => {
       const store = useStore(key);
-      const type = computed(() => store.state.type);
+      const types = computed(() => store.state.types);
       const changeRoute = (v: string) => {
         activeRouter.value = v;
         router.push(v);
         // console.log(router.currentRoute.value.path);
       };
       const activeRouter = ref('');
-      onMounted(() => {
-
-      });
-
+      onMounted(() => {});
 
       return {
-        type,
-        activeRouter,
-        changeRoute
+        types,
+        changeRoute,
       };
     },
   });
@@ -37,7 +43,6 @@
 
 <style lang="less" scoped>
   .item {
-    
   }
   @keyframes bottomborder {
     from {

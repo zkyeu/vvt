@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 11:33:22
- * @LastEditTime: 2021-08-13 15:38:15
+ * @LastEditTime: 2021-08-21 16:29:29
  * @LastEditors: Please set LastEditors
  * @Description: 前台首页
  * @FilePath: /vvt/src/views/index.vue
@@ -20,9 +20,18 @@
 <script lang="ts">
   import Header from '@/components/front/header.vue';
   import Footer from '@/components/front/footer.vue';
-  import { ref, defineComponent, computed, onMounted, getCurrentInstance } from 'vue';
+  import { defineComponent } from 'vue';
+  import { mapActions } from 'vuex';
   export default defineComponent({
-    components: { Header, Footer }
+    components: { Header, Footer },
+    methods: {
+      ...mapActions(['getTypes']),
+    },
+    created() {
+      const route = this.$route;
+      console.log(route);
+      this.getTypes();
+    },
   });
 </script>
 

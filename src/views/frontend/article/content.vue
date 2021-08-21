@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2021-08-18 08:22:19
+ * @LastEditTime: 2021-08-21 04:11:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/content.vue
@@ -15,7 +15,7 @@
         >发表于<i class="date">{{ articleData.createtime }}</i></span
       >
     </div>
-    <div v-html="articleData.content"></div>
+    <div v-html="articleData.body"></div>
   </section>
 </template>
 

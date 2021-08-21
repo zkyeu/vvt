@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-20 18:03:57
+ * @LastEditTime: 2021-08-21 03:59:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -72,10 +72,10 @@
       const { $http, $confirm, $message } = useGlobalConfig();
       const forms: any = ref({
         title: '',
-        content: '',
+        body: '',
         author: '',
         typeid: '',
-        tags: ['标签1', '标签2'],
+        tags: [],
       });
       const inputVisible = ref(false);
       const inputValue: any = ref('');
@@ -88,7 +88,7 @@
       const handleSave = (v: string) => {
         if (v === 'no') return Router.push('/admin/article');
         let obj = document.querySelector('.ql-editor');
-        forms.value.content = (obj as any).innerHTML;
+        forms.value.body = (obj as any).innerHTML;
 
         let params: any = {
           ...forms.value,
@@ -96,6 +96,7 @@
 
         if (isEdit.value) {
           // params['updatetime'] = formatDateTime(new Date());
+          params['tags'] = JSON.stringify(params['tags']);
           updateArticle(params);
         } else {
           params['createtime'] = formatDateTime(new Date());
@@ -112,16 +113,17 @@
       // 显示标签输入框
       const showInput = async () => {
         inputVisible.value = true;
-        await nextTick();
-        saveTagInput.focus;
-        console.log(saveTagInput);
+        // await nextTick();
+        // saveTagInput.focus;
+        // console.log(saveTagInput);
       };
 
       // 标签输入框值处理
       const handleInputConfirm = () => {
         let inputValues = inputValue.value;
         if (inputValues) {
-          forms.value.tags.push(inputValue.value);
+          console.log();
+          forms.value['tags'].push(inputValues);
         }
         inputVisible.value = false;
         inputValue.value = '';
@@ -160,6 +162,8 @@
 
       // 提交编辑
       const updateArticle = (params: object) => {
+        // console.log(params);
+
         $http
           .updatearticle({ id: routeObj.id, ...params })
           .then((res: any) => {
@@ -191,16 +195,17 @@
         $http
           .getarticle({ id: id })
           .then((res: any) => {
-            const { title, content, author, typeid, typename } = res.data;
+            const { title, body, author, typeid, contentid, tags } = res.data;
             forms.value = {
               title,
               author,
               typeid,
-              typename,
+              contentid,
+              tags: JSON.parse(tags),
             };
             let obj = document.querySelector('.ql-editor');
             if (obj) {
-              obj.innerHTML = content;
+              obj.innerHTML = body;
             }
           })
           .catch((err: any) => {

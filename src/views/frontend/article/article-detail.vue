@@ -1,3 +1,11 @@
+<!--
+ * @Author: your name
+ * @Date: 2021-08-16 11:59:19
+ * @LastEditTime: 2021-08-21 04:09:53
+ * @LastEditors: Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: /vvt/src/views/frontend/article/article-detail.vue
+-->
 
 <template>
   <section class="content">
@@ -26,7 +34,7 @@
 
       const getArticle = (id: any) => {
         $http
-          .getarticle({id: id})
+          .getarticle({ id: id })
           .then((res: any) => {
             articleData.value = res;
             // console.log(res);
@@ -41,12 +49,11 @@
         if (id) {
           getArticle(id);
         }
-       
       });
 
       // 返回当前页面所有使用的数据跟逻辑========
       return {
-        articleData
+        articleData,
       };
     },
   });
@@ -56,7 +63,7 @@
   .content {
     display: flex;
     // justify-content: space-between;
-    
+
     .content-left {
       min-width: 330px;
       margin-right: 30px;
