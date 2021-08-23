@@ -1,13 +1,14 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2021-08-21 17:15:01
+ * @LastEditTime: 2021-08-21 18:59:16
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/front/types.vue
 -->
 <template>
   <section class="item">
+    <h5>分类</h5>
     <div v-for="item in types" :key="item.id" @click="changeRoute(item.aliasname)">{{
       item.typename
     }}</div>
@@ -43,6 +44,23 @@
 
 <style lang="less" scoped>
   .item {
+    h5 {
+      padding-left: 10px;
+      height: 40px;
+      line-height: 40px;
+      background: #f1f1f1;
+    }
+    div {
+      height: 40px;
+      line-height: 40px;
+      background: #f8f8f8;
+      padding-left: 20px;
+      &:hover {
+        background: #e8f3ff;
+        cursor: pointer;
+        text-shadow: 0 0 8px #777;
+      }
+    }
   }
   @keyframes bottomborder {
     from {

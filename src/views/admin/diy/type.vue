@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-18 08:54:25
- * @LastEditTime: 2021-08-19 19:46:09
+ * @LastEditTime: 2021-08-21 19:19:34
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/diy/type.vue
@@ -35,6 +35,13 @@
               <el-input
                 v-model="curItem['typename']"
                 placeholder="请输入分类名称"
+                size="small"
+              ></el-input>
+            </el-form-item>
+            <el-form-item label="分类别名：">
+              <el-input
+                v-model="curItem['aliasname']"
+                placeholder="请输入别名(限英文)"
                 size="small"
               ></el-input>
             </el-form-item>
@@ -153,12 +160,14 @@
 
       // view
       const editType = () => {
+        let params = curItem.value;
         $http
           .updatetype({
-            id: curItem.value.id,
-            typename: curItem.value.typename,
-            show: curItem.value.show,
-            typesort: curItem.value.typesort,
+            id: params.id,
+            typename: params.typename,
+            show: params.show,
+            typesort: params.typesort,
+            aliasname: params.aliasname,
           })
           .then((res: any) => {
             if (res.errNo === 0) {
@@ -190,11 +199,13 @@
 
       // view
       const addType = () => {
+        let params = curItem.value;
         $http
           .addtypes({
-            typename: curItem.value.typename,
+            typename: params.typename,
             typesort: types.value.length + 1,
-            show: curItem.value.show,
+            show: params.show,
+            aliasname: params.aliasname,
           })
           .then((res: any) => {
             if (res.errNo === 0) {
