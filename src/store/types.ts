@@ -8,7 +8,6 @@
  */
 export interface State {
   count: number,
-  userName: string,
   noChangeValue: string,
   leftNav: Array<any>,
   nav: Array<any>,

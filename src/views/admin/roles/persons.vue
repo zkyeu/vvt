@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 19:39:43
- * @LastEditTime: 2021-08-23 14:11:03
+ * @LastEditTime: 2021-08-24 11:49:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/a.vue
@@ -16,15 +16,6 @@
       </div>
     </template>
     <template v-else>
-      <!-- <h1 class="btn-operate">
-        <div>文字性信息</div>
-        <div>
-          <el-button size="mini" @click="handleOperate('change', '')">调整小组</el-button>
-          <el-button size="mini" type="primary" @click="handleOperate('add', '')"
-            >添加成员</el-button
-          >
-        </div>
-      </h1> -->
       <Member />
     </template>
   </section>
@@ -32,7 +23,7 @@
 
 <script lang="ts">
   // 组件引用部分========
-  import { ref, defineComponent, computed, onMounted } from 'vue';
+  import { ref, defineComponent, onMounted } from 'vue';
   import { useStore } from 'vuex';
   import { useGlobalConfig, formatDateTime } from '../../../utils/util';
   import { ElMessage } from 'element-plus';
@@ -48,6 +39,7 @@
       const { $http, $confirm, $message } = useGlobalConfig();
       const layerShow = ref(false);
       const userData = ref([]);
+
       const listTitle = [
         {
           value: 'id',

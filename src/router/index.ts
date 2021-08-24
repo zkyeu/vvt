@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2021-08-18 16:30:20
+ * @LastEditTime: 2021-08-24 10:53:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
@@ -106,6 +106,25 @@ const routes: Array<RouteRecordRaw> = [
         }
         
       ]
+    },
+    { // 权限配置
+      path: 'powers',
+      component:  () => import('@/views/admin/roles/index.vue'),
+      children: [
+        {
+          path: '/admin/powers',
+          component:  () => import('@/views/admin/roles/views.vue')
+        },
+        {
+          path: '/admin/powers/roles',
+          component:  () => import('@/views/admin/roles/roles.vue')
+        },
+        {
+          path: '/admin/powers/persons',
+          component:  () => import('@/views/admin/roles/persons.vue')
+        }
+        
+      ]
     }
   ]
 },
@@ -113,10 +132,11 @@ const routes: Array<RouteRecordRaw> = [
 //   path: '/admin/diy',
 //   component:  () => import('@/views/admin/diy.vue')
 // },
-{
-  path: '/admin/power',
-  component: () => import('@/views/admin/c.vue')
-}];
+// {
+//   path: '/admin/power',
+//   component: () => import('@/views/admin/c.vue')
+// }
+];
 
 const router = createRouter({
   // history: createWebHistory(process.env.BASE_URL),

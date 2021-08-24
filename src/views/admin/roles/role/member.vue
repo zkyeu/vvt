@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-22 13:55:07
- * @LastEditTime: 2021-08-23 17:57:26
+ * @LastEditTime: 2021-08-24 11:20:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/diy/role/member.vue
@@ -16,7 +16,7 @@
       </div>
     </template>
     <template v-else>
-      <h1 class="btn-operate">
+      <h1 class="btn-operate" v-if="roles.indexOf('roles') < 0">
         <div>文字性信息</div>
         <div>
           <el-button size="mini">调整小组</el-button>
@@ -69,8 +69,8 @@
           <el-form ref="form" :model="previewData.curItem" label-width="100px">
             <el-form-item label="用户名：">
               <el-input
-                v-model="previewData.curItem['username']"
-                placeholder="请输入用户名"
+                v-model="previewData.curItem['userid']"
+                placeholder="请输入用户ID"
                 size="small"
               ></el-input>
             </el-form-item>
@@ -100,7 +100,7 @@
         <template v-if="previewData.curType === 'view'">
           <li>
             <label>用户名：</label>
-            <span>{{ previewData.info.username }}</span>
+            <span>{{ previewData.info.userid }}</span>
           </li>
           <li>
             <label>姓名：</label>
@@ -131,12 +131,11 @@
 
 <script lang="ts">
   // 组件引用部分========
-  import { ref, defineComponent, computed, onMounted } from 'vue';
+  import { ref, defineComponent, computed, onMounted, getCurrentInstance } from 'vue';
   import { useStore } from 'vuex';
   import { useGlobalConfig, formatDateTime } from '../../../../utils/util';
   import { ElMessage } from 'element-plus';
   import { log } from 'console';
-  import Router from '../../../../router';
 
   // 代码逻辑开始========
   export default defineComponent({
@@ -144,6 +143,8 @@
     setup: () => {
       const { $http, $confirm, $message } = useGlobalConfig();
       const layerShow = ref(false);
+      const roles = ref('');
+      // const router = computed({})
       const previewData: any = ref({
         title: '',
         curType: '',
@@ -152,8 +153,8 @@
       });
       const listTitle = [
         {
-          value: 'username',
-          label: '用户名',
+          value: 'userid',
+          label: '用户ID',
         },
         {
           value: 'realname',
@@ -308,6 +309,8 @@
 
       onMounted(() => {
         getItem();
+        const { proxy }: any = getCurrentInstance();
+        roles.value = proxy.$router.currentRoute.value.path;
       });
 
       return {
@@ -316,6 +319,7 @@
         userData,
         handleOperate,
         previewData,
+        roles,
       };
     },
   });

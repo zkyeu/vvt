@@ -10,7 +10,6 @@
   <h1>{{ msg }}</h1>
 
   <button type="button" @click="addCount">count is: {{ count }}</button>
-  <button type="button" @click="changeName">count is: {{ userName }}</button>
   <div>{{ noChangeValue }}</div>
 </template>
 
@@ -34,7 +33,6 @@
       // return { count };
       const store = useStore(key);
       const count = computed(() => store.state.count);
-      const userName = computed(() => store.state.userName);
       const noChangeValue = computed(() => store.state.noChangeValue);
 
       const addCount = (): void => {
@@ -53,7 +51,6 @@
       // 返回当前页面所有使用的数据跟逻辑========
       return {
         count,
-        userName,
         noChangeValue,
         addCount,
         changeName,

@@ -9,7 +9,6 @@
 import { State } from './types';
 const state: State = {
   count: 9,
-  userName: '123',
   noChangeValue: '我不变化',
   leftNav: [
     {

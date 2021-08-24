@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2021-08-21 16:58:08
+ * @LastEditTime: 2021-08-24 11:01:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/index.ts
@@ -15,19 +15,18 @@ import $http from '../api';
 
 export interface State {
   count: number,
-  userName: string,
   noChangeValue: string,
   leftNav: Array<any>,
   nav: Array<any>,
   type: Array<any>,
   types: Array<any>,
   articleConfig: Array<any>,
-  adminConfig: Array<any>
+  adminConfig: Array<any>,
+  powerConfig: Array<any>,
 }
 
 const defaultState = {
   count: 9,
-  userName: '123',
   noChangeValue: '我不变化',
   leftNav: [
     {
@@ -45,7 +44,7 @@ const defaultState = {
     {
       id: 7,
       title: '权限管理',
-      router: '/admin/power',
+      router: '/admin/powers',
       icon: 'el-icon-setting',
     }
   ],
@@ -131,18 +130,14 @@ const defaultState = {
       value: 'tag',
       label: '标签管理',
       router: 'tag',
-    },
+    }
+  ],
+  powerConfig: [
     {
-      id: 3,
+      id: 1,
       value: 'roles',
       label: '角色管理',
       router: 'roles',
-    },
-    {
-      id: 3,
-      value: 'powers',
-      label: '权限管理',
-      router: 'powers',
     },
     {
       id: 3,
@@ -163,9 +158,6 @@ export const store = createStore<State>({
   mutations: {
     addcount(state) {
       state.count++;
-    },
-    changename(state) {
-      state.userName = 'liliang';
     },
     setTypes(state, data: any) {
       state.types = data;

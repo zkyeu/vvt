@@ -9,8 +9,5 @@
 export default mutations({
   addcount(state) {
     state.count++;
-  },
-  changename(state) {
-    state.userName = 'liliang';
   }
 });

@@ -1,12 +1,11 @@
 <!--
  * @Author: your name
- * @Date: 2021-08-18 08:54:25
- * @LastEditTime: 2021-08-23 09:45:11
+ * @Date: 2021-08-02 19:39:43
+ * @LastEditTime: 2021-08-24 11:50:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: /vvt/src/views/admin/diy/roles.vue
+ * @FilePath: /vvt/src/views/a.vue
 -->
-
 <template>
   <section class="role-content">
     <div class="left">
@@ -37,6 +36,15 @@
         <h1>产品经理</h1>
         <span>这里是描述信息内容文字</span>
       </div>
+      <h1 class="btn-operate" v-if="roles.indexOf('roles') > -1">
+        <div>文字性信息</div>
+        <div>
+          <el-button size="mini">调整小组</el-button>
+          <el-button size="mini" type="primary" @click="handleOperate('add', 0)"
+            >添加成员</el-button
+          >
+        </div>
+      </h1>
       <Member />
     </div>
   </section>
@@ -45,7 +53,7 @@
 <script lang="ts">
   // 组件引用部分========
   import { log } from 'console';
-  import { ref, defineComponent, computed, reactive, onMounted } from 'vue';
+  import { ref, defineComponent, onMounted, getCurrentInstance } from 'vue';
   import { useStore } from 'vuex';
   import { key } from '../../../store';
   import { useGlobalConfig, formatDateTime } from '../../../utils/util';
@@ -56,7 +64,9 @@
     name: 'Type',
     components: { Member },
     setup: () => {
+      const layerShow = ref(false);
       const { $http, $confirm, $message } = useGlobalConfig();
+      const roles = ref('');
       const data: Array<any> = [
         {
           id: 1,
@@ -279,6 +289,8 @@
 
       onMounted(() => {
         // getTypes();
+        const { proxy }: any = getCurrentInstance();
+        roles.value = proxy.$router.currentRoute.value.path;
       });
 
       // 返回当前页面所有使用的数据跟逻辑========
@@ -292,6 +304,7 @@
         handleDrop,
         allowDrop,
         allowDrag,
+        roles,
       };
     },
   });
@@ -304,7 +317,7 @@
     // background: #e1f3d8;
     .left {
       padding: 6px 16px 0;
-      width: 260px;
+      width: 200px;
       overflow-y: auto;
       border-right: #ddd 1px solid;
       .create-item {
@@ -349,6 +362,14 @@
           color: #aaa;
           margin-left: 10px;
         }
+      }
+      .btn-operate {
+        display: flex;
+        justify-content: space-between;
+        height: 40px;
+        line-height: 40px;
+        background: #eee;
+        font-weight: 400;
       }
     }
     // .router-link-active {
