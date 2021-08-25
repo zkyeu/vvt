@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-21 02:20:22
+ * @LastEditTime: 2021-08-25 21:27:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -46,6 +46,8 @@
       </template>
     </el-table>
 
+    <Page :count="count" @pages="curPage" @pageSize="pageSize" />
+
     <!-- 文章详情 -->
     <el-dialog :title="previewData.title" v-model="layerShow" width="800px">
       <span v-html="previewData.body"></span>
@@ -69,10 +71,12 @@
   import { ElMessage } from 'element-plus';
   import { log } from 'console';
   import Router from '../../../router';
+  import Page from '../../../components/page.vue';
 
   // 代码逻辑开始========
   export default defineComponent({
     name: 'Article',
+    components: { Page },
     setup: () => {
       const { $http, $confirm, $message } = useGlobalConfig();
       const layerShow = ref(false);
@@ -116,6 +120,20 @@
       });
       const multipleSelection = ref([]);
       const previewData: any = ref({});
+      const currentPage = ref(1);
+      const pageSizes = ref(10);
+      const count = ref(10);
+
+      //分页开始
+      const curPage = (val: any) => {
+        console.log(val.currentPage);
+        currentPage.value = val.currentPage;
+      };
+      const pageSize = (val: any) => {
+        console.log(val);
+        pageSizes.value = val.pageSize;
+      };
+      //分页结束
 
       // 获取列表
       const getArticleList = () => {
@@ -216,6 +234,9 @@
         dataList,
         layerShow,
         previewData,
+        curPage,
+        pageSize,
+        count,
       };
     },
   });

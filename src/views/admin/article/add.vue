@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-21 03:59:24
+ * @LastEditTime: 2021-08-25 20:41:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -101,7 +101,7 @@
         } else {
           params['createtime'] = formatDateTime(new Date());
           params['tags'] = JSON.stringify(params['tags']);
-          createArticle(params);
+          addArticle(params);
         }
       };
 
@@ -129,7 +129,7 @@
         inputValue.value = '';
       };
       // 创建新文章
-      const createArticle = (params: object) => {
+      const addArticle = (params: object) => {
         // 先创建内容表获取内容id后，创建标题信息表
         $http
           .createarticle({ ...params })
