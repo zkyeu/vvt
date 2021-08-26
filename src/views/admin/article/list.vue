@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-25 21:27:21
+ * @LastEditTime: 2021-08-26 20:53:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -14,6 +14,7 @@
       tooltip-effect="dark"
       style="width: 100%"
       @selection-change="handleSelectionChange"
+      v-loading="loading"
     >
       <el-table-column type="selection" width="55"></el-table-column>
       <template v-for="item in listTitle" :key="item.date">
@@ -46,7 +47,14 @@
       </template>
     </el-table>
 
-    <Page :count="count" @pages="curPage" @pageSize="pageSize" />
+    <Page
+      :total="total"
+      :pageSizes="[2, 3, 4, 100]"
+      :page-size="pageParams.rn"
+      :current-page="pageParams.pn"
+      @currentChange="pages"
+      @sizeChange="sizes"
+    />
 
     <!-- 文章详情 -->
     <el-dialog :title="previewData.title" v-model="layerShow" width="800px">
@@ -65,7 +73,7 @@
 
 <script lang="ts">
   // 组件引用部分========
-  import { ref, defineComponent, computed, onMounted } from 'vue';
+  import { ref, defineComponent, computed, watch, reactive, onMounted } from 'vue';
   import { useStore } from 'vuex';
   import { useGlobalConfig, formatDateTime } from '../../../utils/util';
   import { ElMessage } from 'element-plus';
@@ -75,11 +83,12 @@
 
   // 代码逻辑开始========
   export default defineComponent({
-    name: 'Article',
+    name: 'ArticleList',
     components: { Page },
     setup: () => {
       const { $http, $confirm, $message } = useGlobalConfig();
       const layerShow = ref(false);
+      const loading = ref(true);
       const listTitle = [
         {
           value: 'id',
@@ -120,28 +129,38 @@
       });
       const multipleSelection = ref([]);
       const previewData: any = ref({});
-      const currentPage = ref(1);
-      const pageSizes = ref(10);
-      const count = ref(10);
+      const pageParams = reactive({
+        pn: 1, // 当前页面
+        rn: 2, // 单页显示数量
+      });
+      const total = ref(0);
 
       //分页开始
-      const curPage = (val: any) => {
-        console.log(val.currentPage);
-        currentPage.value = val.currentPage;
+      const pages = (val: any) => {
+        pageParams.pn = val.pn;
+        console.log(val.pn, 'list');
       };
-      const pageSize = (val: any) => {
-        console.log(val);
-        pageSizes.value = val.pageSize;
+      const sizes = (val: any) => {
+        console.log(val, 'list');
+
+        pageParams.pn = val.pn;
+        pageParams.rn = val.rn;
       };
       //分页结束
 
       // 获取列表
       const getArticleList = () => {
+        let { pn, rn } = pageParams;
+        loading.value = true;
         $http
-          .getarticlelist()
+          .getarticlelist({
+            pn: pn,
+            rn: rn,
+          })
           .then((res: any) => {
             articleList.value = res.data;
-            // console.log(res)
+            total.value = res.count;
+            loading.value = false;
           })
           .catch((err: any) => {
             console.log(err);
@@ -227,6 +246,10 @@
         getArticleList();
       });
 
+      watch(pageParams, (v) => {
+        getArticleList(); // 获取文章
+      });
+
       return {
         listTitle,
         handleSelectionChange,
@@ -234,9 +257,11 @@
         dataList,
         layerShow,
         previewData,
-        curPage,
-        pageSize,
-        count,
+        pages,
+        total,
+        sizes,
+        pageParams,
+        loading,
       };
     },
   });

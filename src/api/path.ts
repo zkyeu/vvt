@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 17:45:46
- * @LastEditTime: 2021-08-23 17:48:24
+ * @LastEditTime: 2021-08-26 20:08:25
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/api/path.ts
@@ -12,12 +12,13 @@ const apiList = {
     gettasklist: '/commander/util/gettasklist', // 任务列表
     getuser: '/admins/getuser',
     getarticle: '/get/article',
-    getarticlelist: '/get/articlelist',
+    
     gettypes: '/get/gettypes',
     getdiytypes: '/get/getdiytypes',
     getinfo: '/get/getinfo',
   },
   post: {
+    getarticlelist: '/get/articlelist',
     submitmarkdata: '/commander/util/submitmarkdata', // 标注提交
     deletetask: '/commander/util/deletetask', // 删除任务
     createarticle: '/get/createarticle',

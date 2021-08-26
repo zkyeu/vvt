@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-25 17:34:09
- * @LastEditTime: 2021-08-25 21:27:08
+ * @LastEditTime: 2021-08-26 20:28:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/page.vue
@@ -20,51 +20,62 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
       :current-page="currentPage"
-      :page-sizes="[10, 100, 200, 300, 400]"
+      :page-sizes="pageSizes"
       :page-size="pageSize"
       layout="total, sizes, prev, pager, next, jumper"
-      :total="400"
+      :total="total"
     >
     </el-pagination>
   </section>
 </template>
 
 <script lang="ts">
-  // 组件引用部分========
-  import { ref, defineComponent, onMounted } from 'vue';
+  import { defineComponent } from 'vue';
 
   // 代码逻辑开始========
   export default defineComponent({
     name: 'Pages',
+    emits: ['sizeChange', 'currentChange'],
     props: {
-      count: Number,
+      total: {
+        // 总数
+        type: Number,
+        default: 0,
+      },
+      currentPage: {
+        //当前页
+        type: Number,
+        default: 0,
+      },
+      pageSize: {
+        type: Number,
+        default: 0,
+      },
+      pageSizes: {
+        // 单页数量
+        type: Array,
+        default: () => [],
+      },
     },
     setup: (props, context) => {
-      console.log(props.count);
-      //分页开始
-      const currentPage = ref(1);
-      const pageSize = ref(10);
       const handleSizeChange = (val: any) => {
-        pageSize.value = val;
-        context.emit('pageSize', {
-          pageSize: pageSize.value,
-          currentPage: 1,
+        console.log(val, 'page');
+
+        context.emit('sizeChange', {
+          rn: val,
+          pn: 1,
         });
       };
       const handleCurrentChange = (val: any) => {
-        currentPage.value = val;
-        context.emit('pages', {
-          currentPage: currentPage.value,
+        console.log(val, 'page');
+        context.emit('currentChange', {
+          pn: val,
         });
       };
-
-      onMounted(() => {});
 
       return {
         handleSizeChange,
         handleCurrentChange,
-        currentPage,
-        pageSize,
       };
     },
   });
