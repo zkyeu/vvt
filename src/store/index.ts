@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2021-08-24 11:01:37
+ * @LastEditTime: 2021-08-27 11:46:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/index.ts
@@ -171,6 +171,8 @@ export const store = createStore<State>({
     }
   },
   getters: {
-    
+    theType: (state) => {
+      return state.types;
+    }
   }
 })

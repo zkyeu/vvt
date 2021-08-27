@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-12 20:42:05
+ * @LastEditTime: 2021-08-27 19:21:08
  * @LastEditors: Please set LastEditors
  * @Description: 前台默认页面
  * @FilePath: /vvt/src/views/frontend/default.vue
@@ -134,7 +134,7 @@
   .content {
     display: flex;
     // justify-content: space-between;
-    
+
     .content-left {
       min-width: 330px;
       margin-right: 30px;
@@ -147,7 +147,7 @@
 
     .content-right {
       width: 300px;
-      background: #f00;
+      background: #fff;
     }
   }
 </style>

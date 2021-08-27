@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 11:33:22
- * @LastEditTime: 2021-08-21 16:29:29
+ * @LastEditTime: 2021-08-27 19:10:44
  * @LastEditors: Please set LastEditors
  * @Description: 前台首页
  * @FilePath: /vvt/src/views/index.vue
@@ -25,12 +25,13 @@
   export default defineComponent({
     components: { Header, Footer },
     methods: {
-      ...mapActions(['getTypes']),
+      // ...mapActions(['getTypes']),
     },
     created() {
       const route = this.$route;
-      console.log(route);
-      this.getTypes();
+      // console.log(route);
+      // this.getTypes();
+      // console.log('1111111');
     },
   });
 </script>
@@ -45,6 +46,7 @@
       display: flex;
       justify-content: center;
       flex-direction: row;
+
       .content-body {
         margin: 16px 16px 0;
         width: 100%;

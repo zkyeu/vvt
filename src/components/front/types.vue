@@ -1,9 +1,9 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2021-08-21 18:59:16
+ * @LastEditTime: 2021-08-27 19:23:31
  * @LastEditors: Please set LastEditors
- * @Description: In User Settings Edit
+ * @Description: 因为分类不经常变化，所以在页面加载时候加载一次就可以了,注释部分是用之前方式处理
  * @FilePath: /vvt/src/components/front/types.vue
 -->
 <template>
@@ -12,17 +12,32 @@
     <div v-for="item in types" :key="item.id" @click="changeRoute(item.aliasname)">{{
       item.typename
     }}</div>
+    <!-- {{ theType }} -->
   </section>
 </template>
 
 <script lang="ts">
-  import { ref, defineComponent, computed, onMounted, getCurrentInstance, watch } from 'vue';
-  import { useStore } from 'vuex';
+  import { log } from 'console';
+  import { ref, defineComponent, computed, onMounted, reactive } from 'vue';
+  import { useStore, mapActions, mapGetters } from 'vuex';
   import router from '../../router';
   import { key } from '../../store';
 
   export default defineComponent({
-    name: 'LeftNav',
+    name: 'Types',
+    // methods: {
+    //   ...mapActions(['getTypes']),
+    // },
+    // computed: {
+    //   ...mapGetters(['theType']),
+    // },
+    // created() {
+    //   // 判断是否有了分类，有了就不在加载
+
+    //   // if (true) {
+    //     // this.getTypes();
+    //   // }
+    // },
     setup: () => {
       const store = useStore(key);
       const types = computed(() => store.state.types);
@@ -32,7 +47,12 @@
         // console.log(router.currentRoute.value.path);
       };
       const activeRouter = ref('');
-      onMounted(() => {});
+      onMounted(() => {
+        // 调用action中getTypes
+        if (JSON.stringify(types.value) === '[]') {
+          store.dispatch('getTypes');
+        }
+      });
 
       return {
         types,
@@ -44,19 +64,23 @@
 
 <style lang="less" scoped>
   .item {
+    padding-bottom: 10px;
     h5 {
       padding-left: 10px;
       height: 40px;
       line-height: 40px;
-      background: #f1f1f1;
+      // background: #f1f1f1;
+      border-bottom: 1px solid hsla(0, 0%, 58.8%, 0.1);
     }
     div {
+      margin: 0 5px;
       height: 40px;
       line-height: 40px;
-      background: #f8f8f8;
+      // background: #f8f8f8;
       padding-left: 20px;
       &:hover {
-        background: #e8f3ff;
+        // background: #e8f3ff;
+        background: #f5f5f5;
         cursor: pointer;
         text-shadow: 0 0 8px #777;
       }

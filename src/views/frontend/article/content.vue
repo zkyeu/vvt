@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2021-08-21 04:11:10
+ * @LastEditTime: 2021-08-27 19:13:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/content.vue
@@ -10,12 +10,12 @@
   <section class="item-detail">
     <div class="title">{{ articleData.title }}</div>
     <div class="author-info">
-      <span class="name">{{ articleData.author }}</span>
+      <span class="name">{{ articleData.author }}姓名</span>
       <span
         >发表于<i class="date">{{ articleData.createtime }}</i></span
       >
     </div>
-    <div v-html="articleData.body"></div>
+    <div class="bodys" v-html="articleData.body"></div>
   </section>
 </template>
 
@@ -60,23 +60,29 @@
 </script>
 
 <style lang="less" scoped>
-  .content {
+  .item-detail {
     display: flex;
+    flex-direction: column;
     // justify-content: space-between;
-
-    .content-left {
-      min-width: 330px;
-      margin-right: 30px;
-      // background: #f5f5f5;
-      // word-break: break-all;
-      flex: 1;
-      font-size: 14px;
-      line-height: 26px;
+    .title {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      line-height: 2rem;
     }
-
-    .content-right {
-      width: 300px;
-      background: #f00;
+    .author-info {
+      font-size: 14px;
+      font-weight: 300;
+      color: #555;
+      margin-bottom: 20px;
+      .name {
+        color: rgb(14, 11, 211);
+        margin: 0 8px;
+      }
+      .date {
+        font-style: normal;
+        padding-left: 5px;
+      }
     }
   }
 </style>

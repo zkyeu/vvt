@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2021-08-13 20:08:48
+ * @LastEditTime: 2021-08-27 19:24:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
@@ -48,7 +48,7 @@
     padding: 0 20px;
     height: 50px;
     background-color: #fff;
-    box-shadow: 0 1px 5px #ccc;
+    box-shadow: 0 1px 5px #eee;
     position: sticky;
     top: 0;
     z-index: 999;

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:10:38
- * @LastEditTime: 2021-08-13 16:02:44
+ * @LastEditTime: 2021-08-27 19:25:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/baseLayer/left-nav.vue
@@ -63,7 +63,7 @@
   .navs {
     display: flex;
     width: 400px;
-    background: #ddd;
+    // background: #ddd;
     span {
       display: inline-block;
       padding: 8px 16px;
