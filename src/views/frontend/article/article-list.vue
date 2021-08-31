@@ -15,7 +15,7 @@
 <script lang="ts">
   // 组件引用部分========
   import { ref, defineComponent, computed, onMounted } from 'vue';
-  import { useGlobalConfig } from '../../../utils/util';
+  import { useGlobalConfig, getScrollTop, getScrollHeight } from '../../../utils/util';
   import router from '../../../router';
 
   // 代码逻辑开始========
@@ -29,10 +29,10 @@
         router.push(`articledetail?id=${v}`);
       };
 
-      const getArticleList = () => {
+      const getArticleList = (v: any) => {
         loading.value = true;
         $http
-          .getarticlelist()
+          .getarticlelist(v)
           .then((res: any) => {
             if (res.errNo === 0) {
               loading.value = false;
@@ -43,9 +43,15 @@
             console.log(err);
           });
       };
+      const scrollEvent = () => {
+        window.onscroll = () => {
+          console.log(getScrollHeight() - getScrollTop());
+        };
+      };
 
       onMounted(() => {
-        getArticleList();
+        getArticleList({ pn: 1, rn: 5 });
+        scrollEvent();
       });
 
       // 返回当前页面所有使用的数据跟逻辑========

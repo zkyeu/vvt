@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-25 20:41:32
+ * @LastEditTime: 2021-08-31 16:35:40
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -128,8 +128,25 @@
         inputVisible.value = false;
         inputValue.value = '';
       };
+
+      // 表单校验
+      const validate = (v: any) => {
+        if (!v.title) {
+          $message.warning('请输入文章标题！');
+          return false;
+        } else if (!v.typeid) {
+          $message.warning('请选择文章分类！');
+          return false;
+        } else if (!v.body) {
+          $message.warning('请输入文章内容！');
+          return false;
+        }
+        return true;
+      };
       // 创建新文章
       const addArticle = (params: object) => {
+        console.log(validate(params));
+
         // 先创建内容表获取内容id后，创建标题信息表
         $http
           .createarticle({ ...params })
