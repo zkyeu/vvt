@@ -44,6 +44,7 @@
           });
       };
       const scrollEvent = () => {
+        // 检测滚动条位置，为无限加载准备
         window.onscroll = () => {
           console.log(getScrollHeight() - getScrollTop());
         };
