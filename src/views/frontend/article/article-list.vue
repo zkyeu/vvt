@@ -51,7 +51,7 @@
       };
 
       onMounted(() => {
-        getArticleList({ pn: 1, rn: 5 });
+        getArticleList({ pn: 1, rn: 25 });
         scrollEvent();
       });
 
