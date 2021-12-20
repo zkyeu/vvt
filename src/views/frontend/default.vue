@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-27 19:21:08
+ * @LastEditTime: 2021-12-21 00:18:16
  * @LastEditors: Please set LastEditors
  * @Description: 前台默认页面
  * @FilePath: /vvt/src/views/frontend/default.vue
@@ -11,18 +11,18 @@
     <div class="content-left">
       <ArticleList />
     </div>
-    <div class="content-right">
+    <!-- <div class="content-right">
       <Types />
-    </div>
+    </div> -->
   </section>
 </template>
 
 <script lang="ts">
   // 组件引用部分========
-  import { ref, defineComponent, computed, onMounted } from 'vue';
-  import { useStore } from 'vuex';
-  import { key } from '../../store';
-  import { useGlobalConfig } from '../../utils/util';
+  import {ref,defineComponent,computed,onMounted } from 'vue';
+  import {useStore } from 'vuex';
+  import {key } from '../../store';
+  import {useGlobalConfig } from '../../utils/util';
   import ArticleList from './article/article-list.vue';
   import Types from '../../components/front/types.vue';
 

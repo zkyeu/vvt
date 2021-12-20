@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2021-08-24 10:53:43
+ * @LastEditTime: 2021-12-21 00:15:06
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
@@ -92,18 +92,18 @@ const routes: Array<RouteRecordRaw> = [
           path: '/admin/diy/tag',
           component:  () => import('@/views/admin/diy/tag.vue')
         },
-        {
-          path: '/admin/diy/roles',
-          component:  () => import('@/views/admin/diy/roles.vue')
-        },
-        {
-          path: '/admin/diy/powers',
-          component:  () => import('@/views/admin/diy/powers.vue')
-        },
-        {
-          path: '/admin/diy/persons',
-          component:  () => import('@/views/admin/diy/persons.vue')
-        }
+        // {
+        //   path: '/admin/diy/roles',
+        //   component:  () => import('@/views/admin/diy/roles.vue')
+        // },
+        // {
+        //   path: '/admin/diy/powers',
+        //   component:  () => import('@/views/admin/diy/powers.vue')
+        // },
+        // {
+        //   path: '/admin/diy/persons',
+        //   component:  () => import('@/views/admin/diy/persons.vue')
+        // }
         
       ]
     },
