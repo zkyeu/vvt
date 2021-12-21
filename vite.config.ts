@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 15:51:41
- * @LastEditTime: 2021-08-23 13:25:25
+ * @LastEditTime: 2021-12-21 09:23:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/vite.config.ts
@@ -16,17 +16,31 @@ const proxy = {
 }
 export default defineConfig({
   plugins: [vue()],
-  alias: {
-    '@': path.resolve(__dirname, './src'),
-    views: path.resolve(__dirname, './src/views'),
-    '@com': path.resolve(__dirname, "./src/components"),
-    utils: path.resolve(__dirname, './src/utils'),
-    less: path.resolve(__dirname, "./src/less"),
-    assets: path.resolve(__dirname, "./src/assets"),
-    store: path.resolve(__dirname, "./src/store"),
-    mixins: path.resolve(__dirname, "./src/mixins"),
-    router: path.resolve(__dirname, './src/router')
-  },
+  // alias: {
+  //   '@': path.resolve(__dirname, './src'),
+  //   views: path.resolve(__dirname, './src/views'),
+    // '@com': path.resolve(__dirname, "./src/components"),
+    // utils: path.resolve(__dirname, './src/utils'),
+    // less: path.resolve(__dirname, "./src/less"),
+    // assets: path.resolve(__dirname, "./src/assets"),
+    // store: path.resolve(__dirname, "./src/store"),
+    // mixins: path.resolve(__dirname, "./src/mixins"),
+    // router: path.resolve(__dirname, './src/router')
+  // },
+  resolve: {
+    extensions: ['.js','.vue', '.ts'],
+    alias: {
+      '@': path.resolve(__dirname, './src'),
+      views: path.resolve(__dirname, './src/views'),
+      '@com': path.resolve(__dirname, "./src/components"),
+      utils: path.resolve(__dirname, './src/utils'),
+      less: path.resolve(__dirname, "./src/less"),
+      assets: path.resolve(__dirname, "./src/assets"),
+      store: path.resolve(__dirname, "./src/store"),
+      mixins: path.resolve(__dirname, "./src/mixins"),
+      router: path.resolve(__dirname, './src/router')
+    }
+},
   server: {
     // hostname: '0.0.0.0',
     // hmr: { overlay: false },
