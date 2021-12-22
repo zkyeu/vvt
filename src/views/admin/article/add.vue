@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-31 16:35:40
+ * @LastEditTime: 2021-12-23 01:10:47
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -16,7 +16,7 @@
         <el-input v-model="forms.author" disabled></el-input>
       </el-form-item>
       <el-form-item label="文章类型：">
-        <el-select v-model="forms.typeid" placeholder="请选择">
+        <el-select v-model="forms.type" placeholder="请选择">
           <el-option v-for="item in types" :key="item.id" :label="item.typename" :value="item.id">
           </el-option>
         </el-select>
@@ -74,7 +74,7 @@
         title: '',
         body: '',
         author: '',
-        typeid: '',
+        type: '',
         tags: [],
       });
       const inputVisible = ref(false);
@@ -99,7 +99,7 @@
           params['tags'] = JSON.stringify(params['tags']);
           updateArticle(params);
         } else {
-          params['createtime'] = formatDateTime(new Date());
+          params['create_time'] = formatDateTime(new Date());
           params['tags'] = JSON.stringify(params['tags']);
           addArticle(params);
         }
@@ -134,7 +134,7 @@
         if (!v.title) {
           $message.warning('请输入文章标题！');
           return false;
-        } else if (!v.typeid) {
+        } else if (!v.type) {
           $message.warning('请选择文章分类！');
           return false;
         } else if (!v.body) {
@@ -212,12 +212,12 @@
         $http
           .getarticle({ id: id })
           .then((res: any) => {
-            const { title, body, author, typeid, contentid, tags } = res.data;
+            const { title, body, author, type, article_id, tags } = res.data;
             forms.value = {
               title,
               author,
-              typeid,
-              contentid,
+              type,
+              article_id,
               tags: JSON.parse(tags),
             };
             let obj = document.querySelector('.ql-editor');
