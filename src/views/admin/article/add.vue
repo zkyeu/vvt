@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-23 01:10:47
+ * @LastEditTime: 2021-12-24 11:32:15
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -64,6 +64,7 @@
   import { useRoute } from 'vue-router';
   import { ElMessage } from 'element-plus';
   import Router from '../../../router';
+  import { log } from 'console';
 
   // 代码逻辑开始========
   export default defineComponent({
@@ -84,26 +85,6 @@
       const routeObj = reactive(route.query);
       const isEdit = ref(false);
       const types: any = ref([]);
-
-      const handleSave = (v: string) => {
-        if (v === 'no') return Router.push('/admin/article');
-        let obj = document.querySelector('.ql-editor');
-        forms.value.body = (obj as any).innerHTML;
-
-        let params: any = {
-          ...forms.value,
-        };
-
-        if (isEdit.value) {
-          // params['updatetime'] = formatDateTime(new Date());
-          params['tags'] = JSON.stringify(params['tags']);
-          updateArticle(params);
-        } else {
-          params['create_time'] = formatDateTime(new Date());
-          params['tags'] = JSON.stringify(params['tags']);
-          addArticle(params);
-        }
-      };
 
       // 关闭tag标签
       const handleTagClose = (tag: any) => {
@@ -145,8 +126,6 @@
       };
       // 创建新文章
       const addArticle = (params: object) => {
-        console.log(validate(params));
-
         // 先创建内容表获取内容id后，创建标题信息表
         $http
           .createarticle({ ...params })
@@ -156,7 +135,7 @@
               type: 'success',
             });
             if (res.errNo === 0) {
-              Router.push('/admin/article');
+              Router.replace('/admin/article');
             }
           })
           .catch((err: any) => {
@@ -230,6 +209,29 @@
           });
       };
 
+      // 按钮处理
+      const handleSave = (v: string) => {
+        if (v === 'no') return Router.push('/admin/article');
+        let obj = document.querySelector('.ql-editor');
+        forms.value.body = (obj as any).innerHTML;
+
+        let params: any = {
+          ...forms.value,
+        };
+
+        if (isEdit.value) {
+          // params['updatetime'] = formatDateTime(new Date());
+          params['tags'] = JSON.stringify(params['tags']);
+          updateArticle(params);
+        } else {
+          params['create_time'] = formatDateTime(new Date());
+          params['tags'] = JSON.stringify(params['tags']);
+          validate(params);
+          if (validate(params)) {
+            addArticle(params);
+          }
+        }
+      };
       onMounted(() => {
         new Editor('#editor', {
           theme: 'snow',
@@ -248,6 +250,7 @@
         handleInputConfirm,
         inputVisible,
         inputValue,
+        validate,
       };
     },
   });

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 19:39:43
- * @LastEditTime: 2021-08-19 19:44:30
+ * @LastEditTime: 2021-12-24 10:59:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/a.vue
@@ -110,7 +110,7 @@
       const updateBasicInfo = () => {
         delete basicInfo.value.updatetime;
         $http
-          .updateinfo({ id: '1', ...basicInfo.value })
+          .updateinfo({ id: 1, ...basicInfo.value })
           .then((res: any) => {
             if (res.errNo === 0) {
               $message.success(res.message);
