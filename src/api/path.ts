@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 17:45:46
- * @LastEditTime: 2021-12-23 22:35:17
+ * @LastEditTime: 2021-12-24 10:54:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/api/path.ts
@@ -12,7 +12,6 @@ const apiList = {
     gettasklist: '/commander/util/gettasklist', // 任务列表
     getuser: '/admins/getuser',
     getarticle: '/apiv1/get/article',
-    
     gettypes: '/apiv1/get/gettypes',
     getdiytypes: '/apiv1/get/getdiytypes',
     getinfo: '/apiv1/get/getinfo',
