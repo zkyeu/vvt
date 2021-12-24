@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-18 08:54:25
- * @LastEditTime: 2021-08-21 19:19:34
+ * @LastEditTime: 2021-12-24 16:23:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/diy/type.vue
@@ -27,6 +27,7 @@
       <span @click="handleOperate('add', {})">添加分类</span>
       <span @click="handleOperate('sort', {})">更新排序</span>
     </div>
+
     <el-dialog :title="previewData.title" v-model="layerShow" width="400px">
       <div>
         <template v-if="curType === 'add' || curType === 'edit'">
@@ -99,6 +100,7 @@
         }
         condition(v);
       };
+
       // operate condition
       const condition = (v: any) => {
         switch (v) {
@@ -126,7 +128,7 @@
             $message.warning('暂不支持该功能');
             break;
           case 'concel':
-            consel();
+            concel();
             break;
           case 'confirm':
             let type = curType.value;
@@ -147,7 +149,7 @@
       };
 
       // concel
-      const consel = () => {
+      const concel = () => {
         layerShow.value = false;
         previewData.value = {};
         curType.value = '';
@@ -172,7 +174,7 @@
           .then((res: any) => {
             if (res.errNo === 0) {
               $message.success(res.message);
-              consel();
+              concel();
               getTypes();
             }
           })
@@ -188,7 +190,7 @@
           .then((res: any) => {
             if (res.errNo === 0) {
               $message.success(res.message);
-              consel();
+              concel();
               getTypes();
             }
           })
@@ -210,7 +212,7 @@
           .then((res: any) => {
             if (res.errNo === 0) {
               $message.success(res.message);
-              consel();
+              concel();
               getTypes();
             }
           })

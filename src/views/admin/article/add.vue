@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-24 11:32:15
+ * @LastEditTime: 2021-12-24 16:46:18
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -224,7 +224,7 @@
           params['tags'] = JSON.stringify(params['tags']);
           updateArticle(params);
         } else {
-          params['create_time'] = formatDateTime(new Date());
+          // params['create_time'] = formatDateTime(new Date());
           params['tags'] = JSON.stringify(params['tags']);
           validate(params);
           if (validate(params)) {
