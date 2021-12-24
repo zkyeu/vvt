@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 15:51:41
- * @LastEditTime: 2021-12-21 09:23:27
+ * @LastEditTime: 2021-12-23 22:32:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/vite.config.ts
@@ -54,7 +54,7 @@ export default defineConfig({
     // ssr: false,
     cors: true,
     proxy: {
-      '/get': {
+      '/apiv1': {
         target: proxy.target,
         changeOrigin: true,
         followRedirects: true
