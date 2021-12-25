@@ -14,9 +14,10 @@
 
 <script lang="ts">
   // 组件引用部分========
-  import { ref, defineComponent, computed, onMounted } from 'vue';
+  import { ref, defineComponent, reactive, computed, onMounted } from 'vue';
   import { useGlobalConfig, getScrollTop, getScrollHeight } from '../../../utils/util';
   import router from '../../../router';
+  import { useRouter, useRoute } from 'vue-router';
 
   // 代码逻辑开始========
   export default defineComponent({
@@ -25,6 +26,9 @@
       const { $http, $confirm, $message } = useGlobalConfig();
       const loading = ref(true);
       const articleData = ref();
+      const route = useRoute();
+      const routeObj = route.query;
+
       const changeRoute = (v: string) => {
         router.push(`articledetail?id=${v}`);
       };
@@ -50,9 +54,18 @@
         };
       };
 
+      // 检测分类
+      const checkRoute = () => {
+        console.log();
+      };
+
       onMounted(() => {
-        getArticleList({ pn: 1, rn: 25 });
         scrollEvent();
+        checkRoute();
+        let type: any = routeObj.type;
+        let params: any = { pn: 1, rn: 10 };
+        type ? (params['type'] = type) : params;
+        getArticleList(params);
       });
 
       // 返回当前页面所有使用的数据跟逻辑========

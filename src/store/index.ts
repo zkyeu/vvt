@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2021-08-27 11:46:51
+ * @LastEditTime: 2021-12-24 23:33:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/index.ts
@@ -71,8 +71,8 @@ const defaultState = {
     },
     {
       id: 5,
-      title: 'tool',
-      router: 'e',
+      title: 'wechat',
+      router: 'wechat',
     },
   ],
   type: [

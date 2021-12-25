@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2021-12-21 00:15:06
+ * @LastEditTime: 2021-12-25 22:24:41
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
@@ -32,12 +32,12 @@ const routes: Array<RouteRecordRaw> = [
       component: () => import('@/views/frontend/c.vue'),
     },
     {
-      path: 'd',
-      component: () => import('@/views/frontend/d.vue'),
+      path: 'notice',
+      component: () => import('@/views/frontend/notice.vue'),
     },
     {
-      path: 'e',
-      component: () => import('@/views/frontend/e.vue'),
+      path: 'wechat',
+      component: () => import('@/views/frontend/wechat/wechat-login.vue'),
     },
     {
       path: 'articledetail',
