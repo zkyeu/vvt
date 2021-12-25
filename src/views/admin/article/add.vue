@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-24 16:46:18
+ * @LastEditTime: 2021-12-26 00:05:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -74,7 +74,7 @@
       const forms: any = ref({
         title: '',
         body: '',
-        author: '',
+        author: 'MBA21081班',
         type: '',
         tags: [],
       });
