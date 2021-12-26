@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-21 11:04:41
- * @LastEditTime: 2021-08-21 11:10:18
+ * @LastEditTime: 2021-12-24 23:31:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/state.ts
@@ -53,8 +53,8 @@ const state: State = {
     },
     {
       id: 5,
-      title: 'tool',
-      router: 'e',
+      title: '微信登陆',
+      router: 'wechat',
     },
   ],
   type: [

@@ -1,17 +1,17 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2021-08-27 19:24:30
+ * @LastEditTime: 2021-12-24 23:51:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
 -->
 <template>
-  <header class="layer-header">
+  <div class="layer-header">
     <div class="logo" @click="home"><img src="../../assets/logo.png" /></div>
     <Nav />
     <div class="user-center">user center2</div>
-  </header>
+  </div>
 </template>
 
 <script lang="ts">

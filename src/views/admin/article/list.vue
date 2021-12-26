@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-26 20:53:06
+ * @LastEditTime: 2021-12-26 00:36:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -103,11 +103,11 @@
           label: '作者',
         },
         {
-          value: 'createtime',
+          value: 'create_time',
           label: '发布时间',
         },
         {
-          value: 'typename',
+          value: 'type',
           label: '分类',
         },
         {
@@ -131,7 +131,7 @@
       const previewData: any = ref({});
       const pageParams = reactive({
         pn: 1, // 当前页面
-        rn: 2, // 单页显示数量
+        rn: 20, // 单页显示数量
       });
       const total = ref(0);
 
