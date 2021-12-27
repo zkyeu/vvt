@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 19:39:43
- * @LastEditTime: 2021-08-24 11:49:10
+ * @LastEditTime: 2021-12-27 13:09:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/a.vue
@@ -39,6 +39,7 @@
       const { $http, $confirm, $message } = useGlobalConfig();
       const layerShow = ref(false);
       const userData = ref([]);
+      const curItem = ref({});
 
       const listTitle = [
         {

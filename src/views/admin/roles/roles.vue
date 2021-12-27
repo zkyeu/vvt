@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 19:39:43
- * @LastEditTime: 2021-08-24 11:50:14
+ * @LastEditTime: 2021-12-27 13:08:35
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/a.vue
@@ -305,6 +305,7 @@
         allowDrop,
         allowDrag,
         roles,
+        handleOperate,
       };
     },
   });
