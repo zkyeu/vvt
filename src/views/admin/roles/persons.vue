@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 19:39:43
- * @LastEditTime: 2021-12-27 13:09:13
+ * @LastEditTime: 2021-12-27 13:56:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/a.vue
@@ -40,6 +40,7 @@
       const layerShow = ref(false);
       const userData = ref([]);
       const curItem = ref({});
+      const types = ref({});
 
       const listTitle = [
         {
@@ -71,7 +72,7 @@
 
       // view
       const editType = () => {
-        let params = curItem.value;
+        let params: any = curItem.value;
         $http
           .updatetype({
             id: params.id,
@@ -83,7 +84,6 @@
           .then((res: any) => {
             if (res.errNo === 0) {
               $message.success(res.message);
-              consel();
               getTypes();
             }
           })
@@ -99,7 +99,6 @@
           .then((res: any) => {
             if (res.errNo === 0) {
               $message.success(res.message);
-              consel();
               getTypes();
             }
           })
@@ -110,18 +109,17 @@
 
       // view
       const addType = () => {
-        let params = curItem.value;
+        let params: any = curItem.value;
         $http
           .addtypes({
             typename: params.typename,
-            typesort: types.value.length + 1,
+            // typesort: types.value.length + 1,
             show: params.show,
             aliasname: params.aliasname,
           })
           .then((res: any) => {
             if (res.errNo === 0) {
               $message.success(res.message);
-              consel();
               getTypes();
             }
           })
