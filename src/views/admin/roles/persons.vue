@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 19:39:43
- * @LastEditTime: 2021-08-24 11:49:10
+ * @LastEditTime: 2021-12-29 16:05:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/a.vue
@@ -39,25 +39,6 @@
       const { $http, $confirm, $message } = useGlobalConfig();
       const layerShow = ref(false);
       const userData = ref([]);
-
-      const listTitle = [
-        {
-          value: 'id',
-          label: 'ID',
-        },
-        {
-          value: 'title',
-          label: '姓名',
-        },
-        {
-          value: 'createtime',
-          label: '手机/邮箱',
-        },
-        {
-          value: 'operate',
-          label: '操作',
-        },
-      ];
 
       const handleOperate = (v: any, id: any) => {
         console.log(v, id);
@@ -135,27 +116,27 @@
       };
 
       // 获取分类
-      const getTypes = () => {
-        $http
-          .getuser()
-          .then((res: any) => {
-            if (res.errNo === 0) {
-              userData.value = res.data;
-            }
-          })
-          .catch((err: any) => {
-            $message.error(err);
-          });
+      const getItem = () => {
+        // $http
+        //   .getwechatuser()
+        //   .then((res: any) => {
+        //     if (res.errNo === 0) {
+        //       userData.value = res.data;
+        //     }
+        //   })
+        //   .catch((err: any) => {
+        //     $message.error(err);
+        //   });
       };
 
       onMounted(() => {
-        // getTypes();
+        // getItem();
       });
 
       return {
-        listTitle,
         userData,
         handleOperate,
+        getItem,
       };
     },
   });

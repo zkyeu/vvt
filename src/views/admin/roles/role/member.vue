@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-22 13:55:07
- * @LastEditTime: 2021-08-24 11:20:58
+ * @LastEditTime: 2021-12-29 16:39:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/diy/role/member.vue
@@ -18,7 +18,8 @@
     <template v-else>
       <h1 class="btn-operate" v-if="roles.indexOf('roles') < 0">
         <div>文字性信息</div>
-        <div>
+        <div class="operate">
+          <el-input v-model="openid" placeholder="请输入查询id" @blur="fetchUser" clearable />
           <el-button size="mini">调整小组</el-button>
           <el-button size="mini" type="primary" @click="handleOperate('add', 0)"
             >添加成员</el-button
@@ -34,10 +35,13 @@
       >
         <el-table-column type="selection" width="55"></el-table-column>
         <template v-for="item in listTitle" :key="item.date">
-          <el-table-column v-if="item.value !== 'operate'" :label="item.label">
+          <el-table-column
+            v-if="item.value !== 'operate' && item.value !== 'avatarUrl'"
+            :label="item.label"
+          >
             <template #default="scope">
               <span
-                v-if="item.value === 'realname'"
+                v-if="item.value === 'nickName'"
                 @click="handleOperate('view', scope.row.id)"
                 class="hover"
               >
@@ -46,6 +50,16 @@
               <span v-else>
                 {{ scope.row[item.value] }}
               </span>
+            </template>
+          </el-table-column>
+          <el-table-column
+            v-else-if="item.value === 'avatarUrl'"
+            :prop="item.value"
+            :label="item.label"
+            width="80"
+          >
+            <template #default="scope">
+              <img class="photo" :src="scope.row[item.value]" />
             </template>
           </el-table-column>
           <el-table-column v-else :prop="item.value" :label="item.label" width="180">
@@ -153,20 +167,32 @@
       });
       const listTitle = [
         {
-          value: 'userid',
-          label: '用户ID',
+          value: 'id',
+          label: 'ID',
         },
         {
-          value: 'realname',
-          label: '姓名',
+          value: 'nickName',
+          label: '昵称',
+        },
+        {
+          value: 'avatarUrl',
+          label: '头像',
+        },
+        {
+          value: 'openid',
+          label: 'openId',
+        },
+        {
+          value: 'gender',
+          label: '性别',
+        },
+        {
+          value: 'create_time',
+          label: '注册时间',
         },
         {
           value: 'phone',
           label: '手机',
-        },
-        {
-          value: 'registetime',
-          label: '注册时间',
         },
         {
           value: 'operate',
@@ -174,6 +200,7 @@
         },
       ];
       const userData = ref([]);
+      const openid = ref('');
       const curUser = (id: any) => {
         return JSON.parse(
           JSON.stringify(
@@ -296,7 +323,21 @@
       // 获取
       const getItem = () => {
         $http
-          .getuser()
+          .getwechatuser()
+          .then((res: any) => {
+            if (res.errNo === 0) {
+              userData.value = res.data;
+            }
+          })
+          .catch((err: any) => {
+            $message.error(err);
+          });
+      };
+
+      // 获取筛选用户
+      const fetchUser = () => {
+        $http
+          .filteruser({ openid: openid.value })
           .then((res: any) => {
             if (res.errNo === 0) {
               userData.value = res.data;
@@ -320,6 +361,8 @@
         handleOperate,
         previewData,
         roles,
+        openid,
+        fetchUser,
       };
     },
   });
@@ -341,15 +384,11 @@
       align-items: center;
     }
     .list {
-      // justify-content: space-between;
       flex-direction: column;
-      // li {
-      //   display: flex;
-      //   justify-content: space-between;
-      //   height: 50px;
-      //   line-height: 50px;
-      //   border-bottom: #ddd solid 1px;
-      // }
+      .photo {
+        width: 38px;
+      }
+
       .hover {
         cursor: pointer;
         &:hover {
@@ -367,6 +406,10 @@
       line-height: 40px;
       background: #eee;
       font-weight: 400;
+      .operate {
+        display: flex;
+        width: 400px;
+      }
     }
     .layer-style {
     }

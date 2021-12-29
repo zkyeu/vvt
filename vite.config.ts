@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 15:51:41
- * @LastEditTime: 2021-12-28 08:40:04
+ * @LastEditTime: 2021-12-29 10:53:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/vite.config.ts
@@ -20,16 +20,16 @@ export default defineConfig({
   // alias: {
   //   '@': path.resolve(__dirname, './src'),
   //   views: path.resolve(__dirname, './src/views'),
-    // '@com': path.resolve(__dirname, "./src/components"),
-    // utils: path.resolve(__dirname, './src/utils'),
-    // less: path.resolve(__dirname, "./src/less"),
-    // assets: path.resolve(__dirname, "./src/assets"),
-    // store: path.resolve(__dirname, "./src/store"),
-    // mixins: path.resolve(__dirname, "./src/mixins"),
-    // router: path.resolve(__dirname, './src/router')
+  // '@com': path.resolve(__dirname, "./src/components"),
+  // utils: path.resolve(__dirname, './src/utils'),
+  // less: path.resolve(__dirname, "./src/less"),
+  // assets: path.resolve(__dirname, "./src/assets"),
+  // store: path.resolve(__dirname, "./src/store"),
+  // mixins: path.resolve(__dirname, "./src/mixins"),
+  // router: path.resolve(__dirname, './src/router')
   // },
   resolve: {
-    extensions: ['.js','.vue', '.ts'],
+    extensions: ['.js', '.vue', '.ts'],
     alias: {
       '@': path.resolve(__dirname, './src'),
       views: path.resolve(__dirname, './src/views'),
@@ -41,7 +41,7 @@ export default defineConfig({
       mixins: path.resolve(__dirname, "./src/mixins"),
       router: path.resolve(__dirname, './src/router')
     }
-},
+  },
   server: {
     // hostname: '0.0.0.0',
     // hmr: { overlay: false },

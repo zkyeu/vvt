@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-12-24 23:06:53
- * @LastEditTime: 2021-12-28 09:10:38
+ * @LastEditTime: 2021-12-29 16:46:42
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /vvt/src/views/frontend/wechat/wechat-login.vue
@@ -14,13 +14,13 @@
         <el-input v-model="forms.openid"></el-input>
       </el-form-item>
       <el-form-item label="昵称">
-        <el-input v-model="forms.userinfo.nickName"></el-input>
+        <el-input v-model="forms.nickName"></el-input>
       </el-form-item>
       <el-form-item label="微信头像">
-        <el-input v-model="forms.userinfo.avatarUrl"></el-input>
+        <el-input v-model="forms.avatarUrl"></el-input>
       </el-form-item>
       <el-form-item label="电话">
-        <el-input v-model="forms.userinfo.phone"></el-input>
+        <el-input v-model="forms.phone"></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="onSubmit">Create</el-button>
@@ -42,13 +42,15 @@
       const msg: string = '微信登陆页面';
       const { $http, $confirm, $message } = useGlobalConfig();
       const forms: any = reactive({
-        openid: 'openid1122222',
-        userinfo: {
-          nickName: '昵称名字',
-          avatarUrl:
-            'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132',
-          phone: '18500551311',
-        },
+        openid: 'openid112222223424',
+        nickName: '昵称名字222',
+        avatarUrl:
+          'https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132',
+        phone: '18500551311',
+        province: '',
+        gender: null,
+        country: '',
+        city: '',
       });
 
       const onSubmit = () => {

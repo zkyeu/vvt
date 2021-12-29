@@ -40,15 +40,15 @@
       const content = ref('');
 
       const getUser = () => {
-        $http
-          .getUser()
-          .then((res: any) => {
-            userData.value = res;
-            // console.log(res);
-          })
-          .catch((err: any) => {
-            console.log('errrrrrr', err);
-          });
+        // $http
+        //   .getUser()
+        //   .then((res: any) => {
+        //     userData.value = res;
+        //     // console.log(res);
+        //   })
+        //   .catch((err: any) => {
+        //     console.log('errrrrrr', err);
+        //   });
       };
 
       const getArticle = () => {
