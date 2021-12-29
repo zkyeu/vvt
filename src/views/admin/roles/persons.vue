@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 19:39:43
- * @LastEditTime: 2021-12-29 16:05:48
+ * @LastEditTime: 2021-12-29 16:53:59
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/a.vue
@@ -39,6 +39,8 @@
       const { $http, $confirm, $message } = useGlobalConfig();
       const layerShow = ref(false);
       const userData = ref([]);
+      const curItem = ref({});
+      const types = ref({});
 
       const handleOperate = (v: any, id: any) => {
         console.log(v, id);
@@ -51,7 +53,7 @@
 
       // view
       const editType = () => {
-        let params = curItem.value;
+        let params: any = curItem.value;
         $http
           .updatetype({
             id: params.id,
@@ -63,8 +65,7 @@
           .then((res: any) => {
             if (res.errNo === 0) {
               $message.success(res.message);
-              consel();
-              getTypes();
+              // getTypes();
             }
           })
           .catch((err: any) => {
@@ -79,8 +80,7 @@
           .then((res: any) => {
             if (res.errNo === 0) {
               $message.success(res.message);
-              consel();
-              getTypes();
+              // getTypes();
             }
           })
           .catch((err: any) => {
@@ -90,19 +90,18 @@
 
       // view
       const addType = () => {
-        let params = curItem.value;
+        let params: any = curItem.value;
         $http
           .addtypes({
             typename: params.typename,
-            typesort: types.value.length + 1,
+            // typesort: types.value.length + 1,
             show: params.show,
             aliasname: params.aliasname,
           })
           .then((res: any) => {
             if (res.errNo === 0) {
               $message.success(res.message);
-              consel();
-              getTypes();
+              // getTypes();
             }
           })
           .catch((err: any) => {
