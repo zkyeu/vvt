@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-22 13:55:07
- * @LastEditTime: 2021-12-29 16:39:17
+ * @LastEditTime: 2021-12-31 00:41:46
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/diy/role/member.vue
@@ -271,7 +271,7 @@
         let params = previewData.value.curItem;
         delete params.operate;
         $http
-          .updateuser({
+          .updatewechatuser({
             id: id,
             ...params,
           })

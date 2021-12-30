@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 17:45:46
- * @LastEditTime: 2021-12-29 16:30:22
+ * @LastEditTime: 2021-12-31 00:41:20
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/api/path.ts
@@ -26,7 +26,7 @@ const apiList = {
     addtypes: '/apiv1/get/addtypes',
     addwechatuser: '/apiv1/addwechatuser',
     addadminuser: '/apiv1/get/addadminuser',
-    updateuser: '/apiv1/get/updateuser',
+    updatewechatuser: '/apiv1/updatewechatuser',
     deleteuser: '/apiv1/get/deleteuser',
     deletetype: '/apiv1/get/deletetype',
     updatetype: '/apiv1/get/updatetype',
