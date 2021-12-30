@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-30 20:51:17
+ * @LastEditTime: 2021-12-30 23:50:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -233,36 +233,34 @@
         }
       };
       onMounted(() => {
-        setTimeout(() => {
-          new Editor('#editor', {
-            theme: 'snow',
-            modules: {
-              toolbar: [
-                { header: [1, 2, 3, 4, 5, 6, false] },
-                'bold',
-                'italic',
-                'underline',
-                'strike',
-                'link',
-                'image',
-                'clean',
-                { align: [] },
-                // { font: [] },
-                { color: [] },
-                { background: [] },
-                'blockquote',
-                'code-block',
-                { list: 'ordered' },
-                { list: 'bullet' },
-                { script: 'sub' },
-                { script: 'super' },
-                { indent: '-1' },
-                { indent: '+1' },
-                { direction: 'rtl' },
-              ],
-            },
-          });
-        }, 300);
+        new Editor('#editor', {
+          theme: 'snow',
+          modules: {
+            toolbar: [
+              { header: [1, 2, 3, 4, 5, 6, false] },
+              'bold',
+              'italic',
+              'underline',
+              'strike',
+              'link',
+              'image',
+              'clean',
+              { align: [] },
+              // { font: [] },
+              { color: [] },
+              { background: [] },
+              'blockquote',
+              'code-block',
+              { list: 'ordered' },
+              { list: 'bullet' },
+              { script: 'sub' },
+              { script: 'super' },
+              { indent: '-1' },
+              { indent: '+1' },
+              { direction: 'rtl' },
+            ],
+          },
+        });
 
         getTypes();
         editType();
