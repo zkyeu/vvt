@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-30 23:50:11
+ * @LastEditTime: 2021-12-31 20:15:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -64,7 +64,7 @@
   import { useRoute } from 'vue-router';
   import { ElMessage } from 'element-plus';
   import Router from '../../../router';
-  import options from '../../../utils/editorOption.js';
+  import axios from 'axios';
 
   // 代码逻辑开始========
   export default defineComponent({
@@ -232,8 +232,13 @@
           }
         }
       };
-      onMounted(() => {
-        new Editor('#editor', {
+
+      // 编辑器
+      const editorTool = () => {
+        if (!document.querySelector('#editor')) {
+          return false;
+        }
+        let editor = new Editor('#editor', {
           theme: 'snow',
           modules: {
             toolbar: [
@@ -261,7 +266,9 @@
             ],
           },
         });
-
+      };
+      onMounted(() => {
+        editorTool();
         getTypes();
         editType();
       });
@@ -277,6 +284,7 @@
         inputVisible,
         inputValue,
         validate,
+        editorTool,
       };
     },
   });

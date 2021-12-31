@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-26 00:36:20
+ * @LastEditTime: 2021-12-31 20:43:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -80,6 +80,7 @@
   import { log } from 'console';
   import Router from '../../../router';
   import Page from '../../../components/page.vue';
+  import FormatDate from '../../../utils/formatdate';
 
   // 代码逻辑开始========
   export default defineComponent({
@@ -152,6 +153,8 @@
       const getArticleList = () => {
         let { pn, rn } = pageParams;
         loading.value = true;
+        console.log('123');
+        console.log(FormatDate('2021-12-31T05:13:10.000Z'));
         $http
           .getarticlelist({
             pn: pn,
