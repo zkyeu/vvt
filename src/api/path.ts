@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 17:45:46
- * @LastEditTime: 2021-12-25 00:10:22
+ * @LastEditTime: 2022-01-01 03:15:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/api/path.ts
@@ -10,7 +10,7 @@ const apiList = {
   get: {
     getuserinfo: '/commander/user/getuserinfo', // 用户信息
     gettasklist: '/commander/util/gettasklist', // 任务列表
-    getuser: '/admins/getuser',
+    getwechatuser: '/apiv1/getwechatuser',
     getarticle: '/apiv1/get/article',
     gettypes: '/apiv1/get/gettypes',
     getdiytypes: '/apiv1/get/getdiytypes',
@@ -26,11 +26,14 @@ const apiList = {
     addtypes: '/apiv1/get/addtypes',
     addwechatuser: '/apiv1/addwechatuser',
     addadminuser: '/apiv1/get/addadminuser',
-    updateuser: '/apiv1/get/updateuser',
+    updatewechatuser: '/apiv1/updatewechatuser',
     deleteuser: '/apiv1/get/deleteuser',
     deletetype: '/apiv1/get/deletetype',
     updatetype: '/apiv1/get/updatetype',
-    updateinfo: '/apiv1/get/updateinfo'
+    updateinfo: '/apiv1/get/updateinfo',
+    filteruser: '/apiv1/filteruser',
+    addcomment: '/apiv1/addcomment',
+    getcomment: '/apiv1/getcomment',
   },
   file: {
     uploadfile: '/commander/api/uploadfile'

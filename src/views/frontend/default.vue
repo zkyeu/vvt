@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-21 00:18:16
+ * @LastEditTime: 2021-12-29 11:02:37
  * @LastEditors: Please set LastEditors
  * @Description: 前台默认页面
  * @FilePath: /vvt/src/views/frontend/default.vue
@@ -19,10 +19,10 @@
 
 <script lang="ts">
   // 组件引用部分========
-  import {ref,defineComponent,computed,onMounted } from 'vue';
-  import {useStore } from 'vuex';
-  import {key } from '../../store';
-  import {useGlobalConfig } from '../../utils/util';
+  import { ref, defineComponent, computed, onMounted } from 'vue';
+  import { useStore } from 'vuex';
+  import { key } from '../../store';
+  import { useGlobalConfig } from '../../utils/util';
   import ArticleList from './article/article-list.vue';
   import Types from '../../components/front/types.vue';
 
@@ -40,15 +40,15 @@
       const content = ref('');
 
       const getUser = () => {
-        $http
-          .getUser()
-          .then((res: any) => {
-            userData.value = res;
-            // console.log(res);
-          })
-          .catch((err: any) => {
-            console.log('errrrrrr', err);
-          });
+        // $http
+        //   .getUser()
+        //   .then((res: any) => {
+        //     userData.value = res;
+        //     // console.log(res);
+        //   })
+        //   .catch((err: any) => {
+        //     console.log('errrrrrr', err);
+        //   });
       };
 
       const getArticle = () => {
