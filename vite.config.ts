@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 15:51:41
- * @LastEditTime: 2021-12-31 20:45:04
+ * @LastEditTime: 2022-01-03 22:20:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/vite.config.ts
@@ -11,9 +11,9 @@ import vue from '@vitejs/plugin-vue'
 const path = require('path');
 
 const proxy = {
-  target: 'http://localhost:3000/'
+  // target: 'http://localhost:3000/'
   // target: 'http://192.168.0.102:3000/'
-  // target: 'https://www.sotm.cn/'
+  target: 'https://www.sotm.cn/'
 }
 export default defineConfig({
   plugins: [vue()],
