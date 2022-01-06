@@ -3,18 +3,21 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc --noEmit --skipLibCheck && vite build"
+    "build": "vue-tsc --noEmit --skipLibCheck && vite build",
+    "svg": "vsvg -s src/assets/svg/origin -t src/assets/svg/use"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.28.5",
     "@typescript-eslint/parser": "^4.28.5",
     "axios": "^0.21.1",
     "element-plus": "^1.0.2-beta.64",
+    "emoji-mart-vue-fast": "^10.2.0",
     "eslint": "^7.31.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-vue": "^7.14.0",
     "prettier": "^2.3.2",
     "pretty-quick": "^3.1.1",
+    "vite-plugin-svgicon": "^1.0.0",
     "vue": "^3.0.5",
     "vue-eslint-parser": "^7.10.0",
     "vue-router": "^4.0.10",
@@ -26,6 +29,8 @@
     "@types/qs": "^6.9.7",
     "@vitejs/plugin-vue": "^1.3.0",
     "@vue/compiler-sfc": "^3.0.5",
+    "@yzfe/svgicon": "^1.1.0",
+    "@yzfe/vue3-svgicon": "^1.0.1",
     "less": "^4.1.1",
     "less-loader": "^10.0.1",
     "qs": "^6.10.1",

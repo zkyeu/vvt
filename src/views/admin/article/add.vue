@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-26 00:05:24
+ * @LastEditTime: 2021-12-31 20:15:10
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -64,7 +64,7 @@
   import { useRoute } from 'vue-router';
   import { ElMessage } from 'element-plus';
   import Router from '../../../router';
-  import { log } from 'console';
+  import axios from 'axios';
 
   // 代码逻辑开始========
   export default defineComponent({
@@ -232,10 +232,43 @@
           }
         }
       };
-      onMounted(() => {
-        new Editor('#editor', {
+
+      // 编辑器
+      const editorTool = () => {
+        if (!document.querySelector('#editor')) {
+          return false;
+        }
+        let editor = new Editor('#editor', {
           theme: 'snow',
+          modules: {
+            toolbar: [
+              { header: [1, 2, 3, 4, 5, 6, false] },
+              'bold',
+              'italic',
+              'underline',
+              'strike',
+              'link',
+              'image',
+              'clean',
+              { align: [] },
+              // { font: [] },
+              { color: [] },
+              { background: [] },
+              'blockquote',
+              'code-block',
+              { list: 'ordered' },
+              { list: 'bullet' },
+              { script: 'sub' },
+              { script: 'super' },
+              { indent: '-1' },
+              { indent: '+1' },
+              { direction: 'rtl' },
+            ],
+          },
         });
+      };
+      onMounted(() => {
+        editorTool();
         getTypes();
         editType();
       });
@@ -251,6 +284,7 @@
         inputVisible,
         inputValue,
         validate,
+        editorTool,
       };
     },
   });

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2021-08-27 19:13:30
+ * @LastEditTime: 2021-12-31 21:20:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/content.vue
@@ -10,9 +10,9 @@
   <section class="item-detail">
     <div class="title">{{ articleData.title }}</div>
     <div class="author-info">
-      <span class="name">{{ articleData.author }}姓名</span>
+      <span v-if="articleData.author" class="name">{{ articleData.author }}</span>
       <span
-        >发表于<i class="date">{{ articleData.createtime }}</i></span
+        >发表于<i class="date">{{ formatDate(articleData.create_time) }}</i></span
       >
     </div>
     <div class="bodys" v-html="articleData.body"></div>
@@ -23,6 +23,7 @@
   import { ref, defineComponent, computed, onMounted } from 'vue';
   import { useGlobalConfig } from '../../../utils/util';
   import router from '../../../router';
+  import Util from '../../../utils/formatdate.js';
 
   export default defineComponent({
     name: 'Content',
@@ -44,6 +45,10 @@
           });
       };
 
+      const formatDate = (v) => {
+        return Util(v);
+      };
+
       onMounted(() => {
         let id = router.currentRoute.value.query.id;
         if (id) {
@@ -54,6 +59,7 @@
       // 返回当前页面所有使用的数据跟逻辑========
       return {
         articleData,
+        formatDate,
       };
     },
   });
@@ -77,11 +83,11 @@
       margin-bottom: 20px;
       .name {
         color: rgb(14, 11, 211);
-        margin: 0 8px;
+        margin-right: 8px;
       }
       .date {
         font-style: normal;
-        padding-left: 5px;
+        color: #666;
       }
     }
   }

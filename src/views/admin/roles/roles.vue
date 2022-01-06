@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 19:39:43
- * @LastEditTime: 2021-08-24 11:50:14
+ * @LastEditTime: 2021-12-27 13:57:55
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/a.vue
@@ -102,6 +102,10 @@
           ],
         },
       ];
+      const types = ref({});
+      const curType = ref({});
+      const curItem = ref({});
+      const previewData = ref({});
 
       const handleDragStart = (node: any, ev: any) => {
         console.log('drag start', node);
@@ -180,12 +184,12 @@
           case 'confirm':
             let type = curType.value;
             if (type === 'add') {
-              const { typename, show } = curItem.value;
+              const { typename, show } = curItem.value as any;
               if (typename && show) {
                 addType();
               }
             } else if (type === 'delete') {
-              deleteType(curItem.value.id);
+              // deleteType(curItem.value.id);
             } else if (type === 'edit') {
               editType();
             }
@@ -209,7 +213,7 @@
 
       // view
       const editType = () => {
-        let params = curItem.value;
+        let params: any = curItem.value;
         $http
           .updatetype({
             id: params.id,
@@ -248,11 +252,11 @@
 
       // view
       const addType = () => {
-        let params = curItem.value;
+        let params: any = curItem.value;
         $http
           .addtypes({
             typename: params.typename,
-            typesort: types.value.length + 1,
+            // typesort: types.value.length + 1,
             show: params.show,
             aliasname: params.aliasname,
           })
@@ -305,6 +309,10 @@
         allowDrop,
         allowDrag,
         roles,
+        handleOperate,
+        previewData,
+        curItem,
+        curType,
       };
     },
   });

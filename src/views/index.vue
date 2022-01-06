@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 11:33:22
- * @LastEditTime: 2021-08-27 19:10:44
+ * @LastEditTime: 2022-01-05 13:37:17
  * @LastEditors: Please set LastEditors
  * @Description: 前台首页
  * @FilePath: /vvt/src/views/index.vue
@@ -9,7 +9,7 @@
 
 <template>
   <section class="main-content">
-    <Header />
+    <Headers />
     <div class="content-layer">
       <router-view class="content-body" />
     </div>
@@ -18,12 +18,12 @@
 </template>
 
 <script lang="ts">
-  import Header from '@/components/front/header.vue';
+  import Headers from '@/components/front/header.vue';
   import Footer from '@/components/front/footer.vue';
   import { defineComponent } from 'vue';
   import { mapActions } from 'vuex';
   export default defineComponent({
-    components: { Header, Footer },
+    components: { Headers, Footer },
     methods: {
       // ...mapActions(['getTypes']),
     },
