@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-06 14:19:28
- * @LastEditTime: 2022-01-06 20:07:02
+ * @LastEditTime: 2022-01-06 22:36:34
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /vvt/src/views/frontend/login/login.vue
@@ -41,10 +41,10 @@
 </template>
 
 <script lang="ts" setup>
-  import { log } from 'console';
   import { ref, onMounted } from 'vue';
   import { useGlobalConfig, getScrollTop, getScrollHeight } from '../../../utils/util';
   const { $http, $confirm, $message } = useGlobalConfig();
+  import router from '../../../router';
   const show = ref('index');
   const qrCode = ref('');
   const code = ref();
@@ -52,6 +52,12 @@
   // TODO 目前没做
   const handleBtn = (v: string) => {
     show.value = v;
+    switch (v) {
+      case 'reg':
+        router.push('/reg');
+        break;
+      default:
+    }
   };
 
   const getCode = () => {

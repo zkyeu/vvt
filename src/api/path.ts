@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 17:45:46
- * @LastEditTime: 2022-01-06 19:13:02
+ * @LastEditTime: 2022-01-06 23:06:29
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/api/path.ts
@@ -36,6 +36,7 @@ const apiList = {
     filteruser: '/apiv1/filteruser',
     addcomment: '/apiv1/addcomment',
     getcomment: '/apiv1/getcomment',
+    regist: '/apiv1/regist',
    
   },
   file: {

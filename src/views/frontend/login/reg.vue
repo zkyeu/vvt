@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-06 14:19:28
- * @LastEditTime: 2022-01-06 21:13:42
+ * @LastEditTime: 2022-01-06 23:35:13
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /vvt/src/views/frontend/login/login.vue
@@ -23,33 +23,27 @@
       <div class="content">
         <h1 class="ys">注册</h1>
         <div class="regist">
-          <el-form
-            ref="ruleFormRef"
-            :model="ruleForm"
-            :rules="rules"
-            label-width="75px"
-            size="mini"
-          >
-            <el-form-item label="用户名" prop="userId">
-              <el-input v-model="ruleForm.userId" placeholder="请输入用户名"></el-input>
+          <el-form ref="ruleFormRef" :model="ruleForm" label-width="70px" size="small">
+            <el-form-item label="用户名" prop="userName">
+              <el-input v-model="ruleForm.data.userName" placeholder="请输入用户名"></el-input>
             </el-form-item>
             <el-form-item label="密码" prop="pwd">
               <el-input
-                v-model="ruleForm.pwd"
+                v-model="ruleForm.data.pwd"
                 type="password"
                 placeholder="密码8-16位长度"
               ></el-input>
             </el-form-item>
             <el-form-item label="密码确认" prop="pwd1">
               <el-input
-                v-model="ruleForm.pwd1"
+                v-model="ruleForm.data.pwd1"
                 type="password"
                 placeholder="请输入确认密码"
               ></el-input>
             </el-form-item>
 
             <el-form-item>
-              <el-button type="primary" @click="submitForm(ruleFormRef)">注册</el-button>
+              <el-button type="primary" @click="handleBtn('submit')">注册</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -59,119 +53,81 @@
         <div class="policy reg">已有账号，去<span @click="handleBtn('login')">登录</span></div>
       </div>
     </div>
-    <div class="foot"></div>
   </section>
 </template>
 
 <script lang="ts" setup>
   import { ref, reactive, onMounted } from 'vue';
   import { useGlobalConfig } from '../../../utils/util';
-  import type { ElForm } from 'element-plus';
-  const formSize = ref('');
+  import router from '../../../router';
 
-  const ruleFormRef = ref<InstanceType<typeof ElForm>>();
-  const ruleForm = reactive({
-    userId: '',
-    pwd: '',
-    pwd1: '',
+  const ruleForm: any = reactive({
+    data: {
+      userName: '',
+      pwd: '',
+      pwd1: '',
+    },
   });
-  const rules = reactive({
-    name: [
-      {
-        required: true,
-        message: 'Please input Activity name',
-        trigger: 'blur',
-      },
-      {
-        min: 3,
-        max: 5,
-        message: 'Length should be 3 to 5',
-        trigger: 'blur',
-      },
-    ],
-    region: [
-      {
-        required: true,
-        message: 'Please select Activity zone',
-        trigger: 'change',
-      },
-    ],
-    date1: [
-      {
-        type: 'date',
-        required: true,
-        message: 'Please pick a date',
-        trigger: 'change',
-      },
-    ],
-    date2: [
-      {
-        type: 'date',
-        required: true,
-        message: 'Please pick a time',
-        trigger: 'change',
-      },
-    ],
-    type: [
-      {
-        type: 'array',
-        required: true,
-        message: 'Please select at least one activity type',
-        trigger: 'change',
-      },
-    ],
-    resource: [
-      {
-        required: true,
-        message: 'Please select activity resource',
-        trigger: 'change',
-      },
-    ],
-    desc: [
-      {
-        required: true,
-        message: 'Please input activity form',
-        trigger: 'blur',
-      },
-    ],
-  });
+
   const { $http, $message } = useGlobalConfig();
   const show = ref('index');
-  const qrCode = ref('');
-  const code = ref();
-  // 切换导航
+
   // TODO 目前没做
   const handleBtn = (v: string) => {
-    show.value = v;
+    switch (v) {
+      case 'login':
+        router.push('/login');
+        break;
+      case 'submit':
+        checkInfo();
+        break;
+      default:
+    }
   };
-
-  const getCode = () => {
+  // 提交注册
+  const submit = () => {
     $http
-      .getcode()
+      .regist({
+        userName: ruleForm.data.userName,
+        password: ruleForm.data.pwd,
+        origin: 'web',
+      })
       .then((res: any) => {
         if (res.errNo === 0) {
-          console.log(res);
+          $message.success('注册成功');
+          router.replace('/');
+          ruleForm.data = {
+            userName: '',
+            pwd: '',
+            pwd1: '',
+          };
         }
       })
       .catch((err: any) => {
         console.log(err);
+        $message.error('注册失败');
       });
   };
 
-  // 获取二维码
-  const fetchCode = () => {
-    $http
-      .login()
-      .then((res: any) => {
-        if (res.errNo === 0) {
-          console.log(res);
-          qrCode.value = res.data;
-        }
-      })
-      .catch((err: any) => {
-        console.log(err);
-      });
+  // 校验用户名密码
+  const checkInfo = () => {
+    let uPattern = /^[a-zA-Z0-9_-]{6,20}$/;
+    let psw = /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,20}$/;
+    if (!uPattern.test(ruleForm.data.userName)) {
+      return $message.warning('用户名为6-20字母与数字组合');
+    }
+    if (!ruleForm.data.pwd || !ruleForm.data.pwd1) {
+      return $message.warning('请输入密码');
+    }
+    if (ruleForm.data.pwd !== ruleForm.data.pwd1) {
+      return $message.warning('两次密码输入不一致');
+    }
+    if (!psw.test(ruleForm.data.pwd)) {
+      return $message.warning('密码为6-20字母与数字组合');
+    }
+    submit();
   };
+
   onMounted(() => {
     // fetchCode();
     // getCode();
