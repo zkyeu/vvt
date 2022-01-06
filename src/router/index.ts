@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2021-12-25 22:24:41
+ * @LastEditTime: 2022-01-06 20:09:09
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
@@ -11,6 +11,14 @@ import Home from '@/views/Home.vue';
 import index from '@/views/index.vue';
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: '/login',
+    component: () => import('@/views/frontend/login/login.vue'),
+  },
+  {
+    path: '/reg',
+    component: () => import('@/views/frontend/login/reg.vue'),
+  },
   {
   path: '/',
   component: index,
@@ -43,6 +51,7 @@ const routes: Array<RouteRecordRaw> = [
       path: 'articledetail',
       component: () => import('@/views/frontend/article/article-detail.vue'),
     },
+    
     
   ]
 },
