@@ -1,15 +1,15 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2021-08-03 10:42:24
+ * @LastEditTime: 2022-01-05 13:36:51
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
 -->
 <template>
-  <header class="layer-footer">
+  <div class="layer-footer">
     <div>logo</div>
-  </header>
+  </div>
 </template>
 
 <style lang="less" scoped>

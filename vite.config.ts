@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 15:51:41
- * @LastEditTime: 2022-01-03 22:20:43
+ * @LastEditTime: 2022-01-06 07:46:38
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/vite.config.ts
@@ -9,36 +9,25 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 const path = require('path');
+import svgicon from 'vite-plugin-svgicon';
 
 const proxy = {
-  // target: 'http://localhost:3000/'
-  // target: 'http://192.168.0.102:3000/'
-  target: 'https://www.sotm.cn/'
+  target: 'http://localhost:3000/'
+  // target: 'https://www.sotm.cn/'
 }
 export default defineConfig({
-  plugins: [vue()],
-  // alias: {
-  //   '@': path.resolve(__dirname, './src'),
-  //   views: path.resolve(__dirname, './src/views'),
-  // '@com': path.resolve(__dirname, "./src/components"),
-  // utils: path.resolve(__dirname, './src/utils'),
-  // less: path.resolve(__dirname, "./src/less"),
-  // assets: path.resolve(__dirname, "./src/assets"),
-  // store: path.resolve(__dirname, "./src/store"),
-  // mixins: path.resolve(__dirname, "./src/mixins"),
-  // router: path.resolve(__dirname, './src/router')
-  // },
+  plugins: [vue(),svgicon({
+    include: ['**/assets/svg/origin/*.svg']
+  })],
   resolve: {
-    extensions: ['.js', '.vue', '.ts'],
+    extensions: ['.js', '.vue', '.ts', '.json'],
     alias: {
       '@': path.resolve(__dirname, './src'),
       views: path.resolve(__dirname, './src/views'),
       '@com': path.resolve(__dirname, "./src/components"),
       utils: path.resolve(__dirname, './src/utils'),
-      less: path.resolve(__dirname, "./src/less"),
       assets: path.resolve(__dirname, "./src/assets"),
       store: path.resolve(__dirname, "./src/store"),
-      mixins: path.resolve(__dirname, "./src/mixins"),
       router: path.resolve(__dirname, './src/router')
     }
   },
@@ -67,4 +56,24 @@ export default defineConfig({
       },
     },
   },
-})
+  build: {
+    target: 'es2015',
+    // sourcemap: 'inline',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['vue', 'vuex', 'vue-router'],
+          elementPlus: ['element-plus'],
+          axios: ['axios']
+        }
+      }
+    },
+    terserOptions: {
+      compress: {
+        keep_infinity: true,
+        drop_console: true
+      }
+    },
+    chunkSizeWarningLimit: 800
+  }
+});

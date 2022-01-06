@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2021-12-24 23:51:35
+ * @LastEditTime: 2022-01-05 13:37:03
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
@@ -15,11 +15,11 @@
 </template>
 
 <script lang="ts">
-  import { ref, defineComponent, computed, onMounted, getCurrentInstance } from 'vue';
+  import { defineComponent } from 'vue';
   import Nav from '@/components/front/nav.vue';
   import router from '../../router';
   export default defineComponent({
-    name: 'header',
+    name: 'headers',
     components: { Nav },
     setup: () => {
       const home = () => {
@@ -36,10 +36,13 @@
 
 <style lang="less" scoped>
   .logo {
-    width: 90px;
+    width: 40px;
     height: 40px;
     overflow: hidden;
     cursor: pointer;
+    img {
+      width: 40px;
+    }
   }
   .layer-header {
     display: flex;
