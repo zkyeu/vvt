@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 15:51:41
- * @LastEditTime: 2022-01-06 19:49:28
+ * @LastEditTime: 2022-01-08 15:39:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/vite.config.ts
@@ -12,8 +12,8 @@ const path = require('path');
 import svgicon from 'vite-plugin-svgicon';
 
 const proxy = {
-  target: 'http://localhost:3000/'
-  // target: 'https://www.sotm.cn/'
+  // target: 'http://localhost:3000/'
+  target: 'https://www.sotm.cn/'
 }
 export default defineConfig({
   plugins: [vue(),svgicon({

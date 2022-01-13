@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-31 20:15:10
+ * @LastEditTime: 2022-01-08 11:54:57
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -60,11 +60,45 @@
   // 组件引用部分========
   import { ref, defineComponent, reactive, onMounted, nextTick } from 'vue';
   import { useGlobalConfig, formatDateTime } from '../../../utils/util';
-  import Editor from 'quill';
+  import Quill from 'quill';
   import { useRoute } from 'vue-router';
   import { ElMessage } from 'element-plus';
   import Router from '../../../router';
   import axios from 'axios';
+  let toolbarOptions = [
+    // {
+    //   handlers: {
+    //     image: (v) => {
+    //       if (v) {
+    //         //上传成功回调
+    //       } else {
+    //         // 取消
+    //       }
+    //     },
+    //   },
+    // },
+    { header: [1, 2, 3, 4, 5, 6, false] },
+    'bold',
+    'italic',
+    'underline',
+    'strike',
+    'link',
+    'image',
+    'clean',
+    { align: [] },
+    // { font: [] },
+    { color: [] },
+    { background: [] },
+    'blockquote',
+    'code-block',
+    { list: 'ordered' },
+    { list: 'bullet' },
+    { script: 'sub' },
+    { script: 'super' },
+    { indent: '-1' },
+    { indent: '+1' },
+    { direction: 'rtl' },
+  ];
 
   // 代码逻辑开始========
   export default defineComponent({
@@ -85,6 +119,7 @@
       const routeObj = reactive(route.query);
       const isEdit = ref(false);
       const types: any = ref([]);
+      const qEditor = ref();
 
       // 关闭tag标签
       const handleTagClose = (tag: any) => {
@@ -238,35 +273,61 @@
         if (!document.querySelector('#editor')) {
           return false;
         }
-        let editor = new Editor('#editor', {
+        qEditor.value = new Quill('#editor', {
           theme: 'snow',
           modules: {
-            toolbar: [
-              { header: [1, 2, 3, 4, 5, 6, false] },
-              'bold',
-              'italic',
-              'underline',
-              'strike',
-              'link',
-              'image',
-              'clean',
-              { align: [] },
-              // { font: [] },
-              { color: [] },
-              { background: [] },
-              'blockquote',
-              'code-block',
-              { list: 'ordered' },
-              { list: 'bullet' },
-              { script: 'sub' },
-              { script: 'super' },
-              { indent: '-1' },
-              { indent: '+1' },
-              { direction: 'rtl' },
-            ],
+            toolbar: toolbarOptions,
           },
         });
+        // var html = qEditor.value.container.firstChild.innerHTML;
+        // var content: any = document.querySelector("textarea[name='content']");
+        // console.log('-->', content);
+        // content.innerHTML = html;
+
+        // qEditor.value.on('text-change', function (delta, oldDelta, source) {
+        //   content.innerHTML = qEditor.value.container.firstChild.innerHTML;
+        // });
+        var toolbar = qEditor.value.getModule('toolbar');
+        // console.log('==>', toolbar);
+        // toolbar.addHandler('image');
+        toolbar.addHandler('image', function () {
+          var fileInput = qEditor.value.container.querySelector('input.ql-image[type=file]');
+          if (fileInput == null) {
+            fileInput = document.createElement('input');
+            fileInput.setAttribute('type', 'file');
+            fileInput.setAttribute(
+              'accept',
+              'image/png, image/gif, image/jpeg, image/bmp, image/x-icon'
+            );
+            fileInput.classList.add('ql-image');
+            fileInput.addEventListener('change', function () {
+              if (fileInput.files != null && fileInput.files[0] != null) {
+                var formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+                // console.log(formData);
+                // return;
+                axios({
+                  url: '/apiv1/uploadfile',
+                  method: 'POST',
+                  data: formData,
+                  headers: { 'content-type': 'multipart/form-data' },
+                })
+                  .then(function (res) {
+                    //你的图片上传成功后的返回值...所以格式由你来定!
+                    console.log(res);
+                    var range = qEditor.value.getSelection(true);
+                    qEditor.value.insertEmbed(range.index, 'image', res.data.data.url);
+                    qEditor.value.setSelection(range.index + 1);
+                  })
+                  .then(function (res) {});
+              }
+            });
+            qEditor.value.container.appendChild(fileInput);
+          }
+          fileInput.click();
+        });
       };
+
       onMounted(() => {
         editorTool();
         getTypes();
