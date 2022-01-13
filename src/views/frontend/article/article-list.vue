@@ -5,7 +5,7 @@
         <div class="title">{{ item.title }}</div>
         <div class="author">
           <span>{{ item.author }}</span>
-          <span>{{ item.createtime }}</span>
+          <span>{{ item.create_time }}</span>
         </div>
       </li>
     </ul>
