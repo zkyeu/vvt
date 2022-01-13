@@ -14,7 +14,7 @@
         </div>
       </li>
     </ul>
-    <div v-if="noMore" class="bottom-line">
+    <div v-if="noMore && articleData.list > 9" class="bottom-line">
       <div><span>我是有底线的</span></div>
     </div>
   </section>
