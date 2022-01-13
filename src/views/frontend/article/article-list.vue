@@ -5,7 +5,7 @@
         <div class="title">{{ item.title }}</div>
         <div class="author">
           <span>{{ item.author }}</span>
-          <span>{{ item.createtime }}</span>
+          <span>{{ item.create_time }}</span>
         </div>
       </li>
     </ul>
@@ -13,112 +13,112 @@
 </template>
 
 <script lang="ts">
-  // 组件引用部分========
-  import { ref, defineComponent, reactive, computed, onMounted } from 'vue';
-  import { useGlobalConfig, getScrollTop, getScrollHeight } from '../../../utils/util';
-  import router from '../../../router';
-  import { useRouter, useRoute } from 'vue-router';
+// 组件引用部分========
+import { ref, defineComponent, reactive, computed, onMounted } from 'vue';
+import { useGlobalConfig, getScrollTop, getScrollHeight } from '../../../utils/util';
+import router from '../../../router';
+import { useRouter, useRoute } from 'vue-router';
 
-  // 代码逻辑开始========
-  export default defineComponent({
-    name: 'Article-detail',
-    setup: () => {
-      const { $http, $confirm, $message } = useGlobalConfig();
-      const loading = ref(true);
-      const articleData = ref();
-      const route = useRoute();
-      const routeObj = route.query;
+// 代码逻辑开始========
+export default defineComponent({
+  name: 'Article-detail',
+  setup: () => {
+    const { $http, $confirm, $message } = useGlobalConfig();
+    const loading = ref(true);
+    const articleData = ref();
+    const route = useRoute();
+    const routeObj = route.query;
 
-      const changeRoute = (v: string) => {
-        router.push(`articledetail?id=${v}`);
+    const changeRoute = (v: string) => {
+      router.push(`ad?id=${v}`);
+    };
+
+    const getArticleList = (v: any) => {
+      loading.value = true;
+      $http
+        .getarticlelist(v)
+        .then((res: any) => {
+          if (res.errNo === 0) {
+            loading.value = false;
+            articleData.value = res.data;
+          }
+        })
+        .catch((err: any) => {
+          console.log(err);
+        });
+    };
+    const scrollEvent = () => {
+      // 检测滚动条位置，为无限加载准备
+      window.onscroll = () => {
+        console.log(getScrollHeight() - getScrollTop());
       };
+    };
 
-      const getArticleList = (v: any) => {
-        loading.value = true;
-        $http
-          .getarticlelist(v)
-          .then((res: any) => {
-            if (res.errNo === 0) {
-              loading.value = false;
-              articleData.value = res.data;
-            }
-          })
-          .catch((err: any) => {
-            console.log(err);
-          });
-      };
-      const scrollEvent = () => {
-        // 检测滚动条位置，为无限加载准备
-        window.onscroll = () => {
-          console.log(getScrollHeight() - getScrollTop());
-        };
-      };
+    // 检测分类
+    const checkRoute = () => {
+      console.log();
+    };
 
-      // 检测分类
-      const checkRoute = () => {
-        console.log();
-      };
+    onMounted(() => {
+      scrollEvent();
+      checkRoute();
+      let type: any = routeObj.type;
+      let params: any = { pn: 1, rn: 10 };
+      type ? (params['type'] = type) : params;
+      getArticleList(params);
+    });
 
-      onMounted(() => {
-        scrollEvent();
-        checkRoute();
-        let type: any = routeObj.type;
-        let params: any = { pn: 1, rn: 10 };
-        type ? (params['type'] = type) : params;
-        getArticleList(params);
-      });
-
-      // 返回当前页面所有使用的数据跟逻辑========
-      return {
-        articleData,
-        changeRoute,
-        loading,
-      };
-    },
-  });
+    // 返回当前页面所有使用的数据跟逻辑========
+    return {
+      articleData,
+      changeRoute,
+      loading,
+    };
+  },
+});
 </script>
 
 <style lang="less" scoped>
-  .item-list {
-    background: #fff;
-    padding: 2rem;
-    li {
-      margin-bottom: 10px;
-      padding: 8px 5px;
+.item-list {
+  background: #fff;
+  padding: 2rem;
+  li {
+    margin-bottom: 10px;
+    padding: 8px 5px;
 
-      &:hover {
-        background: #e8f3ff;
-        cursor: pointer;
-        animation-name: back;
-        animation-duration: 340ms;
-        .title {
-          color: #1e80ff;
-        }
-      }
-    }
-    .title {
-      font-size: 16px;
-      line-height: 24px;
-      display: -webkit-box;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 2;
-      overflow: hidden;
-      font-size: 1.4rem;
-    }
-    .author {
-      span {
-        font-size: 14px;
-        margin-right: 10px;
-        color: #555;
-      }
-    }
-  }
-  @keyframes back {
-    from {
-      background: #fff;
-    }
-    to {
+    &:hover {
       background: #e8f3ff;
+      cursor: pointer;
+      animation-name: back;
+      animation-duration: 340ms;
+      .title {
+        color: #1e80ff;
+      }
     }
   }
+  .title {
+    font-size: 16px;
+    line-height: 24px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    font-size: 1.4rem;
+  }
+  .author {
+    span {
+      font-size: 14px;
+      margin-right: 10px;
+      color: #555;
+    }
+  }
+}
+@keyframes back {
+  from {
+    background: #fff;
+  }
+  to {
+    background: #e8f3ff;
+  }
+}
 </style>
