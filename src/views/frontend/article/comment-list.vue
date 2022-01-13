@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-06 07:49:51
- * @LastEditTime: 2022-01-06 08:52:53
+ * @LastEditTime: 2022-01-06 17:25:30
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /vvt/src/views/frontend/article/comment-list.vue
@@ -40,7 +40,7 @@
                     <span v-else> 评论 </span>
                   </div>
                 </div>
-                <div>
+                <div @click="handleBtn('zan', { id: i.id, userId: i.userId })">
                   <icon :data="zan"></icon>
                   <span v-if="true">{{ 23 }}</span>
                   <span v-else>点赞</span>
@@ -56,8 +56,8 @@
                 pl="回复:"
               />
             </div>
-            <div class="comment-son" v-for="i in commentList.data">
-              <div class="content">
+            <div class="comment-son-list">
+              <div class="content" v-for="i in commentList.data">
                 <span class="name">【姓名】：</span>
                 <span>{{ i.content }}</span>
               </div>
@@ -66,7 +66,7 @@
         </div>
       </template>
       <template v-else>
-        <div>暂无评论</div>
+        <div class="no-comment">暂无评论，快去首评吧～</div>
       </template>
     </div>
   </section>
@@ -80,6 +80,7 @@
   import pinglun from 'assets/svg/origin/pinglun.svg';
   import zan from 'assets/svg/origin/zan.svg';
   import user from 'assets/svg/origin/user.svg';
+  import { log } from 'console';
 
   export default defineComponent({
     name: 'CommentComponet',
@@ -126,6 +127,10 @@
           case 'nocomment':
             commentObj.data = {};
             break;
+          case 'zan':
+            console.log('评论点赞');
+            console.log(obj.id);
+            break;
           default:
         }
       };
@@ -144,175 +149,143 @@
         aid,
         handleBtn,
         commentObj,
-        commentLength,
       };
     },
   });
 </script>
 
 <style lang="less" scoped>
-  .content {
-    display: flex;
+  .comment-list {
+    padding: 1.2rem 1.6rem;
+    background: #fff;
+    position: relative;
+    margin: 10px 0;
 
-    .content-left {
-      min-width: 330px;
-      margin-right: 2rem;
-
-      word-break: break-all;
-      flex: 1;
-      font-size: 14px;
-      line-height: 26px;
-
-      .main-content {
-        padding: 1.2rem 1.6rem;
-        background: #fff;
-        .basic-info {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 16px 20px;
-          div {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-          }
-        }
-      }
-
-      .comment-list {
-        padding: 1.2rem 1.6rem;
-        background: #fff;
-        position: relative;
-        margin: 10px 0;
-
-        .count-comment {
-          font-size: 18px;
-          color: #333;
-          font-weight: 500;
-          margin-bottom: 10px;
-        }
-        .list-detail {
-          border-bottom: solid 1px #eee;
-          margin-bottom: 16px;
-          .comment-content {
-            line-height: 25px;
-            padding: 0 0 5px 47px;
-          }
-          &:last-child {
-            border: none;
-          }
-          .comment-son {
-            margin: 0 0 10px 47px;
-            border-bottom: dotted 1px #ddd;
-            .content {
-              display: inherit;
-              color: #666;
-              .name {
-                color: #2483ff;
-              }
-            }
-            &:last-child {
-              border: none;
-            }
-          }
-        }
-        .props {
-          display: flex;
-          justify-content: space-between;
-          padding: 0 0 8px 47px;
-          color: #999;
-          & > div {
-            display: flex;
-          }
-          .right {
-            display: flex;
-            justify-content: space-between;
-            width: 200px;
-            color: #333;
-            div {
-              cursor: pointer;
-              width: 90px;
-            }
-          }
-        }
-
-        .re-comment {
-          padding: 0 0 16px 47px;
-        }
-      }
+    .no-comment {
+      color: #999;
     }
-    svg {
-      position: relative;
-      top: -2px;
-      width: 18px;
-      height: 18px;
+
+    .count-comment {
+      font-size: 18px;
       color: #333;
-      margin-right: 3px;
+      font-weight: 500;
+      margin-bottom: 10px;
     }
-    .author {
-      // margin-top: 16px;
+    .list-detail {
+      border-bottom: solid 1px #eee;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      .comment-content {
+        line-height: 25px;
+        padding: 0 0 5px 47px;
+      }
+      &:last-child {
+        border: none;
+      }
+
+      .comment-son-list {
+        margin-left: 47px;
+        background-color: #f9f9f9;
+        padding: 10px;
+        border-radius: 5px;
+        .content {
+          display: inherit;
+          color: #666;
+          .name {
+            color: #2483ff;
+          }
+        }
+      }
+    }
+    .props {
       display: flex;
-      margin-bottom: 12px;
-      .photo {
+      justify-content: space-between;
+      padding: 0 0 8px 47px;
+      color: #999;
+      & > div {
+        display: flex;
+      }
+      .right {
+        display: flex;
+        justify-content: space-between;
+        width: 200px;
+        color: #333;
+        div {
+          cursor: pointer;
+          width: 90px;
+        }
+      }
+    }
+
+    .re-comment {
+      padding: 0 0 16px 47px;
+    }
+  }
+  svg {
+    position: relative;
+    top: -2px;
+    width: 18px;
+    height: 18px;
+    color: #333;
+    margin-right: 3px;
+  }
+  .author {
+    display: flex;
+    margin-bottom: 12px;
+    .photo {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      overflow: hidden;
+      svg {
         width: 30px;
         height: 30px;
-        border: 1px solid #ccc;
-        border-radius: 15px;
-        overflow: hidden;
+        color: #ccc;
+      }
+
+      &.list {
+        width: 36px;
+        height: 36px;
+        border: solid 1px #ccc;
+        background: #f8f8f8;
+        border-radius: 18px;
         svg {
-          width: 30px;
-          height: 30px;
+          width: 36px;
+          height: 36px;
           color: #ccc;
         }
-
-        &.list {
-          width: 36px;
-          height: 36px;
-          border: solid 1px #ccc;
-          background: #f8f8f8;
-          border-radius: 18px;
-          svg {
-            width: 36px;
-            height: 36px;
-            color: #ccc;
-          }
-        }
-      }
-      .name {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding-left: 10px;
-        color: #555;
-        font-size: 14px;
-        font-weight: 500;
-        .reg {
-          font-size: 10px;
-          font-weight: 400;
-          color: #999;
-        }
-      }
-      .list {
-        div {
-          height: 16px;
-          line-height: 20px;
-        }
-        img {
-          width: 36px;
-          height: 36px;
-        }
-      }
-      &.mt {
-        margin-bottom: 4px;
       }
     }
-    .content-right {
-      width: 300px;
-      background: #fff;
+    .name {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-left: 10px;
+      color: #555;
+      font-size: 14px;
+      font-weight: 500;
+      .reg {
+        font-size: 10px;
+        font-weight: 400;
+        color: #999;
+      }
     }
-    .active {
-      color: #2483ff;
+    .list {
+      div {
+        height: 16px;
+        line-height: 20px;
+      }
+      img {
+        width: 36px;
+        height: 36px;
+      }
     }
+    &.mt {
+      margin-bottom: 4px;
+    }
+  }
+  .active {
+    color: #2483ff;
   }
 </style>
