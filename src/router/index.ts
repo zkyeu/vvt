@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2022-01-13 22:16:47
+ * @LastEditTime: 2022-01-14 17:08:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
@@ -127,21 +127,13 @@ const routes: Array<RouteRecordRaw> = [
         ]
       }
     ]
-  },
-  // {
-  //   path: '/admin/diy',
-  //   component:  () => import('@/views/admin/diy.vue')
-  // },
-  // {
-  //   path: '/admin/power',
-  //   component: () => import('@/views/admin/c.vue')
-  // }
+  }
 ];
 
 const router = createRouter({
   // history: createWebHistory(process.env.BASE_URL),
   // history: createWebHistory(import.meta.env.BASE_URL),
-  history: createWebHistory(),
+  history: createWebHistory('/'),
   routes,
 });
 
