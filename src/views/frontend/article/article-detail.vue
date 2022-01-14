@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2022-01-14 11:28:13
+ * @LastEditTime: 2022-01-14 11:43:21
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/article-detail.vue
@@ -64,7 +64,7 @@
       const getNew = ref();
 
       const fetchCommentInfo = () => {
-        console.log('获取评论信息');
+        // console.log('获取评论信息');
         // CommentComp.value.fetchComment;
         getNew.value.fetchComment();
         console.log(getNew.value.commentLength);

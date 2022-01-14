@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2022-01-13 18:54:46
+ * @LastEditTime: 2022-01-14 11:42:22
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/content.vue
@@ -20,75 +20,77 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent, computed, onMounted } from 'vue';
-import { useGlobalConfig } from '../../../utils/util';
-import router from '../../../router';
-import Util from '../../../utils/formatdate';
+  import { ref, defineComponent, computed, onMounted } from 'vue';
+  import { useGlobalConfig } from '../../../utils/util';
+  import router from '../../../router';
+  import Util from '../../../utils/formatdate';
+  import { log } from 'console';
 
-export default defineComponent({
-  name: 'Content',
-  setup: () => {
-    const { $http, $confirm, $message } = useGlobalConfig();
-    const articleData: any = ref([]);
+  export default defineComponent({
+    name: 'Content',
+    setup: () => {
+      const { $http, $confirm, $message } = useGlobalConfig();
+      const articleData: any = ref([]);
 
-    const getArticle = (id: any) => {
-      $http
-        .getarticle({ id: id })
-        .then((res: any) => {
-          if (res.errNo === 0) {
-            articleData.value = res.data;
-          }
-          // console.log(res);
-        })
-        .catch((err: any) => {
-          console.log(err);
-        });
-    };
+      const getArticle = (id: any) => {
+        $http
+          .getarticle({ id: id })
+          .then((res: any) => {
+            if (res.errNo === 0) {
+              articleData.value = res.data;
+            }
+            // console.log(res);
+          })
+          .catch((err: any) => {
+            console.log(err);
+          });
+      };
 
-    const formatDate = (v: any) => {
-      return Util(v);
-    };
+      const formatDate = (v: any) => {
+        return Util(v);
+      };
 
-    onMounted(() => {
-      let id = router.currentRoute.value.query.id;
-      if (id) {
-        getArticle(id);
-      }
-    });
+      onMounted(() => {
+        let id = router.currentRoute.value.query.id;
+        console.log(id);
+        if (id) {
+          getArticle(id);
+        }
+      });
 
-    // 返回当前页面所有使用的数据跟逻辑========
-    return {
-      articleData,
-      formatDate,
-    };
-  },
-});
+      // 返回当前页面所有使用的数据跟逻辑========
+      return {
+        articleData,
+        formatDate,
+      };
+    },
+  });
 </script>
 
 <style lang="less" scoped>
-.item-detail {
-  display: flex;
-  flex-direction: column;
-  // justify-content: space-between;
-  .title {
+  .item-detail {
     display: flex;
-    align-items: center;
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-  .author-info {
-    font-size: 14px;
-    font-weight: 300;
-    color: #555;
-    margin-bottom: 20px;
-    .name {
-      color: rgb(14, 11, 211);
-      margin-right: 8px;
+    flex-direction: column;
+    // justify-content: space-between;
+    .title {
+      display: flex;
+      align-items: center;
+      font-size: 1.5rem;
+      line-height: 2rem;
     }
-    .date {
-      font-style: normal;
-      color: #666;
+    .author-info {
+      font-size: 14px;
+      font-weight: 300;
+      color: #555;
+      margin-bottom: 20px;
+      .name {
+        color: rgb(14, 11, 211);
+        margin-right: 8px;
+      }
+      .date {
+        font-style: normal;
+        color: #666;
+      }
     }
   }
-}
 </style>
