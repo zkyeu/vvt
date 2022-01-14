@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-06 07:49:51
- * @LastEditTime: 2022-01-06 17:25:30
+ * @LastEditTime: 2022-01-14 11:30:21
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /vvt/src/views/frontend/article/comment-list.vue
@@ -18,7 +18,7 @@
                 <icon :data="user"></icon>
               </div>
               <div class="name list">
-                <div>姓名</div>
+                <div>匿名</div>
                 <div class="reg">MBA21081班</div>
               </div>
             </div>
@@ -32,19 +32,19 @@
                     <span>取消评论</span>
                   </div>
 
-                  <div v-else @click="handleBtn('comment', { id: i.id, userId: i.userId })">
+                  <!-- <div v-else @click="handleBtn('comment', { id: i.id, userId: i.userId })">
                     <icon :data="pinglun"></icon>
                     <span v-if="!true">
                       {{ 8 }}
                     </span>
                     <span v-else> 评论 </span>
-                  </div>
+                  </div> -->
                 </div>
-                <div @click="handleBtn('zan', { id: i.id, userId: i.userId })">
+                <!-- <div @click="handleBtn('zan', { id: i.id, userId: i.userId })">
                   <icon :data="zan"></icon>
                   <span v-if="true">{{ 23 }}</span>
                   <span v-else>点赞</span>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="re-comment" v-if="commentObj.data.id === i.id">
@@ -56,12 +56,12 @@
                 pl="回复:"
               />
             </div>
-            <div class="comment-son-list">
+            <!-- <div class="comment-son-list">
               <div class="content" v-for="i in commentList.data">
                 <span class="name">【姓名】：</span>
                 <span>{{ i.content }}</span>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </template>
