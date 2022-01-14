@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2022-01-06 08:53:27
+ * @LastEditTime: 2022-01-14 11:28:13
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/article-detail.vue
@@ -19,7 +19,7 @@
           </div>
           <div>
             <icon :data="pinglun"></icon>
-            <span v-if="true">{{ 999 }}</span>
+            <span v-if="true">{{ 1 }}</span>
             <span v-else>评论</span>
           </div>
           <div>
