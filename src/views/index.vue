@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-12 11:33:22
- * @LastEditTime: 2022-01-05 13:37:17
+ * @LastEditTime: 2022-01-20 14:30:30
  * @LastEditors: Please set LastEditors
  * @Description: 前台首页
  * @FilePath: /vvt/src/views/index.vue
@@ -49,10 +49,27 @@
 
       .content-body {
         margin: 16px 16px 0;
-        width: 100%;
-        min-width: 1000px;
-        max-width: 1200px;
+        // width: 100%;
+        // min-width: 800px;
+        // max-width: 1200px;
       }
+    }
+  }
+  @media screen and (min-width: 1201px) {
+    .content-body {
+      width: 1200px;
+    }
+  }
+  @media screen and (max-width: 1200px) {
+    .content-body {
+      width: 800px;
+    }
+  }
+  /* 设置了涉猎器宽度不大于1200px时 abc 显示900px宽度 */
+
+  @media screen and (max-width: 800px) {
+    .content-body {
+      width: 700px;
     }
   }
 </style>
