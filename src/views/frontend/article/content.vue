@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2022-01-14 11:42:22
+ * @LastEditTime: 2022-01-20 13:34:26
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/content.vue
@@ -52,7 +52,7 @@
 
       onMounted(() => {
         let id = router.currentRoute.value.query.id;
-        console.log(id);
+        // console.log(id);
         if (id) {
           getArticle(id);
         }

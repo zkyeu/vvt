@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2022-01-13 22:16:47
+ * @LastEditTime: 2022-01-20 14:09:58
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
@@ -136,6 +136,14 @@ const routes: Array<RouteRecordRaw> = [
   //   path: '/admin/power',
   //   component: () => import('@/views/admin/c.vue')
   // }
+  {
+    path: '/login',
+    component:  () => import('@/views/frontend/login/login.vue')
+  },
+  {
+    path: '/reg',
+    component:  () => import('@/views/frontend/login/reg.vue')
+  }
 ];
 
 const router = createRouter({
