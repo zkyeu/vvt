@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2022-01-14 11:43:21
+ * @LastEditTime: 2022-01-20 13:41:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/article-detail.vue
@@ -19,7 +19,7 @@
           </div>
           <div>
             <icon :data="pinglun"></icon>
-            <span v-if="true">{{ 1 }}</span>
+            <span v-if="true">{{ commLength }}</span>
             <span v-else>评论</span>
           </div>
           <div>
@@ -35,7 +35,7 @@
           type="newcomment"
         />
       </div>
-      <CommentComp ref="getNew"></CommentComp>
+      <CommentComp ref="getNew" @commentLength="commLengthFn"></CommentComp>
     </div>
     <div class="content-right">
       <Types />
@@ -62,6 +62,7 @@
       const showEmojiLayer = ref(false);
       const aid = ref();
       const getNew = ref();
+      const commLength = ref(0);
 
       const fetchCommentInfo = () => {
         // console.log('获取评论信息');
@@ -69,10 +70,14 @@
         getNew.value.fetchComment();
         console.log(getNew.value.commentLength);
       };
+      const commLengthFn = (v: any) => {
+        commLength.value = v;
+      };
 
       onMounted(() => {
         aid.value = route.query.id;
       });
+
       return {
         shoucang,
         pinglun,
@@ -80,6 +85,8 @@
         aid,
         fetchCommentInfo,
         getNew,
+        commLengthFn,
+        commLength,
       };
     },
   });
