@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-29 11:02:37
+ * @LastEditTime: 2022-01-24 22:43:04
  * @LastEditors: Please set LastEditors
  * @Description: 前台默认页面
  * @FilePath: /vvt/src/views/frontend/default.vue
@@ -11,9 +11,9 @@
     <div class="content-left">
       <ArticleList />
     </div>
-    <!-- <div class="content-right">
+    <div class="content-right">
       <Types />
-    </div> -->
+    </div>
   </section>
 </template>
 
