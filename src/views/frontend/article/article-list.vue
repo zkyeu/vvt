@@ -1,7 +1,11 @@
 <template>
   <section class="item-list">
     <ul v-loading="loading" v-if="articleData.list.length">
-      <li v-for="item in articleData.list" :key="item" @click="changeRoute(item.id)">
+      <li
+        v-for="item in articleData.list"
+        :key="item"
+        @click="changeRoute({ id: item.id, t: item.type })"
+      >
         <div class="title">{{ item.title }}</div>
         <div class="author">
           <span>{{ item.author }}</span>
@@ -26,12 +30,9 @@
   const route = useRoute();
   const page: any = reactive({ pn: 1, rn: 10, id: '' });
   const count = ref(0);
-  const noMore = computed(() => {
-    return articleData.list.length === count.value;
-  });
 
-  const changeRoute = (v: string) => {
-    router.push(`ad?id=${v}`);
+  const changeRoute = (v: any) => {
+    router.push(`ad?id=${v.id}&i=${v.t}`);
   };
 
   const getArticleList = async (v: any) => {
@@ -42,8 +43,7 @@
         if (res.errNo === 0) {
           count.value = parseInt(res.count);
           loading.value = false;
-          console.log(res.data);
-
+          // console.log(res.data);
           articleData.list = res.data;
         }
       })
@@ -66,7 +66,7 @@
   watch(
     () => route.query.i,
     (n) => {
-      console.log(n);
+      // console.log(n);
       getArticleList({
         rn: 10,
         pn: 1,
