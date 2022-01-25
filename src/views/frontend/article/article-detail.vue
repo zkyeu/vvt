@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2022-01-14 11:43:21
+ * @LastEditTime: 2022-01-24 14:23:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/article-detail.vue
@@ -19,7 +19,7 @@
           </div>
           <div>
             <icon :data="pinglun"></icon>
-            <span v-if="true">{{ 1 }}</span>
+            <span v-if="true">{{ commLength }}</span>
             <span v-else>评论</span>
           </div>
           <div>
@@ -35,7 +35,7 @@
           type="newcomment"
         />
       </div>
-      <CommentComp ref="getNew"></CommentComp>
+      <CommentComp ref="getNew" @commentLength="commLengthFn"></CommentComp>
     </div>
     <div class="content-right">
       <Types />
@@ -53,6 +53,7 @@
   import shoucang from 'assets/svg/origin/shoucang.svg';
   import pinglun from 'assets/svg/origin/pinglun.svg';
   import zan from 'assets/svg/origin/zan.svg';
+  import { testDevice } from '../../../utils/util';
 
   export default defineComponent({
     name: 'Article-detail',
@@ -62,6 +63,7 @@
       const showEmojiLayer = ref(false);
       const aid = ref();
       const getNew = ref();
+      const commLength = ref(0);
 
       const fetchCommentInfo = () => {
         // console.log('获取评论信息');
@@ -69,10 +71,22 @@
         getNew.value.fetchComment();
         console.log(getNew.value.commentLength);
       };
+      const commLengthFn = (v: any) => {
+        commLength.value = v;
+      };
+
+      const displayDom = () => {
+        let dom = document.querySelector('.content-right');
+        (dom as any).style.display = 'none';
+      };
 
       onMounted(() => {
         aid.value = route.query.id;
+        if (testDevice()) {
+          displayDom();
+        }
       });
+
       return {
         shoucang,
         pinglun,
@@ -80,6 +94,8 @@
         aid,
         fetchCommentInfo,
         getNew,
+        commLengthFn,
+        commLength,
       };
     },
   });

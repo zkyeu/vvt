@@ -131,6 +131,22 @@ const routes: Array<RouteRecordRaw> = [
         ]
       }
     ]
+  },
+  // {
+  //   path: '/admin/diy',
+  //   component:  () => import('@/views/admin/diy.vue')
+  // },
+  // {
+  //   path: '/admin/power',
+  //   component: () => import('@/views/admin/c.vue')
+  // }
+  {
+    path: '/login',
+    component:  () => import('@/views/frontend/login/login.vue')
+  },
+  {
+    path: '/reg',
+    component:  () => import('@/views/frontend/login/reg.vue')
   }
 ];
 

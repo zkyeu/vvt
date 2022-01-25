@@ -16,7 +16,7 @@
 <script lang="ts" setup>
   // 组件引用部分========
   import { ref, reactive, computed, onMounted, watch } from 'vue';
-  import { useGlobalConfig, getScrollTop, getScrollHeight } from '../../../utils/util';
+  import { useGlobalConfig, getScrollTop, getScrollHeight, testDevice } from '../../../utils/util';
   import router from '../../../router';
   import { useRouter, useRoute, onBeforeRouteUpdate } from 'vue-router';
 
@@ -75,10 +75,18 @@
     }
   );
 
+  const displayDom = () => {
+    let dom = document.querySelector('.content-right');
+    (dom as any).style.display = 'none';
+  };
+
   onMounted(() => {
     // scrollEvent();
     page.id = route.query.i;
     getArticleList(page);
+    if (testDevice()) {
+      displayDom();
+    }
   });
 </script>
 
