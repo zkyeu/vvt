@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2022-01-20 13:41:48
+ * @LastEditTime: 2022-01-24 14:23:45
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/article-detail.vue
@@ -53,6 +53,7 @@
   import shoucang from 'assets/svg/origin/shoucang.svg';
   import pinglun from 'assets/svg/origin/pinglun.svg';
   import zan from 'assets/svg/origin/zan.svg';
+  import { testDevice } from '../../../utils/util';
 
   export default defineComponent({
     name: 'Article-detail',
@@ -74,8 +75,16 @@
         commLength.value = v;
       };
 
+      const displayDom = () => {
+        let dom = document.querySelector('.content-right');
+        (dom as any).style.display = 'none';
+      };
+
       onMounted(() => {
         aid.value = route.query.id;
+        if (testDevice()) {
+          displayDom();
+        }
       });
 
       return {

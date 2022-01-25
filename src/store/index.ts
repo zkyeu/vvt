@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2021-12-24 23:33:41
+ * @LastEditTime: 2022-01-24 13:45:49
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/index.ts
@@ -49,31 +49,31 @@ const defaultState = {
     }
   ],
   nav: [
-    {
-      id: 1,
-      title: '首页',
-      router: '/',
-    },
-    {
-      id:2,
-      title: '文章',
-      router: 'b',
-    },
-    {
-      id: 3,
-      title: '学习积累',
-      router: 'c',
-    },
-    {
-      id: 4,
-      title: '胡思乱想',
-      router: 'd',
-    },
-    {
-      id: 5,
-      title: 'wechat',
-      router: 'wechat',
-    },
+    // {
+    //   id: 1,
+    //   title: '首页',
+    //   router: '/',
+    // },
+    // {
+    //   id:2,
+    //   title: '文章',
+    //   router: 'b',
+    // },
+    // {
+    //   id: 3,
+    //   title: '学习积累',
+    //   router: 'c',
+    // },
+    // {
+    //   id: 4,
+    //   title: '胡思乱想',
+    //   router: 'd',
+    // },
+    // {
+    //   id: 5,
+    //   title: 'wechat',
+    //   router: 'wechat',
+    // },
   ],
   type: [
     {

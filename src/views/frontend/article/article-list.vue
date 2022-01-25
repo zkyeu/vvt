@@ -26,6 +26,7 @@
   import { useGlobalConfig, getScrollTop, getScrollHeight } from '../../../utils/util';
   import router from '../../../router';
   import { useRouter, useRoute } from 'vue-router';
+  import { testDevice } from '../../../utils/util';
 
   const { $http, $confirm, $message } = useGlobalConfig();
   const loading = ref(true);
@@ -79,11 +80,19 @@
     console.log();
   };
 
+  const displayDom = () => {
+    let dom = document.querySelector('.content-right');
+    (dom as any).style.display = 'none';
+  };
+
   onMounted(() => {
     // scrollEvent();
     checkRoute();
     page.type = routeObj.type;
     getArticleList(page);
+    if (testDevice()) {
+      displayDom();
+    }
   });
 </script>
 
