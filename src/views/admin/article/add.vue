@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2022-01-08 11:54:57
+ * @LastEditTime: 2022-01-26 16:02:23
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -304,22 +304,18 @@
               if (fileInput.files != null && fileInput.files[0] != null) {
                 var formData = new FormData();
                 formData.append('file', fileInput.files[0]);
-                // console.log(formData);
-                // return;
                 axios({
                   url: '/apiv1/uploadfile',
                   method: 'POST',
                   data: formData,
                   headers: { 'content-type': 'multipart/form-data' },
-                })
-                  .then(function (res) {
-                    //你的图片上传成功后的返回值...所以格式由你来定!
-                    console.log(res);
-                    var range = qEditor.value.getSelection(true);
-                    qEditor.value.insertEmbed(range.index, 'image', res.data.data.url);
-                    qEditor.value.setSelection(range.index + 1);
-                  })
-                  .then(function (res) {});
+                }).then(function (res: any) {
+                  //你的图片上传成功后的返回值...所以格式由你来定!
+                  console.log(res);
+                  var range = qEditor.value.getSelection(true);
+                  qEditor.value.insertEmbed(range.index, 'image', res.url);
+                  qEditor.value.setSelection(range.index + 1);
+                });
               }
             });
             qEditor.value.container.appendChild(fileInput);

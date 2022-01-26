@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2022-01-05 17:41:11
- * @LastEditTime: 2022-01-20 13:35:12
+ * @LastEditTime: 2022-01-26 13:54:35
  * @LastEditors: Please set LastEditors
  * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  * @FilePath: /vvt/src/components/front/comment.vue
@@ -28,7 +28,7 @@
       </el-input>
     </div>
     <div class="submit">
-      <div class="biaoqing" v-show="false">
+      <div class="biaoqing" v-show="true">
         <span @click="toggleEmoji"> <icon :data="biaoqing"></icon>表情</span>
         <Picker
           :data="emojiIndex"
