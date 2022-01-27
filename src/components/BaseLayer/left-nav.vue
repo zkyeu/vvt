@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:10:38
- * @LastEditTime: 2021-12-21 09:22:43
+ * @LastEditTime: 2022-01-27 16:19:30
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/baseLayer/left-nav.vue
@@ -93,8 +93,11 @@
     display: flex;
     width: 200px;
     min-height: calc(100vh - 50px);
+    position: relative;
 
-    :deep(.left-nav-menu) {
+    &:deep(.left-nav-menu) {
+      position: sticky;
+      top: 0;
       width: 200px;
       .el-submenu__title,
       .el-menu-item {

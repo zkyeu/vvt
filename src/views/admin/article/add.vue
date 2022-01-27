@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2022-01-26 16:02:23
+ * @LastEditTime: 2022-01-27 15:47:43
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
@@ -66,17 +66,6 @@
   import Router from '../../../router';
   import axios from 'axios';
   let toolbarOptions = [
-    // {
-    //   handlers: {
-    //     image: (v) => {
-    //       if (v) {
-    //         //上传成功回调
-    //       } else {
-    //         // 取消
-    //       }
-    //     },
-    //   },
-    // },
     { header: [1, 2, 3, 4, 5, 6, false] },
     'bold',
     'italic',
@@ -279,21 +268,12 @@
             toolbar: toolbarOptions,
           },
         });
-        // var html = qEditor.value.container.firstChild.innerHTML;
-        // var content: any = document.querySelector("textarea[name='content']");
-        // console.log('-->', content);
-        // content.innerHTML = html;
-
-        // qEditor.value.on('text-change', function (delta, oldDelta, source) {
-        //   content.innerHTML = qEditor.value.container.firstChild.innerHTML;
-        // });
         var toolbar = qEditor.value.getModule('toolbar');
-        // console.log('==>', toolbar);
-        // toolbar.addHandler('image');
         toolbar.addHandler('image', function () {
           var fileInput = qEditor.value.container.querySelector('input.ql-image[type=file]');
           if (fileInput == null) {
             fileInput = document.createElement('input');
+            fileInput.style.display = 'none';
             fileInput.setAttribute('type', 'file');
             fileInput.setAttribute(
               'accept',

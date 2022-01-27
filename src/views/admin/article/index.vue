@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-08-20 12:02:14
+ * @LastEditTime: 2022-01-27 16:28:05
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -15,6 +15,9 @@
       id：<el-input v-model="aid"></el-input> 内容：<el-input v-model="content"></el-input>
       <el-button @click="delitem">删除</el-button>
       <el-button @click="updateData">更新</el-button>
+    </div>
+    <div>
+      <p v-for="i in 100">234234+{{ i }}</p>
     </div>
     <router-view />
   </section>
@@ -133,5 +136,7 @@
 <style scoped>
   .content {
     display: block;
+    /* height: 700px; */
+    overflow-y: auto;
   }
 </style>

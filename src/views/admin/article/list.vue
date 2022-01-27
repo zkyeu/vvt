@@ -286,12 +286,10 @@
       padding-right: 15px;
     }
   }
-  .view-content {
-    /deep/ .bodys {
-      img {
-        max-width: 100%;
-        padding: 10px 0;
-      }
+  .view-content :deep(.bodys) {
+    img {
+      max-width: 100%;
+      padding: 10px 0;
     }
   }
 </style>
