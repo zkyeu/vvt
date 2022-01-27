@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2021-12-31 20:43:04
+ * @LastEditTime: 2022-01-27 11:23:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/default.vue
@@ -57,17 +57,19 @@
     />
 
     <!-- 文章详情 -->
-    <el-dialog :title="previewData.title" v-model="layerShow" width="800px">
-      <span v-html="previewData.body"></span>
-      <template #footer>
-        <span class="dialog-footer">
-          <el-button @click="handleOperate('edit', previewData.id)">编辑</el-button>
-          <el-button type="primary" @click="handleOperate('confirm', previewData.id)"
-            >确 定</el-button
-          >
-        </span>
-      </template>
-    </el-dialog>
+    <div class="view-content">
+      <el-dialog :title="previewData.title" v-model="layerShow" width="800px">
+        <span class="bodys" v-html="previewData.body"></span>
+        <template #footer>
+          <span class="dialog-footer">
+            <el-button @click="handleOperate('edit', previewData.id)">编辑</el-button>
+            <el-button type="primary" @click="handleOperate('confirm', previewData.id)"
+              >确 定</el-button
+            >
+          </span>
+        </template>
+      </el-dialog>
+    </div>
   </section>
 </template>
 
@@ -282,6 +284,14 @@
     }
     .operate {
       padding-right: 15px;
+    }
+  }
+  .view-content {
+    /deep/ .bodys {
+      img {
+        max-width: 100%;
+        padding: 10px 0;
+      }
     }
   }
 </style>
