@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2022-01-25 15:47:06
+ * @LastEditTime: 2022-02-11 15:32:15
  * @LastEditors: Please set LastEditors
  * @Description: 因为分类不经常变化，所以在页面加载时候加载一次就可以了,注释部分是用之前方式处理
  * @FilePath: /vvt/src/components/front/types.vue
@@ -64,9 +64,7 @@
         () => route.query.i,
         (n) => {
           console.log(n);
-          if (n) {
-            activeRouter.value = route.query;
-          }
+          activeRouter.value = n ? route.query : '';
         }
       );
 

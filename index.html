@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-07-28 15:51:41
- * @LastEditTime: 2022-01-14 20:28:47
+ * @LastEditTime: 2022-02-11 12:57:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/index.html
@@ -9,20 +9,45 @@
 
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MBA21081班</title>
+    <script>
+      let url = location.origin;
+      if (url.indexOf('localhost:3001') < 0) {
+        !(function (p) {
+          'use strict';
+          !(function (t) {
+            var s = window,
+              e = document,
+              i = p,
+              c = ''.concat(
+                'https:' === e.location.protocol ? 'https://' : 'http://',
+                'sdk.51.la/js-sdk-pro.min.js'
+              ),
+              n = e.createElement('script'),
+              r = e.getElementsByTagName('script')[0];
+            (n.type = 'text/javascript'),
+              n.setAttribute('charset', 'UTF-8'),
+              (n.async = !0),
+              (n.src = c),
+              (n.id = 'LA_COLLECT'),
+              (i.d = n);
+            var o = function () {
+              s.LA.ids.push(i);
+            };
+            s.LA ? s.LA.ids && o() : ((s.LA = p), (s.LA.ids = []), o()),
+              r.parentNode.insertBefore(n, r);
+          })();
+        })({ id: 'JZ0SUNOsynTV0j2M', ck: 'JZ0SUNOsynTV0j2M' });
+      }
+    </script>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <link rel="icon" href="/favicon.ico" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MBA21081班</title>
-  <script>
-    !function (p) { "use strict"; !function (t) { var s = window, e = document, i = p, c = "".concat("https:" === e.location.protocol ? "https://" : "http://", "sdk.51.la/js-sdk-pro.min.js"), n = e.createElement("script"), r = e.getElementsByTagName("script")[0]; n.type = "text/javascript", n.setAttribute("charset", "UTF-8"), n.async = !0, n.src = c, n.id = "LA_COLLECT", i.d = n; var o = function () { s.LA.ids.push(i) }; s.LA ? s.LA.ids && o() : (s.LA = p, s.LA.ids = [], o()), r.parentNode.insertBefore(n, r) }() }({ id: "JZ0SUNOsynTV0j2M", ck: "JZ0SUNOsynTV0j2M" });
-  </script>
-</head>
-
-<body>
-  <div id="app"></div>
-  <script type="module" src="/src/main.ts"></script>
-</body>
-
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

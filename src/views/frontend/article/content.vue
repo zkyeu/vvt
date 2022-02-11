@@ -1,13 +1,13 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2022-01-27 15:43:47
+ * @LastEditTime: 2022-02-11 13:51:14
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/content.vue
 -->
 <template>
-  <section class="item-detail">
+  <section class="item-detail ql-snow">
     <div class="title">{{ articleData.title }}</div>
     <div class="author-info">
       <span v-if="articleData.author" class="name">{{ articleData.author }}</span>
@@ -15,7 +15,7 @@
         >发表于<i class="date">{{ formatDate(articleData.create_time) }}</i></span
       >
     </div>
-    <div class="bodys" v-html="articleData.body"></div>
+    <div class="bodys ql-editor" v-html="articleData.body"></div>
   </section>
 </template>
 
@@ -24,7 +24,6 @@
   import { useGlobalConfig } from '../../../utils/util';
   import router from '../../../router';
   import Util from '../../../utils/formatdate';
-  import { log } from 'console';
 
   export default defineComponent({
     name: 'Content',

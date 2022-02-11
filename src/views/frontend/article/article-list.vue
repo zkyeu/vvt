@@ -17,11 +17,10 @@
     <div class="pages">
       <el-pagination
         v-if="count > 9 && articleData.list.length"
-        small
         background
         layout="prev, pager, next"
         :total="count"
-        current-page="pn"
+        :current-page="page.pn"
         @current-change="changPage"
       >
       </el-pagination>
@@ -40,7 +39,7 @@
   const loading = ref(true);
   const articleData: any = reactive({ list: [] });
   const route = useRoute();
-  const page: any = reactive({ pn: 1, rn: 10, id: '' });
+  const page: any = reactive({ pn: 1, rn: 10, id: '', origin: 1 });
   const count = ref(0);
   const pn = ref(1);
 
@@ -79,11 +78,9 @@
   watch(
     () => route.query.i,
     (n) => {
-      getArticleList({
-        rn: 10,
-        pn: 1,
-        id: n,
-      });
+      page.pn = 1;
+      page.id = n;
+      getArticleList(page);
     }
   );
 
