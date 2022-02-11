@@ -1,12 +1,11 @@
 <template>
   <section class="item-list">
-    <ul
-      v-infinite-scroll="load"
-      infinite-scroll-disabled="dis"
-      infinite-scroll-distance="100"
-      v-loading="loading"
-    >
-      <li v-for="item in articleData.list" :key="item" @click="changeRoute(item.id)">
+    <ul v-loading="loading" v-if="articleData.list.length">
+      <li
+        v-for="item in articleData.list"
+        :key="item"
+        @click="changeRoute({ id: item.id, t: item.type })"
+      >
         <div class="title">{{ item.title }}</div>
         <div class="author">
           <span>{{ item.author }}</span>
@@ -14,42 +13,39 @@
         </div>
       </li>
     </ul>
-    <div v-if="noMore && articleData.list > 9" class="bottom-line">
-      <div><span>我是有底线的</span></div>
+    <div v-else>暂无信息</div>
+    <div class="pages">
+      <el-pagination
+        v-if="count > 9 && articleData.list.length"
+        small
+        background
+        layout="prev, pager, next"
+        :total="count"
+        current-page="pn"
+        @current-change="changPage"
+      >
+      </el-pagination>
     </div>
   </section>
 </template>
 
 <script lang="ts" setup>
   // 组件引用部分========
-  import { ref, defineComponent, reactive, computed, onMounted } from 'vue';
-  import { useGlobalConfig, getScrollTop, getScrollHeight } from '../../../utils/util';
+  import { ref, reactive, computed, onMounted, watch } from 'vue';
+  import { useGlobalConfig, getScrollTop, getScrollHeight, testDevice } from '../../../utils/util';
   import router from '../../../router';
-  import { useRouter, useRoute } from 'vue-router';
+  import { useRouter, useRoute, onBeforeRouteUpdate } from 'vue-router';
 
   const { $http, $confirm, $message } = useGlobalConfig();
   const loading = ref(true);
   const articleData: any = reactive({ list: [] });
   const route = useRoute();
-  const routeObj = route.query;
-  const page: any = reactive({ pn: 1, rn: 10, type: '' });
+  const page: any = reactive({ pn: 1, rn: 10, id: '' });
   const count = ref(0);
-  const load = () => {
-    loading.value = true;
-    setTimeout(() => {
-      page.pn += 1;
-      getArticleList(page);
-    }, 200);
-  };
-  const noMore = computed(() => {
-    return articleData.list.length === count.value;
-  });
-  const dis = computed(() => {
-    return loading.value || noMore.value;
-  });
+  const pn = ref(1);
 
-  const changeRoute = (v: string) => {
-    router.push(`ad?id=${v}`);
+  const changeRoute = (v: any) => {
+    router.push(`ad?id=${v.id}&i=${v.t}`);
   };
 
   const getArticleList = async (v: any) => {
@@ -60,7 +56,8 @@
         if (res.errNo === 0) {
           count.value = parseInt(res.count);
           loading.value = false;
-          articleData.list = articleData.list.concat(res.data);
+          // console.log(res.data);
+          articleData.list = res.data;
         }
       })
       .catch((err: any) => {
@@ -74,16 +71,39 @@
     };
   };
 
-  // 检测分类
-  const checkRoute = () => {
-    console.log();
+  // onBeforeRouteUpdate((v, n) => {
+  //   let id = v.query.i || '';
+  //   console.log(id);
+  //   console.log(n);
+  // });
+  watch(
+    () => route.query.i,
+    (n) => {
+      getArticleList({
+        rn: 10,
+        pn: 1,
+        id: n,
+      });
+    }
+  );
+
+  const displayDom = () => {
+    let dom = document.querySelector('.content-right');
+    (dom as any).style.display = 'none';
+  };
+
+  const changPage = (v: any) => {
+    page.pn = v;
+    getArticleList(page);
   };
 
   onMounted(() => {
     // scrollEvent();
-    checkRoute();
-    page.type = routeObj.type;
+    page.id = route.query.i;
     getArticleList(page);
+    if (testDevice()) {
+      displayDom();
+    }
   });
 </script>
 
@@ -140,6 +160,10 @@
         background-color: #fff;
         text-align: center;
       }
+    }
+    .pages {
+      display: flex;
+      justify-content: center;
     }
   }
 </style>

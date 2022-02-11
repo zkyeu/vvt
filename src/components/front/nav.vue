@@ -1,13 +1,13 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:10:38
- * @LastEditTime: 2021-08-27 19:25:11
+ * @LastEditTime: 2022-01-24 13:46:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/baseLayer/left-nav.vue
 -->
 <template>
-  <section class="navs">
+  <section class="navs" v-if="navData.length">
     <span
       v-for="item in navData"
       :key="item.id"

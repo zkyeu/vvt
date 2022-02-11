@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-04 10:18:00
- * @LastEditTime: 2021-08-31 14:54:43
+ * @LastEditTime: 2022-01-24 14:15:02
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
 ; * @FilePath: /vvt/src/utils/util.ts
@@ -72,4 +72,8 @@ export function getScrollTop() {
 // 滚动条总高度
 export function getScrollHeight() {  
   return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);  
+}
+
+export function testDevice() {
+  return Boolean(navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i));
 }

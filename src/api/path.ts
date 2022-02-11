@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-08-03 17:45:46
- * @LastEditTime: 2022-01-06 23:06:29
+ * @LastEditTime: 2022-01-28 20:49:04
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/api/path.ts
@@ -16,7 +16,7 @@ const apiList = {
     getdiytypes: '/apiv1/get/getdiytypes',
     getinfo: '/apiv1/get/getinfo',
     getcode: 'https://open.weixin.qq.com/connect/qrconnect?appid=wx356ca2b65ef949c3&redirect_uri=https%3A%2F%2Fwww.sotm.cn&response_type=code&scope=snsapi_login&state=3d6be0a4035d839573b04816624a415e#wechat_redirect',
-    login: '/apiv1/login',
+    
   },
   post: {
     getarticlelist: '/apiv1/get/articlelist',
@@ -37,6 +37,7 @@ const apiList = {
     addcomment: '/apiv1/addcomment',
     getcomment: '/apiv1/getcomment',
     regist: '/apiv1/regist',
+    login: '/apiv1/login',
    
   },
   file: {
