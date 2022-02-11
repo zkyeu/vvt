@@ -14,6 +14,18 @@
       </li>
     </ul>
     <div v-else>暂无信息</div>
+    <div class="pages">
+      <el-pagination
+        v-if="count > 9 && articleData.list.length"
+        small
+        background
+        layout="prev, pager, next"
+        :total="count"
+        current-page="pn"
+        @current-change="changPage"
+      >
+      </el-pagination>
+    </div>
   </section>
 </template>
 
@@ -30,6 +42,7 @@
   const route = useRoute();
   const page: any = reactive({ pn: 1, rn: 10, id: '' });
   const count = ref(0);
+  const pn = ref(1);
 
   const changeRoute = (v: any) => {
     router.push(`ad?id=${v.id}&i=${v.t}`);
@@ -66,7 +79,6 @@
   watch(
     () => route.query.i,
     (n) => {
-      // console.log(n);
       getArticleList({
         rn: 10,
         pn: 1,
@@ -78,6 +90,11 @@
   const displayDom = () => {
     let dom = document.querySelector('.content-right');
     (dom as any).style.display = 'none';
+  };
+
+  const changPage = (v: any) => {
+    page.pn = v;
+    getArticleList(page);
   };
 
   onMounted(() => {
@@ -143,6 +160,10 @@
         background-color: #fff;
         text-align: center;
       }
+    }
+    .pages {
+      display: flex;
+      justify-content: center;
     }
   }
 </style>
