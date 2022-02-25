@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-16 11:59:19
- * @LastEditTime: 2022-02-22 21:41:36
+ * @LastEditTime: 2022-02-24 11:48:37
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/frontend/article/article-detail.vue
@@ -14,11 +14,18 @@
         <Content />
         <div class="basic-info">
           <div @click="handleClick('shoucang', basicInfo.shoucang)">
-            <icon :data="shoucang"></icon>
-            <spa v-if="true">收藏</spa>
+            <icon
+              :data="basicInfo.shoucang ? shoucanged : shoucang"
+              :class="{ active: basicInfo.shoucang }"
+            ></icon>
+            <!-- <icon :data="shoucang"></icon> -->
+            <span v-if="true">收藏</span>
           </div>
           <div @click="handleClick('pinglun', basicInfo.pinglun)">
-            <icon :data="pinglun"></icon>
+            <icon
+              :data="basicInfo.pinglun ? pingluned : pinglun"
+              :class="{ active: basicInfo.pinglun }"
+            ></icon>
             <span v-if="true">{{ commLength }}</span>
             <span v-else>评论</span>
           </div>
@@ -50,8 +57,10 @@
   import Comment from '../../../components/front/comment.vue';
   import CommentComp from './comment-list.vue';
   import Types from '@com/front/types.vue';
-  import shoucang from 'assets/svg/origin/shoucang.svg';
-  import pinglun from 'assets/svg/origin/pinglun.svg';
+  import shoucang from 'assets/svg/origin/shoucang-o.svg';
+  import shoucanged from 'assets/svg/origin/shoucang.svg';
+  import pinglun from 'assets/svg/origin/pinglun-o.svg';
+  import pingluned from 'assets/svg/origin/pinglun.svg';
   import zaned from 'assets/svg/origin/praise.svg';
   import zan from 'assets/svg/origin/praise-o.svg';
   import { testDevice } from '../../../utils/util';
@@ -62,7 +71,6 @@
     components: { Content, Types, Comment, CommentComp },
     setup: () => {
       const route = useRoute();
-      const showEmojiLayer = ref(false);
       const aid = ref();
       const getNew = ref();
       const commLength = ref(0);
@@ -86,38 +94,20 @@
         let dom = document.querySelector('.content-right');
         (dom as any).style.display = 'none';
       };
-      const changeValue = (obj: any, v: any, i: any) => {
-        if (i) {
-          LS.setItem('basicInfo', JSON.stringify({ ...JSON.parse(localBasicInfo), zan: 0 }));
-          basicInfo.zan = 0;
-        } else {
-          LS.setItem('basicInfo', JSON.stringify({ ...JSON.parse(localBasicInfo), zan: 1 }));
-          basicInfo.zan = 1;
-        }
-      };
+
       const handleClick = (v: string, i: any) => {
+        /**
+         * 思路：首先获取是否有本地，有则设置，否则执行逻辑。点击判断数据在处理
+         */
         let LS = window.localStorage;
         let localBasicInfo: any = LS.getItem('basicInfo');
-
-        switch (v) {
-          case 'zan':
-            if (i) {
-              LS.setItem('basicInfo', JSON.stringify({ ...JSON.parse(localBasicInfo), zan: 0 }));
-              basicInfo.zan = 0;
-            } else {
-              LS.setItem('basicInfo', JSON.stringify({ ...JSON.parse(localBasicInfo), zan: 1 }));
-              basicInfo.zan = 1;
-            }
-            break;
-          case 'pinglun':
-            LS.setItem('basicInfo', JSON.stringify({ ...JSON.parse(localBasicInfo), pinglun: 1 }));
-            basicInfo.pinglun = 1;
-            break;
-          case 'shoucang':
-            LS.setItem('basicInfo', JSON.stringify({ ...JSON.parse(localBasicInfo), shoucang: 1 }));
-            basicInfo.shoucang = 1;
-            break;
-          default:
+        let aid = route.query.id;
+        if (aid) {
+          let obj: any = {};
+          const key = v;
+          obj[key] = i === 0 ? 1 : 0;
+          (basicInfo as any)[v] = obj[key];
+          LS.setItem('basicInfo', JSON.stringify({ ...JSON.parse(localBasicInfo), ...obj }));
         }
       };
 
@@ -126,12 +116,20 @@
         if (testDevice()) {
           displayDom();
         }
-        let LS = window.localStorage;
+        let LS: any = window.localStorage;
+        let obj = JSON.parse(LS.getItem('basicInfo'));
+        if (obj) {
+          for (let i in obj) {
+            (basicInfo as any)[i] = obj[i];
+          }
+        }
       });
 
       return {
         shoucang,
+        shoucanged,
         pinglun,
+        pingluned,
         zan,
         zaned,
         aid,
@@ -167,11 +165,16 @@
           justify-content: space-between;
           align-items: center;
           padding: 16px 20px;
+          color: #666;
+
           div {
             display: flex;
             justify-content: space-between;
             align-items: center;
             cursor: pointer;
+            span {
+              font-size: 12px !important;
+            }
           }
         }
       }
