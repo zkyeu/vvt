@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2022-01-20 14:34:46
+ * @LastEditTime: 2022-03-07 17:25:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
@@ -11,26 +11,50 @@
     <div class="content-body">
       <div class="logo" @click="home"><img src="../../assets/logo.png" /></div>
       <Nav />
-      <div class="user-center">user center2</div>
+      <div class="right-block">
+        <div class="search">
+          <el-input
+            v-model="searchKey"
+            placeholder="请输入搜索信息"
+            :prefix-icon="Search"
+            clearable
+            size="middle"
+            @change="search"
+          />
+        </div>
+        <div class="user-center">user center2</div>
+      </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-  import { defineComponent } from 'vue';
+  import { defineComponent, ref } from 'vue';
   import Nav from '@/components/front/nav.vue';
   import router from '../../router';
+  import { Search } from '@element-plus/icons-vue';
+  import { useStore } from 'vuex';
+  import { key } from '../../store';
+
   export default defineComponent({
     name: 'headers',
     components: { Nav },
-    setup: () => {
+    setup: (props, context) => {
+      const store = useStore(key);
       const home = () => {
         router.push('/');
+      };
+      const searchKey = ref('');
+      const search = () => {
+        store.commit('toSearch', searchKey.value);
       };
 
       return {
         home,
         Nav,
+        search,
+        searchKey,
+        Search,
       };
     },
   });
@@ -55,14 +79,31 @@
     top: 0;
     z-index: 999;
   }
-  .user-center {
-    width: 34px;
-    height: 34px;
-    border-radius: 20px;
-    border: #ddd solid 1px;
-    overflow: hidden;
-    cursor: pointer;
+  .right-block {
+    display: flex;
+    align-items: center;
+    .search {
+      display: flex;
+      width: 190px;
+      height: 28px;
+      padding: 0 3px;
+      line-height: 28px;
+      border-radius: 15px;
+      margin-right: 20px;
+      /deep/ .el-input__inner {
+        font-size: 12px;
+      }
+    }
+    .user-center {
+      width: 34px;
+      height: 34px;
+      border-radius: 20px;
+      border: #ddd solid 1px;
+      overflow: hidden;
+      cursor: pointer;
+    }
   }
+
   .content-body {
     margin: 0 auto;
     display: flex;

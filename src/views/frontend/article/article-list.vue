@@ -17,11 +17,10 @@
     <div class="pages">
       <el-pagination
         v-if="count > 9 && articleData.list.length"
-        small
         background
         layout="prev, pager, next"
         :total="count"
-        current-page="pn"
+        :current-page="page.pn"
         @current-change="changPage"
       >
       </el-pagination>
@@ -35,14 +34,19 @@
   import { useGlobalConfig, getScrollTop, getScrollHeight, testDevice } from '../../../utils/util';
   import router from '../../../router';
   import { useRouter, useRoute, onBeforeRouteUpdate } from 'vue-router';
+  import { useStore } from 'vuex';
+  import { key } from '../../../store';
+  import { log } from 'console';
 
   const { $http, $confirm, $message } = useGlobalConfig();
   const loading = ref(true);
   const articleData: any = reactive({ list: [] });
   const route = useRoute();
-  const page: any = reactive({ pn: 1, rn: 10, id: '' });
+  const page: any = reactive({ pn: 1, rn: 10, id: '', word: '', origin: 1 });
   const count = ref(0);
   const pn = ref(1);
+  const store = useStore(key);
+  const searchWord = computed(() => store.state.searchWord);
 
   const changeRoute = (v: any) => {
     router.push(`ad?id=${v.id}&i=${v.t}`);
@@ -56,7 +60,6 @@
         if (res.errNo === 0) {
           count.value = parseInt(res.count);
           loading.value = false;
-          // console.log(res.data);
           articleData.list = res.data;
         }
       })
@@ -64,6 +67,7 @@
         console.log(err);
       });
   };
+
   const scrollEvent = () => {
     // 检测滚动条位置，为无限加载准备
     window.onscroll = () => {
@@ -76,14 +80,18 @@
   //   console.log(id);
   //   console.log(n);
   // });
+  watch(searchWord, () => {
+    page.word = searchWord.value;
+    page.pn = 1;
+    getArticleList(page);
+  });
+
   watch(
     () => route.query.i,
     (n) => {
-      getArticleList({
-        rn: 10,
-        pn: 1,
-        id: n,
-      });
+      page.pn = 1;
+      page.id = n;
+      getArticleList(page);
     }
   );
 
