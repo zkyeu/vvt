@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2022-02-25 18:47:47
+ * @LastEditTime: 2022-03-07 17:25:48
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
@@ -33,18 +33,20 @@
   import Nav from '@/components/front/nav.vue';
   import router from '../../router';
   import { Search } from '@element-plus/icons-vue';
+  import { useStore } from 'vuex';
+  import { key } from '../../store';
 
   export default defineComponent({
     name: 'headers',
     components: { Nav },
     setup: (props, context) => {
+      const store = useStore(key);
       const home = () => {
         router.push('/');
       };
       const searchKey = ref('');
       const search = () => {
-        console.log(searchKey.value);
-        context.emit('toSearch', searchKey.value);
+        store.commit('toSearch', searchKey.value);
       };
 
       return {

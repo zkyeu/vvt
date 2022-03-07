@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2022-01-24 13:45:49
+ * @LastEditTime: 2022-03-07 18:42:01
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/index.ts
@@ -23,6 +23,7 @@ export interface State {
   articleConfig: Array<any>,
   adminConfig: Array<any>,
   powerConfig: Array<any>,
+  searchWord: string
 }
 
 const defaultState = {
@@ -74,6 +75,7 @@ const defaultState = {
     //   title: 'wechat',
     //   router: 'wechat',
     // },
+    
   ],
   type: [
     {
@@ -146,7 +148,8 @@ const defaultState = {
       router: 'persons',
     }
   ],
-  types: []
+  types: [],
+  searchWord: ''
 };
 
 export const key: InjectionKey<Store<State>> = Symbol();
@@ -161,6 +164,10 @@ export const store = createStore<State>({
     },
     setTypes(state, data: any) {
       state.types = data;
+    },
+    toSearch(state, data: string) {
+      state.searchWord = data;
+      // console.log(data);
     }
   },
   actions: {
