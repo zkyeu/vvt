@@ -1,13 +1,13 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2022-03-08 10:39:24
+ * @LastEditTime: 2022-03-08 11:27:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
 -->
 <template>
-  <div class="layer-header" v-if="false">
+  <div class="layer-header">
     <div class="content-body">
       <div class="logo" @click="home"
         ><img src="../../assets/logo.png" /> <h1 class="ys">MBA21081班</h1></div
