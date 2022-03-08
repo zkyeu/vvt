@@ -1,5 +1,24 @@
 <template>
   <section class="item-list">
+    <div class="survey" v-if="page.id === '39'">
+      <div class="class-a">
+        <span>兴趣/性格</span>
+        <span>态度/评价</span>
+        <span>能力/素养</span>
+        <span>生涯/决策</span>
+        <span>趣味/娱乐</span>
+        <span>MBA</span>
+        <span>其他</span>
+      </div>
+      <div class="class-b">
+        <span>基础能力</span>
+        <span>自我管理</span>
+        <span>任务执行</span>
+        <span>人际关系</span>
+        <span>团队协作</span>
+        <span>创新创业</span>
+      </div>
+    </div>
     <ul v-loading="loading" v-if="articleData.list.length">
       <li
         v-for="item in articleData.list"
@@ -172,6 +191,41 @@
     .pages {
       display: flex;
       justify-content: center;
+    }
+    .survey {
+      background: #f6f6f6;
+      padding: 16px 16px 10px 16px;
+      margin-bottom: 20px;
+      border-radius: 3px;
+      .class-a {
+        display: flex;
+        span {
+          padding: 0 16px;
+          height: 30px;
+          line-height: 30px;
+          background: #ddd;
+          margin-right: 16px;
+          border-radius: 2px;
+          cursor: pointer;
+          &:hover {
+            background: #2483ff;
+            color: #fff;
+            font-weight: 700;
+          }
+        }
+      }
+      .class-b {
+        padding-left: 8px;
+        margin-top: 14px;
+        span {
+          padding: 0 10px;
+          cursor: pointer;
+          &:hover {
+            color: #2483ff;
+            font-weight: 600;
+          }
+        }
+      }
     }
   }
 </style>

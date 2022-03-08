@@ -1,13 +1,13 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2022-03-08 09:33:24
+ * @LastEditTime: 2022-03-08 10:39:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
 -->
 <template>
-  <div class="layer-header">
+  <div class="layer-header" v-if="false">
     <div class="content-body">
       <div class="logo" @click="home"
         ><img src="../../assets/logo.png" /> <h1 class="ys">MBA21081班</h1></div
@@ -70,13 +70,18 @@
   .logo {
     display: flex;
     align-items: center;
-    // width: 40px;
-    // height: 40px;
-    // overflow: hidden;
     cursor: pointer;
+    position: relative;
     img {
       width: 40px;
       margin-right: 10px;
+      &:hover {
+        position: absolute;
+        width: 300px;
+        top: 0;
+        left: 0;
+        background: #fff;
+      }
     }
   }
   .layer-header {
