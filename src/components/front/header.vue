@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2022-03-07 17:25:48
+ * @LastEditTime: 2022-03-08 09:33:24
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
@@ -9,7 +9,9 @@
 <template>
   <div class="layer-header">
     <div class="content-body">
-      <div class="logo" @click="home"><img src="../../assets/logo.png" /></div>
+      <div class="logo" @click="home"
+        ><img src="../../assets/logo.png" /> <h1 class="ys">MBA21081班</h1></div
+      >
       <Nav />
       <div class="right-block">
         <div class="search">
@@ -22,7 +24,9 @@
             @change="search"
           />
         </div>
-        <div class="user-center">user center2</div>
+        <div class="user-center">
+          <icon :data="photo"></icon>
+        </div>
       </div>
     </div>
   </div>
@@ -35,6 +39,7 @@
   import { Search } from '@element-plus/icons-vue';
   import { useStore } from 'vuex';
   import { key } from '../../store';
+  import photo from 'assets/svg/origin/user.svg';
 
   export default defineComponent({
     name: 'headers',
@@ -55,6 +60,7 @@
         search,
         searchKey,
         Search,
+        photo,
       };
     },
   });
@@ -62,15 +68,19 @@
 
 <style lang="less" scoped>
   .logo {
-    width: 40px;
-    height: 40px;
-    overflow: hidden;
+    display: flex;
+    align-items: center;
+    // width: 40px;
+    // height: 40px;
+    // overflow: hidden;
     cursor: pointer;
     img {
       width: 40px;
+      margin-right: 10px;
     }
   }
   .layer-header {
+    display: flex;
     padding: 0 20px;
     height: 50px;
     background-color: #fff;
@@ -101,6 +111,11 @@
       border: #ddd solid 1px;
       overflow: hidden;
       cursor: pointer;
+      color: #ddd;
+      svg {
+        width: 32px;
+        height: 32px;
+      }
     }
   }
 
@@ -110,6 +125,24 @@
     justify-content: space-between;
     align-items: center;
   }
+  .ys {
+    font-weight: 600;
+    font-size: 26px;
+    background: -webkit-linear-gradient(45deg, #1aced8, #e77a47, #e2ce67, #4510e4, #3073cf);
+    color: transparent;
+    -webkit-background-clip: text;
+    animation: ran 20s linear infinite;
+  }
+
+  @keyframes ran {
+    from {
+      backgroud-position: 0 0;
+    }
+    to {
+      background-position: 2000px 0;
+    }
+  }
+
   @media screen and (min-width: 1201px) {
     .content-body {
       width: 1200px;
