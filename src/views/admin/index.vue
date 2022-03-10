@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:10:05
- * @LastEditTime: 2021-08-12 20:34:13
+ * @LastEditTime: 2022-03-10 18:59:17
  * @LastEditors: Please set LastEditors
  * @Description: 后台首页
  * @FilePath: /vvt/src/views/home.vue
@@ -11,32 +11,41 @@
     <Header />
     <div class="content-layer">
       <LeftNav />
-      <router-view class="content" />
+      <router-view class="main-content-right" />
     </div>
   </section>
 </template>
 
 <script lang="ts">
-  import LeftNav from '@/components/BaseLayer/left-nav.vue';
-  import Header from '@/components/BaseLayer/header.vue';
+  import LeftNav from '@/components/admin/left-nav.vue';
+  import Header from '@/components/admin/header.vue';
   export default {
-    components: { Header, LeftNav }
+    components: { Header, LeftNav },
   };
 </script>
 
 <style lang="less" scoped>
   .main-content {
-    background: #ececf2;
+    background: #fff;
 
     .content-layer {
       display: flex;
       flex-direction: row;
-      .content {
+
+      .main-content-right {
         background: #fff;
-        margin: 16px 16px 0;
+        margin: 10px 10px 2px;
         width: 100%;
         min-width: 600px;
-        box-shadow: 0 0 5px #dedede;
+        height: calc(100vh - 62px);
+        overflow-y: auto;
+        &::-webkit-scrollbar {
+          width: 3px;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: #ccc;
+          border-radius: 2px;
+        }
       }
     }
   }
