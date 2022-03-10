@@ -1,28 +1,29 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:10:38
- * @LastEditTime: 2022-01-27 16:19:30
+ * @LastEditTime: 2022-03-10 20:06:17
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: /vvt/src/components/baseLayer/left-nav.vue
+ * @FilePath: /vvt/src/components/admin/left-nav.vue
 -->
 <template>
+  <!-- background-color=""
+      text-color=""
+      -->
   <section class="left-navs">
     <el-menu
       :uniqueOpened="true"
       default-active="/"
       class="left-nav-menu"
-      background-color="#3e4660"
-      text-color="rgb(202, 207, 222)"
-      active-text-color="#00a8f3"
       router
+      active-text-color="#2483ff"
       @select="sele"
       @open="handleOpen"
       @close="handleClose"
     >
       <template v-for="item in leftNavData">
         <el-menu-item :index="item.router" :key="item.router" v-if="!item.child">
-          <i class="el-icon-setting"></i>
+          <el-icon><location /></el-icon>
           <template #title>{{ item.title }}</template>
         </el-menu-item>
 
@@ -42,49 +43,38 @@
   </section>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup>
   import { ref, defineComponent, computed, onMounted, getCurrentInstance } from 'vue';
   import { useStore } from 'vuex';
   import router from '../../router/index';
   import { key } from '../../store';
+  import { Location, Document, Menu as IconMenu, Setting } from '@element-plus/icons-vue';
 
-  export default defineComponent({
-    name: 'LeftNav',
-    setup: () => {
-      const store = useStore(key);
-      const leftNavData = computed(() => store.state.leftNav);
-      const therouter = (v: string) => {
-        // activeRouter.value = v;
-        router.push(v);
-        // console.log(router.currentRoute.value.path);
-      };
-      const handleOpen = (key: any, keyPath: any) => {
-        console.log(key, keyPath);
-      };
+  const store = useStore(key);
+  const leftNavData = computed(() => store.state.leftNav);
+  const therouter = (v: string) => {
+    // activeRouter.value = v;
+    router.push(v);
+    // console.log(router.currentRoute.value.path);
+  };
+  const handleOpen = (key: any, keyPath: any) => {
+    console.log(key, keyPath);
+  };
 
-      const handleClose = (key: any, keyPath: any) => {
-        console.log(key, keyPath);
-      };
+  const handleClose = (key: any, keyPath: any) => {
+    console.log(key, keyPath);
+  };
 
-      const sele = (key: any, keyPath: any) => {
-        // console.log(key, keyPath);
-        // router.push(key);
-      };
-      onMounted(() => {
-        // console.log(leftNavData.value);
-        const { proxy }: any = getCurrentInstance();
-        router.push(proxy.$router.currentRoute.value.path);
-        // console.log(router.currentRoute.value);
-        // console.log(Proxy);
-      });
-
-      return {
-        leftNavData,
-        handleOpen,
-        handleClose,
-        sele,
-      };
-    },
+  const sele = (key: any, keyPath: any) => {
+    // console.log(key, keyPath);
+    // router.push(key);
+  };
+  onMounted(() => {
+    // console.log(leftNavData.value);
+    const { proxy }: any = getCurrentInstance();
+    router.push(proxy.$router.currentRoute.value.path);
+    // console.log(router.currentRoute.value);
+    // console.log(Proxy);
   });
 </script>
 
@@ -93,11 +83,8 @@
     display: flex;
     width: 200px;
     min-height: calc(100vh - 50px);
-    position: relative;
 
     &:deep(.left-nav-menu) {
-      position: sticky;
-      top: 0;
       width: 200px;
       .el-submenu__title,
       .el-menu-item {
@@ -112,7 +99,8 @@
         margin-top: -1px;
       }
       .is-active {
-        background: #343c53 !important;
+        background: #e6f7ff !important;
+        border-right: #2483ff solid 1px;
       }
     }
   }

@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-02 20:47:46
- * @LastEditTime: 2022-03-08 09:33:24
+ * @LastEditTime: 2022-03-08 11:27:31
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/components/header.vue
@@ -70,13 +70,18 @@
   .logo {
     display: flex;
     align-items: center;
-    // width: 40px;
-    // height: 40px;
-    // overflow: hidden;
     cursor: pointer;
+    position: relative;
     img {
       width: 40px;
       margin-right: 10px;
+      &:hover {
+        position: absolute;
+        width: 300px;
+        top: 0;
+        left: 0;
+        background: #fff;
+      }
     }
   }
   .layer-header {

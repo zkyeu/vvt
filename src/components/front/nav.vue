@@ -4,7 +4,7 @@
  * @LastEditTime: 2022-01-24 13:46:27
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
- * @FilePath: /vvt/src/components/baseLayer/left-nav.vue
+ * @FilePath: /vvt/src/components/admin/left-nav.vue
 -->
 <template>
   <section class="navs" v-if="navData.length">

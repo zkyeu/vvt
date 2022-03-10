@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 19:58:29
- * @LastEditTime: 2022-03-07 18:42:01
+ * @LastEditTime: 2022-03-10 20:30:36
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/store/index.ts
@@ -39,8 +39,22 @@ const defaultState = {
     {
       id: 6,
       title: '基础配置',
-      router: '/admin/diy',
+      router: '',
       icon: 'el-icon-setting',
+      child:[
+        {
+          id: 71,
+          title: '权限管理1',
+          router: '/admin/diy',
+          icon: 'el-icon-setting',
+        },
+        {
+          id: 71,
+          title: '权限管理2',
+          router: '/admin/diy',
+          icon: 'el-icon-setting',
+        }
+      ]
     },
     {
       id: 7,

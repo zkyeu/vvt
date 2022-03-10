@@ -1,13 +1,14 @@
 /*
  * @Author: your name
  * @Date: 2021-07-28 20:43:45
- * @LastEditTime: 2022-01-24 22:40:55
+ * @LastEditTime: 2022-03-10 18:30:11
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/router/index.ts
  */
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from '@/views/Home.vue';
+// import Home from '@/views/Home.vue';
+import Home from '@/views/admin/index.vue';
 import index from '@/views/index.vue';
 
 const routes: Array<RouteRecordRaw> = [
