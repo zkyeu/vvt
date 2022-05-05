@@ -1,10 +1,10 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2022-01-27 11:23:02
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-05-05 16:38:22
+ * @LastEditors: liliang
  * @Description: In User Settings Edit
- * @FilePath: /vvt/src/views/default.vue
+ * @FilePath: /vvt/src/views/admin/article/list.vue
 -->
 <template>
   <section class="content">
@@ -78,8 +78,7 @@
   import { ref, defineComponent, computed, watch, reactive, onMounted } from 'vue';
   import { useStore } from 'vuex';
   import { useGlobalConfig, formatDateTime } from '../../../utils/util';
-  import { ElMessage } from 'element-plus';
-  import { log } from 'console';
+  import { ElMessage, ElMessageBox } from 'element-plus';
   import Router from '../../../router';
   import Page from '../../../components/page.vue';
   import FormatDate from '../../../utils/formatdate';
@@ -188,20 +187,33 @@
 
       // 删除item
       const deleteItem = (id: string) => {
-        $http
-          .deletearticle({
-            id: id,
+        ElMessageBox.confirm(`确定要删除文章ID:${id} 吗?`, 'Warning', {
+          confirmButtonText: '确认',
+          cancelButtonText: '取消',
+          type: 'warning',
+        })
+          .then(() => {
+            $http
+              .deletearticle({
+                id: id,
+              })
+              .then((res: any) => {
+                console.log(res);
+                ElMessage.success({
+                  message: res.message,
+                  type: 'success',
+                });
+                getArticleList();
+              })
+              .catch((err: any) => {
+                console.log(err);
+              });
           })
-          .then((res: any) => {
-            console.log(res);
-            ElMessage.success({
-              message: res.message,
-              type: 'success',
-            });
-            getArticleList();
-          })
-          .catch((err: any) => {
-            console.log(err);
+          .catch(() => {
+            // ElMessage({
+            //   type: 'info',
+            //   message: 'Delete canceled',
+            // });
           });
       };
 

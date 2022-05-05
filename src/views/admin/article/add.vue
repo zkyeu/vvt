@@ -1,8 +1,8 @@
 <!--
  * @Author: your name
  * @Date: 2021-08-03 17:32:56
- * @LastEditTime: 2022-03-08 11:12:33
- * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2022-05-05 16:18:48
+ * @LastEditors: liliang
  * @Description: In User Settings Edit
  * @FilePath: /vvt/src/views/admin/article/add.vue
 -->
@@ -25,7 +25,7 @@
         <div id="editor"></div>
       </el-form-item>
 
-      <el-form-item label="标签：">
+      <el-form-item label="标签：" style="margin-top: 50px">
         <div class="tags">
           <el-tag :key="tag" v-for="tag in forms.tags" closable @close="handleTagClose(tag)">
             {{ tag }}
@@ -344,7 +344,7 @@
     }
     #editor {
       min-height: 100px;
-      max-height: 240px;
+      max-height: 600px;
     }
     .editor {
       min-height: 290px;
